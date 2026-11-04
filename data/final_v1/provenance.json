@@ -1,0 +1,32 @@
+{
+  "status": "frozen working dataset v1; not a claim of team signoff",
+  "date": "2026-11-03",
+  "source_tasks": 400,
+  "structural_rejections": 0,
+  "lineage_uncertainty_exclusions": 13,
+  "eligible_after_exclusions": 387,
+  "selected": 120,
+  "eligible_not_selected": 267,
+  "split_counts": {
+    "dev": 60,
+    "val": 30,
+    "test": 30
+  },
+  "task_types": {
+    "Sheet-Level Manipulation": 38,
+    "Cell-Level Manipulation": 82
+  },
+  "pairs_screened": 79800,
+  "flagged_pairs_reviewed": 63,
+  "uncertain_pairs": 7,
+  "confirmed_merges": 0,
+  "selection": "skillshift-candidate-v1 hash ordering with reviewed-v1-{split} salt; no outcome-based selection",
+  "limitations": [
+    "Heuristic screening does not prove source independence and may miss transformed variants.",
+    "Excluding uncertain sources can alter representativeness; retain exclusion log and report this limitation.",
+    "No model executions, evaluator correctness certification, or outcome labels.",
+    "Unusual answer ranges remain raw and require evaluator integration."
+  ],
+  "archive_sha256": "10ef893dd29cb13ab97143ea787e68cdc9574a13873ab9a54e50b31dc03fc949",
+  "human_review_status": "No human signoff recorded"
+}

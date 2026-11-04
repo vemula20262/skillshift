@@ -1,0 +1,7 @@
+{
+  "tasks": 400,
+  "pairs_screened": 79800,
+  "flagged_pairs": 63,
+  "method": "Rare shared text OR high matching cell containment OR high text containment. Input workbooks only. Similarity is candidate evidence, not a merge rule.",
+  "limitations": "Heuristic screen may miss transformed variants. No upstream source lineage available in metadata."
+}

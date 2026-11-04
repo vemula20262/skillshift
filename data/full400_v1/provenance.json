@@ -1,0 +1,38 @@
+{
+  "version": "full400_v1",
+  "source_url": "https://huggingface.co/datasets/KAKA22/SpreadsheetBench",
+  "archive_sha256": "10ef893dd29cb13ab97143ea787e68cdc9574a13873ab9a54e50b31dc03fc949",
+  "tasks": 400,
+  "excluded": 0,
+  "splits": {
+    "dev": 200,
+    "val": 100,
+    "test": 100
+  },
+  "types_by_split": {
+    "dev": {
+      "Cell-Level Manipulation": 140,
+      "Sheet-Level Manipulation": 60
+    },
+    "val": {
+      "Cell-Level Manipulation": 66,
+      "Sheet-Level Manipulation": 34
+    },
+    "test": {
+      "Cell-Level Manipulation": 69,
+      "Sheet-Level Manipulation": 31
+    }
+  },
+  "observed_source_families": 400,
+  "precautionary_split_blocks": 393,
+  "uncertain_pairs": 7,
+  "selection_seed": "skillshift-candidate-v1; salt full400-v1-{split}",
+  "method": "Retain all 400; transitive precautionary blocks for seven unresolved pairs plus exact raw/cell matches; deterministic whole-block allocation 200/100/100. No outcome-driven selection.",
+  "limits": [
+    "Precautionary blocks do not prove common source lineage. family_id remains observed identity; split_group_id prevents potential related tasks crossing splits.",
+    "Heuristic screening can miss transformed variants.",
+    "Reference answer correctness, evaluator execution and model performance have not been certified.",
+    "For conservative bootstrap inference resample split_group_id blocks, subject to team protocol agreement.",
+    "This replaces the original 120-task plan; no team signoff is implied."
+  ]
+}

@@ -1,0 +1,1802 @@
+[
+  {
+    "id": "56920",
+    "instruction": "I need a formula to extract 10-digit numbers or letters from a text string in Excel where one sequence always starts with '955' and another starts with 'CHK'. The number that starts with '955' may be preceded by '/TES-'. How can I extract these 10-digit numbers or letters correctly, considering both types may be present in the string? Please use priority extraction, input into Column C.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/56920/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-56920",
+    "split_group_id": "block-56920"
+  },
+  {
+    "id": "12307",
+    "instruction": "How can I calculate the number of countries each company operates in (meaning they have more than 0 employees in that country), based on two tables: one with a list of companies and another with a list of countries and the corresponding companies with the number of employees?I need to apply a formula to cell I12, I 13 to count how many countries mentioned in Table-1 does ABC  operate in with > 0 employees in that country.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/12307/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-12307",
+    "split_group_id": "block-12307"
+  },
+  {
+    "id": "56953",
+    "instruction": "How do I create a formula in Excel that allows me to input a Power (kW) value in cell F2 and then display the corresponding range of data that matches this power value within the two predefined ranges (green and yellow) shown in my sample spreadsheet? The desired result for a power value of 70 kW is demonstrated in the orange range as an example.    \nMy current formula is:\nINDEX($A$2:$A$15,AGGREGATE(15,6,IF($A$2:$A$15=$F$2,ROW($A$2:$A$15),\"\"),ROW(A1)),1).\n\nYour output should go in I2:L13 with row 2 being the column headers and the numerical values underneath.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/56953/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-56953",
+    "split_group_id": "block-56953"
+  },
+  {
+    "id": "59160",
+    "instruction": "How can I compute the number of occurrences of 'Yes' or 'No' in a worksheet for a specific date using a formula, considering that the worksheet contains Date data? I have provided a sample workbook for reference.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/59160/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-59160",
+    "split_group_id": "block-59160"
+  },
+  {
+    "id": "59511",
+    "instruction": "I need to know the formula for incrementing a value by 1 for every 1,000, without using the XLOOKUP formula. This is because I have to use the formula in Google Sheets. The example of the expected result is shown in column F which is included in the attachment.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/59511/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-59511",
+    "split_group_id": "block-59511"
+  },
+  {
+    "id": "32612",
+    "instruction": "How can I create a workday column in an Excel file that identifies each date as the day of the week (e.g., Mon, Tue, Wed, etc.)? Additionally, when the date is a holiday, you do not need to fill in the day of the week, instead you need to marks the date as a public holiday, specifying if it's a working public holiday (PH(working)) or a non-working public holiday (PH(non-working)), using a provided list of public holidays.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/32612/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-32612",
+    "split_group_id": "block-32612"
+  },
+  {
+    "id": "47842",
+    "instruction": "I have a VBA routine that standardizes job descriptions by updating words in the past tense to the simple present tense. The routine generally works fine, but I have a problem with the capitalization of the first letters. For example, a word like 'Acquired' might be converted into 'Acquire' correctly in terms of tense, but the first letter's case could incorrectly change, such as from 'a' to 'A' or vice versa. In my spreadsheet, column B contains various sample words in different tenses, and column C has the correct tense forms but sometimes with the wrong case for the initial letter. I need an Excel formula that will look at the first letter case in column C and compare it to the first letter in column B. If the case is different, the formula should update the first letter in column C to match the case of column B's first letter, ensuring the word in column C remains in the correct tense. Which formula could I use in a new column F to achieve this correction without affecting the existing tense forms?Formula needs to change word from \"address\" to \"Address\" to match source word's \"A\" in col B.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/47842/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-47842",
+    "split_group_id": "block-47842"
+  },
+  {
+    "id": "57989",
+    "instruction": "In an Excel file that lists the trip location per driver and per day, I'm looking to create a synthesis table that shows the number of days worked per weekday for each driver. I need a formula that can count the number of non-empty cells based on the driver's name and the day of the week. The formula I've tried so far only returns the count for the first week as it stops after the first Match function. This is the formula I used: '=COUNTA(INDEX($A$1:$U$21,MATCH($A25,$A$1:$A$21,0),MATCH(B$24,$A$1:$U$1,0)))'. This didn't achieve the intended result, for example, 'Driver 1, Sunday = 2'. I attempted using the Countifs function, but it failed because some of the criteria are in rows, not columns (days of the week). Is there another function or method that can help in this situation?",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/57989/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-57989",
+    "split_group_id": "block-57989"
+  },
+  {
+    "id": "267-18",
+    "instruction": "I have an Excel sheet where I am concatenating strings in column G in the format [\"/out/\",\"https://theurl.top/images/2.jpg \", \"text?\", \"text!\"]. I need to add a prefix \"//\" to this concatenation pattern (eg, //[ ), Apply formula but only for rows that are highlighted with a yellow color. How can I accomplish this? Could you implement this based on my description?",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/267-18/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-267-18",
+    "split_group_id": "block-267-18"
+  },
+  {
+    "id": "40959",
+    "instruction": "Is there a way to create a formula in Excel that acts like an 'If UNLESS' condition? Specifically, I have a spreadsheet with two columns: Column A, which contains the values 'Sales' or 'Sales-Marketing', and Column B, which is either empty or contains the word 'General'. The requirement is to have a third column, Column C, display 'Sales' if Column A is 'Sales' and Column B is empty, 'Marketing' if Column A is 'Sales-Marketing' and Column B is empty, and 'Marketing' if Column A is 'Sales' and Column B contains 'General'. I am finding it challenging to construct a formula when there is a value in Column B.\n   I want cell C6 to show \"Marketing\" when sub-dept = \"General\" and name is \"Sales\"\n   My current formula is:IF(A2=\"\",\"\",IF(ISERROR(SEARCH(\"-\",A2,1)),\"Sales\",\"Marketing\"))\nApply new formula.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/40959/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-40959",
+    "split_group_id": "block-40959"
+  },
+  {
+    "id": "44389",
+    "instruction": "How can I create a formula in Excel that returns the column header of the smallest value greater than zero in each row. If there's more than one value that matches the lowest value above zero separate them by commas without spaces?",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/44389/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-44389",
+    "split_group_id": "block-44389"
+  },
+  {
+    "id": "57558",
+    "instruction": "I need to create a formula that retrieves a commission rate based on multiple criteria which include a salesperson, type of sale, and a date that falls within a specified date range. While I can use the INDEX/MATCH function successfully for exact matches on the salesperson and type of sale, I'm struggling with incorporating the date range check into the formula. Specifically, I need to match a date against a range of start and end dates on another tab to confirm it falls within the range and then return the corresponding rate. How can I modify my formula to work with this date range criterion? Returning a \"1\" in the index if the date falls within those bounds. Once I have this last part figured out, the formula should work properly.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/57558/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-57558",
+    "split_group_id": "block-57558"
+  },
+  {
+    "id": "516-46",
+    "instruction": "I need a macro that extracts data from a range beginning at cell A2, extending across multiple columns to column E, and displays the results from cell H2 onwards. The extraction should be based on the last date in my dataset per brand. Additionally, combine any multiple entries by brand and qty using the last date for each brand. For example, if 'camera' appears twice on the last date with a value of 20 each, the result should display a single entry with the sum of 40 for the most recent date and brand. The result should also show the modifications for duplicated last dates.",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/516-46/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-516-46",
+    "split_group_id": "block-516-46"
+  },
+  {
+    "id": "41589",
+    "instruction": "How can I Create a function that populates Column J based on the last contact date in Column H and a yes/no response in Column I. The logic should be: If H4 is within the last 30 days AND I4 is 'YES' then display 'HOLD'. If H4 is more than 30 days ago AND I4 is 'YES' then display 'TOUCH BASE'.  In all other cases display 'NO ACTION'\"",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/41589/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-41589",
+    "split_group_id": "block-41589"
+  },
+  {
+    "id": "45944",
+    "instruction": "I'm having issues with a nested IF statement that should compare the names and start dates between a table and data located outside the table in an Excel sheet. My current formula correctly compares this information when the table and the outside cells are in matching positions. However, it fails when the positions don't correspond, as shown in my second screenshot where some true/false values are manually typed for illustration. The formula I used in the first screenshot is '=IF(Table1[@[PARTICIPANT_NAME]]=D4,IF(Table1[@[START_DATE]]>=E4, TRUE()),)'. What I need is a formula that correctly works even when the positions don't match, and the people in the table are not located in the same rows as the people outside of it. An example file is attached for reference.\n   \nMy current formula is:\nIF(Table1[@[PARTICIPANT_NAME]]=D4,IF(Table1[@[START_DATE]]>=E4,TRUE()),)\n\nplease place the right formula in column G for other 2 tables.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/45944/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-45944",
+    "split_group_id": "block-45944"
+  },
+  {
+    "id": "382-29",
+    "instruction": "I have an Excel file with four sheets; three contain data and the fourth is a Totals sheet. I need a macro that can sum the quantities from a specific cell on each of the data sheets and then display the total on the Totals sheet. The process should be done for cells B2 through B26. In the attached workbook, I've manually calculated the total for cell B2 as an example, but my actual workbook will have around 100 sheets, and therefore I'm looking for an automated solution to perform this calculation instead of doing it by hand.",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/382-29/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-382-29",
+    "split_group_id": "block-382-29"
+  },
+  {
+    "id": "33722",
+    "instruction": "How can I calculate the median market capitalization for a set of companies that fall within a specific percentile range (0 to 1%), using a formula in Excel that allows me to dynamically change the percentile range? The output should be in E2:E6 and each time the formula is used in the next row, the previous rows above it are excluded from the selection. The data is in col B and C. Format col E with borders, align left, no decimals, no commas for all associated rows.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/33722/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-33722",
+    "split_group_id": "block-33722"
+  },
+  {
+    "id": "402-43",
+    "instruction": "How can I duplicate rows in a spreadsheet based on a count specified in column AG, so that if the value in AG is 1, the row remains singular, but if it is 2, an additional duplicate row is created, and so on, until all data in column A has been processed? Additionally, I would like to know whether the duplicated rows can be inserted directly below the existing row or at the bottom of the dataset, and I need a loop that will work until the last row of data. I have attached a sample workbook for reference.",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/402-43/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-402-43",
+    "split_group_id": "block-402-43"
+  },
+  {
+    "id": "37456",
+    "instruction": "I need to calculate daily product sales using a custom 24-hour window that runs from 6:00 AM of the current date to 5:59:59 AM of the next date. The formula must:\nDynamically reference the product from the header so it can be copied across columns without editing.\nUse the next row’s date as the end boundary for each window.\nCalculate each day’s sales using a cumulative subtraction method (sum through the end of the window minus sales beyond it).\nOnly run when a next date exists—if the current row is the last date in the dataset, the formula should not calculate.\nOnce done change the formatting of cells G12:J15 from accounting to currency.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/37456/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-37456",
+    "split_group_id": "block-37456"
+  },
+  {
+    "id": "39667",
+    "instruction": "How can I enter a 'description' in a table below a specific (black) row and automatically receive the corresponding 'Pay Item Number' and 'UOM' in the columns to the left of that 'description'? I want to be able to type in a description in the table below the black row and it spit out the corresponding 'Pay Item Number' and 'UOM' in the columns to the left of the 'description'. Outputs an empty string when search is empty. Also, please make rows 20-26, of columns A & B, color: #FFF2CC.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/39667/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-39667",
+    "split_group_id": "block-39667"
+  },
+  {
+    "id": "17-35",
+    "instruction": "Display the dates based on the start and end date criteria entered in cells I2 and J2. I have a data range from A1 to E315, the criteria range in cells I2 and J2, and I want the filtered results to start from cell I6 and to maintain the original formatting for each row that's brought over.",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/17-35/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-17-35",
+    "split_group_id": "block-17-35"
+  },
+  {
+    "id": "54242",
+    "instruction": "How can I create a formula for column E in Excel that will display 'Revenue' in each cell if the corresponding cell in the range B6 to B13 contains the word 'deposit', and 'Expenses' if it contains the word 'withdrawal'?",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/54242/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-54242",
+    "split_group_id": "block-54242"
+  },
+  {
+    "id": "59595",
+    "instruction": "In my Excel spreadsheet, I have a column A with non-continuous but sequentially increasing dates and a column B with points recorded for each date. I'm looking for a formula that I can enter into column C, which will calculate the total sum of points from column B for the past seven days relative to each date in addition to the points listed for that date in column A. The number of rows to be summed can vary since the dates aren't consecutive. For example, if today's date is in row 10, I need to look back in column A to find the date that is seven days earlier and sum all the points in column B from that found date to the date in row 10. The total sum should then be displayed in the corresponding cell in column C.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/59595/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-59595",
+    "split_group_id": "block-59595"
+  },
+  {
+    "id": "42902",
+    "instruction": "I want to transpose a list of over 21 rows into columns, where each group of 3 rows becomes a separate record. The first row of each group should go in column D, the second row in column E, and the third row in column F, with each record occupying its own row.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/42902/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-42902",
+    "split_group_id": "block-42902"
+  },
+  {
+    "id": "31628",
+    "instruction": "Extract the number of the last day from a range of dates in cells A1:A11 in my Excel sheet, ensuring that the last date corresponds to the final entry if the dates are not sequential. Display the resulting date in cell B1 as a static number and not a formula while retaining the inputs in column A.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/31628/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-31628",
+    "split_group_id": "block-31628"
+  },
+  {
+    "id": "58949",
+    "instruction": "I need to reorganize data exported from our database where multiple rows correspond to single clients with various details about them. The goal is to have each unique client ID appear only once in a new tab, aligning respective data horizontally across multiple columns. A single client's data could be across one column or expand to 200 columns based on the number of details available. I am currently using VBA to do this, but it only outputs as many columns as there are details per client. I want to modify it or create a formula that will use a pre-defined list of headers and fill in 'N/A' where data is missing. Below is my VBA code, but I need advice on what changes to make or how to set up an effective formula to achieve the desired layout in \"Desired Result\" sheet, which is illustrated in the attached 'Problem Example.xlsx' file.\nThe formula data output result may be an empty string.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/58949/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-58949",
+    "split_group_id": "block-58949"
+  },
+  {
+    "id": "60-7",
+    "instruction": "How can I update the data in a 'Consolidated Tracker' tab in Excel by combining the rows from an 'Existing Task' sheet and an 'Additions' sheet, and subtracting the rows from a 'Retired' sheet? The operation should result in the 'Consolidated Tracker' containing the final list of net activities, effectively calculated as 'Consolidated Tracker = Existing Task + Additions - Retired'. I have added the position where I want to output the answer in the attachment. Please output the answer from position A3 in the table, and make sure that the position of the corresponding column is correct.",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/60-7/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-60-7",
+    "split_group_id": "block-60-7"
+  },
+  {
+    "id": "52233",
+    "instruction": "How can I modify my Excel formula so that when I drag it down, the column reference changes (e.g., B3:B5 to C3:C5), but the row reference remains the same, while maintaining the functionality of the sum and index/match currently in the formula: =SUM(INDEX(B3:B5,0,MATCH(A7,$B$2:$Z$2,0)))?\nWrite a modified formula and drag it vertically to the appropriate cell range in the column.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/52233/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-52233",
+    "split_group_id": "block-52233"
+  },
+  {
+    "id": "59902",
+    "instruction": "How can I adjust my Index Match formula to calculate the days since our staff last made a sale, with the dates sorted in ascending order? Essentially, I want to count the number of days that have passed since the person (who's name is in the row) last made a sale. The current formula is wrong but may work for descending dates: '=IFERROR(F5-INDEX($F6:$F28,MATCH(G5,$G6:$G28,0),1),\"\")'. I need a version that functions correctly when the dates are sorted from oldest to newest. The expected results should show the difference in days between sales for each person, with the first sale for each having no prior date to compare to and thus being marked as 0. Your output column should be formatted as accounting format category. Does anyone know the formula to get this working for ascending? From what i've seen on the forum it should be possible but i can't work the formulas. The returns expected should simply be flipped solving the lookup difference in date (Diff).",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/59902/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-59902",
+    "split_group_id": "block-59902"
+  },
+  {
+    "id": "395-36",
+    "instruction": "I have three sheets: 'Main unique ID' for manual input of IDs that may change, 'Result what I am getting', and 'Result what I am expecting.' How can I compare the 'Main unique ID' sheet with the 'Result what I am getting' sheet, and if there are any unique IDs missing in the comparison, how do I add those missing unique IDs from the 'Main unique ID' sheet into the 'Result what I am getting' sheet, along with an empty new row for each missing ID, as illustrated in the yellow-highlighted sections on the 'Result what I am expecting' sheet?",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/395-36/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-395-36",
+    "split_group_id": "block-395-36"
+  },
+  {
+    "id": "48365",
+    "instruction": "How can I sum amounts from a data sheet using SUMIFS when a user can select up to 3 regions for a product, with an 'All' option that sums all amounts? I need a formula that can handle multiple region choices in one criteria using an 'OR' logic, or a more elegant alternative.SUMIFS(Data!$C:$C,Data!$A:$A,$C$2,Data!$B:$B,$C11)",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/48365/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-48365",
+    "split_group_id": "block-48365"
+  },
+  {
+    "id": "297-42",
+    "instruction": "Running my macro only creates a new sheet named 'combined' without pulling in the data from the other sheets. Use a macro or similar function to copy the data from the existing sheets into the newly created 'combined' sheet. I have given the header of the expected output in the 'combined sheet' in the attachment. Please start from cell A2 to output the answer, pay attention to the position, mapping between the answer and the header name.",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/297-42/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-297-42",
+    "split_group_id": "block-297-42"
+  },
+  {
+    "id": "55979",
+    "instruction": "How can I create a formula in Excel that will display the name of a supplier, which corresponds to a specific sheet, in cell B7 of my Calculation sheet when I input an item number into cell A10? I have an Excel file with 6 sheets that contain price lists and discount lists for 3 suppliers, where each supplier has 2 sheets named similarly (e.g., Supplier_1, Supplier_2, etc.), and I need to identify the supplier based on a given item number.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/55979/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-55979",
+    "split_group_id": "block-55979"
+  },
+  {
+    "id": "52532",
+    "instruction": "How can I automatically calculate the number of wins for each player in my spreadsheet which currently tracks game scores? I manually recorded the win count in column H for each player, corresponding to the player with the highest score in each game. For instance, Tim won 3 times. I need a formula to populate column H with these counts instead of entering them manually. I'm not familiar with how to search for similar questions on this forum, and I've attached the relevant file for reference.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/52532/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-52532",
+    "split_group_id": "block-52532"
+  },
+  {
+    "id": "269-44",
+    "instruction": "In my Excel sheet named 'Import Data,' I am trying to create a macro that will delete the four rows located immediately before each instance of the text 'Chassis' in column A. Make sure that the two \"Chassis\" texts are located in A2 & A3.  However, my current VBA code is not functioning properly. Can someone assist me in correcting this code so that it will carry out the task as intended?",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/269-44/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-269-44",
+    "split_group_id": "block-269-44"
+  },
+  {
+    "id": "55260",
+    "instruction": "I need to round the amount in the second column to the nearest $5. And I want the formula in C1 to round down to 365.00 when the difference to the nearest 5 is in the middle exactly.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/55260/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-55260",
+    "split_group_id": "block-55260"
+  },
+  {
+    "id": "56563",
+    "instruction": "Create a formula in Excel to sum a range of cells that contains the #NUM error value, as illustrated in the attached '#NUM.xlsx' spreadsheet?  \nMy current formula is:\nSUM(C2:C13)",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/56563/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-56563",
+    "split_group_id": "block-56563"
+  },
+  {
+    "id": "49036",
+    "instruction": "How can I calculate and display the percentage in cell B8 of the 'dashboard' sheet by dividing the numerical value in cell B6 by the numerical value in cell B5, given that both these cells contain a mix of numbers and text? Everything I try basically gives me the #VALUE result as the fields I am trying to parse have a number value as well as written text. Not sure how to parse only the number value to create the proper result. Additionally, how can I append the text 'WIN RATE' to the displayed percentage result without altering the number format which should show as an integer percentage (e.g., 67% WIN RATE) with .00 decimal?",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/49036/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-49036",
+    "split_group_id": "block-49036"
+  },
+  {
+    "id": "41265",
+    "instruction": "What I am looking for:\nMatch each root word as a complete word within the keywords(D2-D5) to all in column A (A2-A6) and adding the search volume (in column B, i.e. B2-B6).\n\nPlease help me give the sum of the values  of each corresponding word in column E(e2:e5) after it is exactly matched in columns D and A.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/41265/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-41265",
+    "split_group_id": "block-41265"
+  },
+  {
+    "id": "55060",
+    "instruction": "How do I create a formula in Microsoft Excel that will make cell J23 exactly replicate the value selected in cell I12, but ensure that if cell I12 is blank, cell J23 will also be blank? Currently, I face an issue where either J23 is left blank or displays 'False' when I12 has a value, or it shows the correct value when I12 is not blank but defaults to display a date like 01/01/1900 when I12 is blank.\n My current formula is:  IF(I12=\"\",\"\")",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/55060/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-55060",
+    "split_group_id": "block-55060"
+  },
+  {
+    "id": "13-1",
+    "instruction": "How can I combine data from a 'RANGES' sheet to a 'LISTS' sheet, by matching duplicates based on the 'DATE' and 'REF' columns in columns B and C, and add a 'TOTAL' row to sum up the amounts? Additionally, since new ranges with headers will be added to the 'RANGES' sheet, how do I ensure to delete the old ranges in the 'LISTS' sheet before populating the new data? I have given the correct answer of the \"STAGE\" table in the \"LISTS\" table as a format reference, please help me complete the other answers. Each of the sections in \"LISTS\" should be sorted based on data from lowest to highest, secondary sort key is alphabetical A to Z on column C.",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/13-1/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-13-1",
+    "split_group_id": "block-13-1"
+  },
+  {
+    "id": "59358",
+    "instruction": "How can I search through two ranges in Excel (B2:B23 and D2:D23), identify the first occurrence where a value in range B matches a value in range D, and then return the text from the adjacent cell in range F (F2:F23) that corresponds to the first successful match? I have provided an example and values I am interested in are located in L7, L8 & L9.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/59358/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-59358",
+    "split_group_id": "block-59358"
+  },
+  {
+    "id": "58484",
+    "instruction": "Recreate Sheet1 exactly as it is. Make sure the headings are properly bordered and bolded. Ensure the 'Wrap Text' feature is turned on for the text in row 4. There shouldn't be any values or bordering on column G. How can I count the number of times the operator (column D), whose transfer number is 5551234, transfers a phone call to other staff members (Column E), and display the total number of transfers next to the last transfer in a list of phone calls? Multiple transfers to various staff members from the operator are possible, yet when I attempted to use a simple array formula sourced from forums, it resulted in all lines being filled, which is not the outcome I was looking for.\n\nCreate a new formula and insert it on the cells in column H.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/58484/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-58484",
+    "split_group_id": "block-58484"
+  },
+  {
+    "id": "9726",
+    "instruction": "How can I populate the 'Visit date' column in Table 2 with the date from the 'Visit date' column in Table 1 that is immediately prior to the 'Submission date' listed in Table 2 for each student? For example, if the 'Submission date' is 21-Jun-16, I need to retrieve the last 'Visit date' from Table 1 which would be 12-Jun-16. I attempted using an array formula {=INDEX(C2:C7,MATCH(TRUE,IF(H2=$A$2:$A$7,INDEX($C$2:$C$7<I2,0)),0))} to find the next smaller value, similar to how I calculate the next larger value, but it didn't work.\nINDEX(C2:C7,MATCH(TRUE,IF(H2=$A$2:$A$7,INDEX($C$2:$C$7<I2,0)),0))",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/9726/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-9726",
+    "split_group_id": "block-9726"
+  },
+  {
+    "id": "49945",
+    "instruction": "How can I create an Excel formula that will allow me to sum the quantities in range D4:D4 associated with a specific model listed in range C4:C11, regardless of the year, with the goal of entering this formula in cell G4? My attempt using SUM and XLOOKUP only sums the first value and does not aggregate across multiple columns. I have provided an example spreadsheet with the data.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/49945/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-49945",
+    "split_group_id": "block-49945"
+  },
+  {
+    "id": "209-30",
+    "instruction": "I have an Excel VBA issue where I'm trying to remove the last three characters from each postcode in a column, and the number of rows can range from 1 to 500,000. My current code is erroneously changing every value in the column to FALSE instead of removing the characters. Here's the code I'm using: Sub RemoveChar()\n\nDim ws As Worksheet\nDim c As Range\nSet ws = Worksheets(\"Data to Import\")\n\nFor Each c In ws.Range(\"C2\", ws.Range(\"c\" & ws.Rows.Count).End(xlUp))\nc.Value = (\"C2\") = Left(ws.Range(\"C2\"), Len(ws.Range(\"C2\")) - 3)\n\nNext c\n\nEnd Sub Can anyone explain what I'm doing wrong with this code?",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/209-30/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-209-30",
+    "split_group_id": "block-209-30"
+  },
+  {
+    "id": "55965",
+    "instruction": "How can I display the last 10 results from a data sheet on Sheet1 from columns G to P, based on the comparison between the ID in column E on Sheet1 and the ID in column K on the data sheet? I've provided the expected outcome in those columns, and it's manually entered as an example of the desired result.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/55965/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-55965",
+    "split_group_id": "block-55965"
+  },
+  {
+    "id": "58701",
+    "instruction": "How can I automatically populate an office code on the 'Entry Tab' when a user enters a location name in another cell, using the location - office code pairs stored in the 'Table Tab'? For example, when a user types a location such as ‘Applewood’ on the 'Entry Tab', the corresponding office code linked to that location in the 'Table Tab' should automatically appear in the designated office code column.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/58701/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-58701",
+    "split_group_id": "block-58701"
+  },
+  {
+    "id": "91-34",
+    "instruction": "Create a macro or Delete only one entry of a person (same last name, first name, and DOB) marked 'Yes' in the 'Duplicate?' column, provided that the 'Relationship' column for these duplicates is anything but 'Employee'? For example, Emily Doees is listed twice as non-employee, so one entry should be deleted, but Lisa Doees, present as both a spouse and an employee, should not have either entry deleted.",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/91-34/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-91-34",
+    "split_group_id": "block-91-34"
+  },
+  {
+    "id": "31011",
+    "instruction": "How can I create a formula in cell R6 that totals the values within a specified table range where the dates fall between P6 and Q6 in column A, and the times fall between R3 and R4 in row 1?",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/31011/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-31011",
+    "split_group_id": "block-31011"
+  },
+  {
+    "id": "51556",
+    "instruction": "I need to create a formula that will calculate the average market rent for a specific storage unit size and improvement rating in an Excel sheet. For example, in the Excel table, I want to determine the average rent for 50 sq ft unit sizes with a specific 'impr. rating' located in column M, while ensuring the unit size matches the value in column P. The average should be calculated from a range (B3:L8) but only including cells where the unit size in the top row (B2:L2) corresponds to the value in column P, and the improvement rating in column M matches a given rating in cell S2. The formula needs to handle empty cells appropriately, likely using an IFERROR function. The intended location for this formula is cells Q2:Q6, highlighted in green (change this to yellow after inputting new data), adjacent to the respective size in column P.\nThe formula data output result may be an empty string.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/51556/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-51556",
+    "split_group_id": "block-51556"
+  },
+  {
+    "id": "230-16",
+    "instruction": "How can I create a macro in Excel that copies substrings that start from the first letter in each cell of column A and pastes these substrings into column B and delete these strings in column A?",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/230-16/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-230-16",
+    "split_group_id": "block-230-16"
+  },
+  {
+    "id": "416-15",
+    "instruction": "I have an Excel spreadsheet with a column of dates where some cells include a time value that starts with 'T' and ends with 'Z' and these strings are 14 characters long. I'm seeking assistance to modify an existing macro to remove these time values, leaving just the date in each cell of column A. Outputs should adhere to m/dd/yyyy (see existing A2 format)",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/416-15/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-416-15",
+    "split_group_id": "block-416-15"
+  },
+  {
+    "id": "58687",
+    "instruction": "I have a horizontal table that shows the number of apples sold each month with a total of 92 apples, and a vertical table where each apple sold is given an index number from 1 to 92. I need a formula that will automatically assign these index numbers to the apples. I have filled in the first few cells B9:B13 with index numbers as an example to illustrate what I'm looking for. Could someone please help me automate this process for the complete column of Month No. in Excel? I've attached a sample workbook for reference. Please just place the appropriate month value into column B based on the table B4:V6. In addition, if the apple index number for the row is not present in apples accum row, add 1 to the cell.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/58687/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-58687",
+    "split_group_id": "block-58687"
+  },
+  {
+    "id": "58032",
+    "instruction": "Recreate Sheet1 exactly as it is. Use Arial font. Make sure the titles on row 1 are bold, italicized, and properly bordered. Make sure cells on column D are filled with #CCCCCC beginning in D2. How do I create a formula in cell A2 to search through columns I:J for a person's name based on a combination of their Title and Department code?\n\nWrite formula in column A and set fill color for formulated cells to #FCD5B4. Hide gridlines as appropriate.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/58032/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-58032",
+    "split_group_id": "block-58032"
+  },
+  {
+    "id": "247-24",
+    "instruction": "I require a VBA code to manage a dataset in an Excel sheet. Specifically, I need the code to dynamically identify and carry out the following tasks in the Main sheet: 1) Delete rows where the Company name in Column A is 'Motorcycle'; 2) Delete rows where the Company name in Column A is 'Ahmed Sons' and the Location in column B is Canada; 3) Change the 'Bill Rate of Resource' in Column G to 180 for rows where the Company is 'National TV' and the Location is India; 4) Insert two new rows immediately following each row where the Company name in Column A is 'Ahmed Sons'; 5) Perform a VLOOKUP or similar operation to populate Column M with the 'working Weeks' data from a second sheet named Lookup, matching on 'Employee Ids' in Column C from the Main sheet. The accompanying Excel file provides the data structure that the code needs to handle. Make sure there is no output remaining in the deleted rows after the VLOOKUP is performed. Alternatively, carry out this task without VBA.",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/247-24/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-247-24",
+    "split_group_id": "block-247-24"
+  },
+  {
+    "id": "11276",
+    "instruction": "I am using the TEXT formula from F3:AJ3 in my Excel sheet, which is meant to return the weekday name, but it is incorrectly returning the date value instead. Correct the formula to display the weekday like the other cells that are correctly showing this information? For example, Mon, Wed... etc. Please apply this formula to the rest of the appropriate cells in that row.\n\nMy wrong formula: TEXT(F4,\"DD\")",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/11276/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-11276",
+    "split_group_id": "block-11276"
+  },
+  {
+    "id": "11842",
+    "instruction": "Use the COUNTIFS formula, or possibly another formula, to calculate the full-year attendance for each individual from January to December in an Excel Staff Attendance Sheet, by setting the criteria to a specific person's name from a dropdown list in cell 'O3'in the 'Total' sheet. Each monthly sheet has two rows for each person that represent the first and second half of their workday. Initially, I considered using COUNTIFS with the criteria based on the person's name in 'O3' and the months from 'M5' to 'M12'. After receiving a response, I realized I had overlooked that each person has two rows for attendance tracking—one for the first half and one for the second half of the workday—which should affect the calculation of working days and absences.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/11842/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-11842",
+    "split_group_id": "block-11276"
+  },
+  {
+    "id": "48620",
+    "instruction": "I have a list with products where some are identical but have different serial numbers. For instance, in cell A1, I have 'pencil' and in cell B1, 'yellow'. In cell A2, 'pencil' and in cell B2, 'green'. But when I try to search for a product using VLOOKUP or INDEX/MATCH, it only returns the first corresponding entry. I'm looking for a way to return the matching result in the same row, not just the first one. Could you explain the formula in detail, specifically the parts involving (15,6,ROW(?\nVLOOKUP(D2,A:B,2,0)\nAnd once the output is complete shade E2:E9 with #FCE4D6 and apply calibri font, and show 0s as blanks",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/48620/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-48620",
+    "split_group_id": "block-48620"
+  },
+  {
+    "id": "45937",
+    "instruction": "How can I create a formula in Excel that automatically calculates the percentage category based on a range of values in another cell? The user has a legend with categories and corresponding percentages in rows H17 to N22, and wants to determine the category for a value in cell E7, based on the value in D7 which is already using a formula related to the category legend in H6 to I11. Note that the kms ranges are specified in cells H20:I22. Finish the table by completing column E.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/45937/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-45937",
+    "split_group_id": "block-45937"
+  },
+  {
+    "id": "51249",
+    "instruction": "How do I create an Excel formula that outputs different results based on the text values of two different cells. For example, in D1, if B1 contains 'Description A' and B2 is blank, then D1 should display 'Single A'; if B1 contains 'Description B' and B2 is blank, then D1 should display 'Single B'; and if B1 contains 'Description A' and B2 contains 'Description B', then D1 should display 'Multiple'? I have also provided a sample spreadsheet showing the input and desired result. Do this output for each cell in column D that next to a cell that says \"Result:\". Fill any cells in column D with content with RGB: 226-239-218",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/51249/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-51249",
+    "split_group_id": "block-51249"
+  },
+  {
+    "id": "59884",
+    "instruction": "How can I consolidate repeating first values in a list, count them, and then transpose the corresponding second values for each unique first value into a separate structured format, as demonstrated in a provided Excel worksheet?",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/59884/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-59884",
+    "split_group_id": "block-59884"
+  },
+  {
+    "id": "585-41",
+    "instruction": "How can I update my script so that it removes all non-numeric characters from cell values, but still preserves numeric values and decimal points? The current script I'm using successfully removes non-numeric characters but also removes decimal points. The script operates on the range 'a1:h1' on 'Sheet1'. Please execute this task.",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/585-41/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-585-41",
+    "split_group_id": "block-585-41"
+  },
+  {
+    "id": "28-7",
+    "instruction": "How can I delete all rows in an Excel column that occur after and including a part number starting with '400-' followed by any characters and ending in '-A', up to but not including the next part number following the same initial '400-' pattern? Note that if the part number ending in '-A' does not exist, no rows should be deleted. There can be any number of blank cells between these part numbers, and the part number immediately following the one ending in '-A' might differ between cases.",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/28-7/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-28-7",
+    "split_group_id": "block-28-7"
+  },
+  {
+    "id": "51289",
+    "instruction": "In my spreadsheet consisting of a range from A1:H2, the first row contains only the text 'cat' or 'dog' while the second row has random numbers. How do I identify which 'cat' and which 'dog' have the associated first and second largest numbers, and display these rankings in row 4? I encountered a problem when trying to search for the largest number associated with 'dog' if the largest number in the row is associated with 'cat', using a formula that involves an IF and AND statement. I have tried using a combination if(and statement that looks for \"dog\" and then looks for Large(A2:H2,1), but if \"cat\" has the largest number, then looking for \"dog\" with the largest number across the row fails. Any help appreciated.dog1 = largest # dog\ndog2 = 2nd largest # dog",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/51289/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-51289",
+    "split_group_id": "block-51289"
+  },
+  {
+    "id": "156-14",
+    "instruction": "I attempted to write VBA code that would delete rows from row 6 onward if the cell in column F contains the text \"to be processed\" on three specific sheets named \"99250,\" \"99251,\" and \"99252.\" However, I encountered a runtime error stating that the object doesn't support the property or method. Here is the original code that caused the error: With Sheets(Array(\"99250\", \"99251\", \"99252\")) .Range(\"F5\").AutoFilter 6, \"*Accepted*\" .AutoFilter.Range.Offset(1).EntireRow.Delete .AutoFilterMode = False End With. I need help executing the same function without VBA to get my desired result.",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/156-14/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-156-14",
+    "split_group_id": "block-156-14"
+  },
+  {
+    "id": "1925",
+    "instruction": "I need to create a dynamic Index in Excel that changes according to the date in Sheet1, Cell C5, so that it corresponds to the appropriate column in Sheet2. The column is determined by matching the date in row 5, and the item is then looked up within that column. If items in particular column is not available it should show as \"New\" otherwise same item should show. My original formular is: IFNA(INDEX(Sheet2!F:F,MATCH(Sheet1!B6,Sheet2!F:F,0)),\"NEW\"), which has something wrong.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/1925/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-1925",
+    "split_group_id": "block-1925"
+  },
+  {
+    "id": "341-40",
+    "instruction": "How can I insert a specific text into a new column in an Excel spreadsheet using VBA if three conditions are met in other columns? Specifically, when column A has the text 'Government', column B has 'Germany', and column C has 'Carretera', I want to automatically insert the word 'Volkswagen' into column Q. This process should be more efficient than using the filter function, as the sheet is quite large. VBA is preferred as it is already used for data import and cleanup.",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/341-40/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-341-40",
+    "split_group_id": "block-341-40"
+  },
+  {
+    "id": "39931",
+    "instruction": "I need to return a value from a third column by looking up and matching data contained within two other specific columns. I have attempted to use VLOOKUP and MATCH functions without success. The attached example, Sample.xlsx, demonstrates what I'm trying to achieve.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/39931/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-39931",
+    "split_group_id": "block-39931"
+  },
+  {
+    "id": "12864",
+    "instruction": "I am attempting to use the Index/Match function combination to retrieve corresponding dates from Column B on sheet 2 by matching Column D on sheet 1. Furthermore, I require the associated data from both Column B and C on sheet 2. The spreadsheet with an example has been provided. Could you assist me in accomplishing this?",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/12864/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-12864",
+    "split_group_id": "block-12864"
+  },
+  {
+    "id": "399-14",
+    "instruction": "Use '等线' font throughout the entire sheet. I need a VB (Visual Basic) Code to split recorded employee hours into regular hours and overtime hours. The hours worked by employees are listed in Column N of an Excel worksheet. If the value in any cell of Column N is less than or equal to 40, it should remain unchanged. However, if the value exceeds 40, then the cell in Column N should display 40, and the amount over 40 should be hardcoded to the corresponding cell in Column O. For example, if cell N12 shows 52.62, then after the code runs, N12 should display 40 and O12 should show the difference, which would be 12.62. If you don't have access to VB, use the tools you currently have. Use #,##0.## number formatting in columns N, O, and P except for whole numbers. Use General formatting for whole numbers.",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/399-14/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-399-14",
+    "split_group_id": "block-399-14"
+  },
+  {
+    "id": "38074",
+    "instruction": "I need to calculate the profit in a table by subtracting expenses (1,2,3).  The columns contain both profit and expenses values, but I need to evaluate this calculation based where column A matches the case sensitive values in J2 using vectorized operations.  The formula should go in cells K2:K5.  Furthermore, after resolving the issue, amend the formula to consider blank cells as zeros, and format final output without decimals.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/38074/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-38074",
+    "split_group_id": "block-38074"
+  },
+  {
+    "id": "55427",
+    "instruction": "I am attempting to consolidate data about schools from multiple spreadsheets using INDEX and MATCH functions. Specifically, I'm using the formula =INDEX('URN lookup'!$D$2:$D$1461,MATCH(L2,'URN lookup'!$K$2:$K$1461,0)) to look up a DFES number which is located in Column B of the attached 'School data.xlsx', by matching values from column L. However, this formula is not yielding the correct results, and I'm unsure why it is failing. Furthermore, I want to merge additional data that includes a Unique Reference Number (URN) for each school, along with another 15 columns of data. I need help figuring out the issue with my current formula to be able to proceed with merging the rest of the data.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/55427/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-55427",
+    "split_group_id": "block-55427"
+  },
+  {
+    "id": "54675",
+    "instruction": "How can I modify my Excel formula in cell F3 so it counts all occurrences of the name 'Gary Stoddard' in column B, including those that appear in a cell with other names, as long as column A contains the number '4'? COUNTIFS(B:B,\"Gary Stoddard\",A:A,\"4\")",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/54675/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-54675",
+    "split_group_id": "block-54675"
+  },
+  {
+    "id": "59639",
+    "instruction": "I have data within a single cell, formatted as a continuous string of characters (e.g., 'abcdefgh'), and I need to separate this string into multiple cells with each cell containing a single character from the string (e.g., 'a', 'b', 'c', etc.). I'm looking for assistance in creating a formula that can accomplish this task. A sample  has been provided for reference.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/59639/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-59639",
+    "split_group_id": "block-59639"
+  },
+  {
+    "id": "280-17",
+    "instruction": "How can I remove all rows from an Excel spreadsheet except those with the last unique entry in a specific column? I have a file with 1100 rows and 36 columns, and within one column there are some numbers that are duplicates. Specifically, in my example file, I want to keep the rows that contain the last unique number in the column, such as row 3, row 6, and so on, and then delete the other rows with duplicate numbers. An example file is provided for your reference.",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/280-17/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-280-17",
+    "split_group_id": "block-280-17"
+  },
+  {
+    "id": "57262",
+    "instruction": "I own a small independent business and am trying to track order volumes, expenses, and profits. My aim is to automate the 'Final Price point' Column in T11:T15 in my Excel sheet. For instance, when a value is entered into cell F15 (e.g., 4), the value in cell T15 should automatically update to 32 because the 'F' column represents the unit price of 8. Similarly, if a value of 1 is entered into cell G15, cell T15 should update to 42, reflecting that the 'G' column has a unit price of 10. My attempts to create a formula using IF and OR functions have failed. I've provided the workbook for reference and would appreciate guidance on how to achieve this automation.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/57262/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-57262",
+    "split_group_id": "block-57262"
+  },
+  {
+    "id": "160-6",
+    "instruction": "I have a dataset in an Excel sheet named \"SH\" that contains blank rows interspersed among the data. I need a macro that can delete these blank rows by shifting the remaining rows upward so that there are no gaps, with the next filled row moving just below the last filled row of the dataset. I attempted to write a macro myself to perform this task on a different sheet named \"CP\", but it did not function correctly when I ran it. Could someone please debug and correct my code?",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/160-6/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-160-6",
+    "split_group_id": "block-160-6"
+  },
+  {
+    "id": "50631",
+    "instruction": "Recreate Sheet1 exactly as it is. Recreate the formulas in columns B, D and F exactly as they are in Sheet1. Make sure to apply #FFFF00 fill color where appropriate. Hide gridlines where appropriate and use Calibri font throughout. I'm trying to create a formula in Excel to return the workdays that fall between the dates in columns B and F, but I need to account for specific holidays listed in column J. When I attempt to use the WORKDAY function in column H, I get a #VALUE! error. Additionally, cells D7 and F7 aren't returning the next date as they should, and I don't understand why. Could someone advise me on why these issues are occurring and how to correct them?\n   \nMy current formula is:\nIF($B$3+ROWS($B$7:$B7)-1<=$F$3,WORKDAY($B$3+ROWS($B$7:$B7)-1,\"\"))\n\nWrite a new formula for the cells in column H that accomplishes this task. This function should return the date that is a specified number of workdays after the start date on cell B3 excluding weekends and holidays.\n\nDates in columns D and F should go all the way down to 11/2/2021. Dates in column B should only go down to 9/30/2021 and there should be one empty formatted cell after the last date on column B. \n\nEvery colored cell in column H should have a date value. Do not add any additional text to Sheet1",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/50631/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-50631",
+    "split_group_id": "block-50631"
+  },
+  {
+    "id": "58147",
+    "instruction": "I am seeking a formula that will allow me to extract only the values or text from column I and display the desired outcome in column J. There is an example provided in the attached sample file named 'Left_Right_Function_Extract_Sample.xlsx'.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/58147/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-58147",
+    "split_group_id": "block-58147"
+  },
+  {
+    "id": "37378",
+    "instruction": "How can I create an Excel formula to place a number in column A, starting at cell A2, that increments by 1 each time a new entry is made in the corresponding cell of column B, starting at B2? For example, cell A2 should display '1' if B2 is not empty, and A3 should show '2' if B3 contains any text.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/37378/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-37378",
+    "split_group_id": "block-37378"
+  },
+  {
+    "id": "374-18",
+    "instruction": "I attempted to write a macro to delete all rows in Column E of the 'Imported Data' sheet that have values less than 1, but I received a compile error (\"End If without Block If\"). Please correct and test the code so it runs successfully without adding or removing any sheets or columns, and ensure it efficiently deletes all rows in Column E where the value is < 1 while keeping the header intact. The macro should execute directly on the 'Imported Data' sheet.",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/374-18/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-374-18",
+    "split_group_id": "block-374-18"
+  },
+  {
+    "id": "141-20",
+    "instruction": "How can I create a macro that finds and deletes rows in two Excel sheets named 'PL Recon Items' and 'Statement Recon Items', where the invoice number in column C of 'PL Recon Items' and the value in column D match the reference number in column F and value in column I of 'Statement Recon Items'? The matching rows, which I have highlighted in yellow, should be deleted from both sheets. Could someone provide the code to accomplish this?",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/141-20/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-141-20",
+    "split_group_id": "block-141-20"
+  },
+  {
+    "id": "388-47",
+    "instruction": "I am attempting to write VBA code or other viable solution to delete all rows in a worksheet where the items beginning with 'Z1' or 'X1' appear in column E. The code I tried is as follows: 'With Sheets(1) .Range(\"A1\").AutoFilter 5, Array(\"Z1*\", \"\", \"X1*\"), xlFilterValues .AutoFilter.Range.Offset(1).EntireRow.Delete .AutoFilterMode = False End With'. Can someone assist me in correcting or improving my code so that it functions as intended?",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/388-47/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-388-47",
+    "split_group_id": "block-141-20"
+  },
+  {
+    "id": "57033",
+    "instruction": "How can I use a formula to perform a 3-way match in cell K2 of Sheet 4 in my Excel workbook? I've attempted to use an INDEX MATCH formula to reference items from Sheet 4, but it has been unsuccessful, and I am unclear on how to correctly set it up for a 3-way match. I have attached the workbook for reference.  Once complete apply regular casing and cell shading with hex code #FF66CC to the affected cells. Please place the correct values into K2:K7.\n\nMy current formula is: IF(SUM(([@company]=MD[company])*([@account]=MD[account])*([@xchar]=MD[xchar])),\"Match\",\"-\")",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/57033/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-57033",
+    "split_group_id": "block-57033"
+  },
+  {
+    "id": "58499",
+    "instruction": "How can I create a formula in Excel to list all the branches in column A that do not have a corresponding tick mark in column I? My attempts with an advanced filter have been unsuccessful, and I can't seem to extract the unticked branches correctly.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/58499/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-58499",
+    "split_group_id": "block-58499"
+  },
+  {
+    "id": "547-43",
+    "instruction": "How do I transpose a selected column from the 'Comp1-performance' range in the 'Emp' table to a row, while keeping the previous variable constant? Additionally, how can I add two new columns ('category' and 'subcategory') when the variable from the 'emp' table matches with the variable in the lookup table? The macro should be tested on a table with 50 columns and 60 rows to validate the result. The desired output structure is provided in the attached 'Datawork.xlsx' file.",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/547-43/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-547-43",
+    "split_group_id": "block-547-43"
+  },
+  {
+    "id": "22-47",
+    "instruction": "I need to sort data in column B based on a helper column (J) so that the first entries written in column J are shown first in the output range F:H. Names listed in column J, include all matching rows and keep their original order from the source and do not sort within the group. Names not listed in column J should be arranged as they are in the original data (same order). The sort should skip empty cells, headers, and duplicate items, where duplicates are defined by identical entries in both column B and C. If the helper column J is empty, only then sort alphabetically A–Z and still skip empty cells, headers, and duplicate items. Additionally, I need this sorting process to handle new ranges that contain headers and some names in range A:C, as well as changes in names listed in column J. The final answer should be output in columns G and H, and sort only column H sorted lowest to highest.",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/22-47/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-22-47",
+    "split_group_id": "block-22-47"
+  },
+  {
+    "id": "52917",
+    "instruction": "I need to create a formula that can combine day, month, and year data from separate columns A, B, and C into a complete date format in column J, as shown in my attached  file.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/52917/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-52917",
+    "split_group_id": "block-52917"
+  },
+  {
+    "id": "177-6",
+    "instruction": "I'm seeking a macro that can merge entire rows in an Excel sheet based on matching values in a specific column. In my case, when the value in Column H is identical across different rows, I want those rows consolidated into one row by merging their data.  Put the results in the 'combined' sheet, and make sure to preserve the exact formatting for each row from columns A:R when copying over.  And for the end values from columns I:R, they should be output with 2 decimals and without commas, and 0s should display as blanks.  I have provided an example spreadsheet with my data.  Once Additionally, should the reference column change, adjust the macro accordingly.",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/177-6/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-177-6",
+    "split_group_id": "block-177-6"
+  },
+  {
+    "id": "50811",
+    "instruction": "How do I use the indexmatch formula to look up a percentage that is tied to a specific sales representative and their client from a database that includes the client's name, the representative's name, and the corresponding percentage? The answer should help populate the formula in the yellow-highlighted cells D21, D22, and D23 of an attached Excel workbook containing 3 records to be completed.\n   Lookup % using indexmatch from the list above based on Rep Name and Client, then and insert the reps corresponding % in column D below highlighted in yellow",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/50811/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-50811",
+    "split_group_id": "block-50811"
+  },
+  {
+    "id": "545-35",
+    "instruction": "I receive data from an external source that includes cells with alphanumeric and wildcard character contents. These cells should only contain numeric values. Given the unpredictability of these non-numeric entries, I'm having difficulty replacing them with zeros. I attempted to create a script that would find and replace any characters that are not numeric (0-9) within a selected range, but I lack a way to specify the NOT condition in my code. Can someone assist me with writing a VBA script that will replace the entire contents of a cell with zero if the cell contains anything other than pure numeric values?",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/545-35/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-545-35",
+    "split_group_id": "block-545-35"
+  },
+  {
+    "id": "52050",
+    "instruction": "I require help to streamline an existing Excel formula. My current method calculates the total achievements expected in future weeks by manually checking each week's number, using isoweeknum(), against the current week number and then accumulatively adding up individual instances where the future week's number is greater than or equal to the current week's number. This formula is applied across many cells, which is quite cumbersome. Presently, the function I'm using for a single line calculation involves numerous IF statements. Is there a more efficient way to compute these totals using Excel functions, for the weeks listed in row 2, and display the total future achievements in column BE?\nMy current formula is: IF(D$2>=$B$2,D3,0)+IF(E$2>=$B$2,E3,0)+IF(F$2>=$B$2,F3,0)+IF(G$2>=$B$2,G3,0)+IF(H$2>=$B$2,H3,0)+IF(I$2>=$B$2,I3,0)+IF(J$2>=$B$2,J3,0)+IF(K$2>=$B$2,K3,0)+IF(L$2>=$B$2,L3,0)+IF(M$2>=$B$2,M3,0)+IF(N$2>=$B$2,N3,0)+IF(O$2>=$B$2,O3,0)+IF(P$2>=$B$2,P3,0)+IF(Q$2>=$B$2,Q3,0)+IF(R$2>=$B$2,R3,0)+IF(S$2>=$B$2,S3,0)+IF(T$2>=$B$2,T3,0)+IF(U$2>=$B$2,U3,0)+IF(V$2>=$B$2,V3,0)+IF(W$2>=$B$2,W3,0)+IF(X$2>=$B$2,X3,0)+IF(Y$2>=$B$2,Y3,0)+IF(Z$2>=$B$2,Z3,0)+IF(AA$2>=$B$2,AA3,0)+IF(AB$2>=$B$2,AB3,0)+IF(AC$2>=$B$2,AC3,0)+IF(AD$2>=$B$2,AD3,0)+IF(AE$2>=$B$2,AE3,0)+IF(AF$2>=$B$2,AF3,0)+IF(AG$2>=$B$2,AG3,0)+IF(AH$2>=$B$2,AH3,0)+IF(AI$2>=$B$2,AI3,0)+IF(AJ$2>=$B$2,AJ3,0)+IF(AK$2>=$B$2,AK3,0)+IF(AL$2>=$B$2,AL3,0)+IF(AM$2>=$B$2,AM3,0)+IF(AN$2>=$B$2,AN3,0)+IF(AO$2>=$B$2,AO3,0)+IF(AP$2>=$B$2,AP3,0)+IF(AQ$2>=$B$2,AQ3,0)+IF(AR$2>=$B$2,AR3,0)+IF(AS$2>=$B$2,AS3,0)+IF(AT$2>=$B$2,AT3,0)+IF(AU$2>=$B$2,AU3,0)+IF(AV$2>=$B$2,AV3,0)+IF(AW$2>=$B$2,AW3,0)+IF(AX$2>=$B$2,AX3,0)+IF(AY$2>=$B$2,AY3,0)+IF(AZ$2>=$B$2,AZ3,0)+IF(BA$2>=$B$2,BA3,0)+IF(BB$2>=$B$2,BB3,0)+IF(BC$2>=$B$2,BC3,0)",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/52050/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-52050",
+    "split_group_id": "block-52050"
+  },
+  {
+    "id": "59129",
+    "instruction": "How can I adjust the SUMPRODUCT formula to calculate month over month headcount in Excel, so it does not continue to count employees who have been terminated?     My current formula is:                  SUMPRODUCT(--(MONTH(YEAR($A$2:$A$22)>=E1))*(--(MONTH(YEAR($B2:$B$22)>=E1))))",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/59129/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-59129",
+    "split_group_id": "block-59129"
+  },
+  {
+    "id": "38703",
+    "instruction": "First unmerge any merged cells. How can I count the number of unique Item Nos. that have been placed into a Bin and reset this count whenever the items are taken by another department, while also retaining both the initial count and any subsequent counts? The need is to track how many unique items are added to a Bin before it's passed on to the next department without losing the count of items from previous cycles.\nNeed to count the number of unique 'Item No's in E2:E10. Place output in H10.\nNeed to count the number of unique 'Item No's in E11:E20. Place output into H20.\nNeed to count the number of unique 'Item No's in E21:E24. Place the output into H24.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/38703/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-38703",
+    "split_group_id": "block-38703"
+  },
+  {
+    "id": "409-45",
+    "instruction": "I need a macro that deletes empty rows based on the value of cell I2. The macro should have two conditions. First, it should match an ID in column B and then delete rows within a specific range based on that ID. Secondly, if cell I2 is empty, the macro should delete all empty rows from all ranges. The result should appear in the first sheet, not the second sheet as it currently does. Additionally, I've observed that even when the macro works, it leaves one empty row in the last range, which I would like to be removed as well.",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/409-45/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-409-45",
+    "split_group_id": "block-409-45"
+  },
+  {
+    "id": "55708",
+    "instruction": "Calculate the average turnaround time for a given department when the status is either \"In Progress\" or \"In Review\" and only for turnaround times equal to or greater than 6. If there are no results for a department, show a blank cell. Leave the formatting for the results as general.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/55708/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-55708",
+    "split_group_id": "block-55708"
+  },
+  {
+    "id": "54513",
+    "instruction": "How can I calculate and display the price of an item after applying a 55% discount to its original price of $34.99 in Excel? I've attached my workbook for reference.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/54513/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-54513",
+    "split_group_id": "block-54513"
+  },
+  {
+    "id": "50971",
+    "instruction": "How can I extract values from column B that are associated with duplicate entries in column A? Also, in my spreadsheet, column F lists unique values from column A and column E shows the number of duplications. I need the result to look like the range in cells G3:K14, as shown in my attached example. Is there a formula that can accomplish this?",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/50971/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-50971",
+    "split_group_id": "block-50971"
+  },
+  {
+    "id": "54274",
+    "instruction": "I'm new to Excel and need assistance with creating a nested IF formula for a problem I'm working on. Although I've attached the file with the details for reference, I'm not sure if what I'm trying to achieve is overly complicated for a nested IF formula or even possible. Can someone please guide me on how to go about this?   What I want the points cell to reflect\n   If total is less or equal to target, then total divided by target\n   If total is greater than target but less than stretch, then total divided by target to a maximum of 1.09\n   If total is equal to stretch, then total divided by target to a maximum of 1.1\n   If total is greater than stretch but less than overstretch, then total divided by target to a maximum of 1.19\n   If total is greater than or equal to overstretch, then total divided by target to a maximum of 1.2",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/54274/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-54274",
+    "split_group_id": "block-54274"
+  },
+  {
+    "id": "53167",
+    "instruction": "I am having difficulty calculating the amount of product used since its last usage. In my attached sample sheet, columns A-E present the issue I need to resolve, specifically column E where I am seeking a formula. Some of the expected results are given in column E, but I cannot design the formula for column E.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/53167/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-53167",
+    "split_group_id": "block-53167"
+  },
+  {
+    "id": "120-24",
+    "instruction": "I need a VBA code or other solution implemented to validate data and replace values in Excel based on multiple conditions.  Specifically, the criteria for data replacement are: First, check if the value in column BL equals 'LAG'.       Second, look for one of two specific text strings in column BG: 'OCOGS - Spares - Transfer Price Overhead' or 'OFSS - ORCL Consulting Prod Cost I/C'.       Third, check if column AY contains either 'BOA_033E' or 'BOA_011G'.       Based on these conditions, if the first and second criteria are met, and column AY is 'BOA_033E' or 'BOA_011G', then the value in the BN column s should be 'OCOGS - Spares - Transfer Price Overhead';       otherwise, if only the first two conditions are met,  change it to 'OFSS - ORCL Consulting Prod Cost I/C' to column BN.  Finally make sure any cell in BL has a fill color hex value of #0070C0, when BL is ‘LAG’ and BN is populated.",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/120-24/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-120-24",
+    "split_group_id": "block-120-24"
+  },
+  {
+    "id": "382-10",
+    "instruction": "I have a column (A) in my Excel spreadsheet, and I would like to delete all values in this column that are not equal to the word \"comments\". I attempted to use a Find/Replace macro, using the '<>' symbol as a not equal indicator, but it didn't work. My code was: Sheets(\"Call QC\").Range(\"A:A\").Replace \"<>Comments<>\", \"\", xlWhole, , False, , False, False. I have an example sheet where the cells I want to clear are colored red. Note that the amount of rows and the positions where \"comments\" appear will differ significantly.",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/382-10/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-382-10",
+    "split_group_id": "block-382-10"
+  },
+  {
+    "id": "42216",
+    "instruction": "First add row for April in Group A, where only for that row, keep the cell blank if the value is 0. How can I transform the dataset from columns (Group A) to rows (Group B) in Excel, excluding values such as -9999 and 'M' which denote irrelevant data, and leaving NA values as blanks in Group B? For April, in Group B, assign 0s not blanks.\n   Note: \n   I want to convert columes (Data in group A) to row (Data in group B). Note: -9999 and M: indicate No Relevant Data and they can be dropped. NA: mean No Data and I want to leave as NA in group B. Other dates and Data are also required to be added in the same format as A20:A339 till 11/16/1951. and for blank values make them 0 while adding them in Group B Data and also only add Data where there are Dates.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/42216/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-42216",
+    "split_group_id": "block-42216"
+  },
+  {
+    "id": "34033",
+    "instruction": "How can I create a formula that retrieves data from a column based on whether a given date falls within two adjacent dates (previous and following) in another column, while also meeting a specific condition in a third column? My intention is better explained within the file.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/34033/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-34033",
+    "split_group_id": "block-34033"
+  },
+  {
+    "id": "55977",
+    "instruction": "Replace the data in Columns B:C where Monday is to be represented as day 1 and Sunday as day 7 in column B, and Column C is the actual day of the week corresponding to the Date in Column A. Despite setting Monday as day 1 in the calendar, Excel might be defaulting to Sunday as day 1 for some reason. Even trying to change the format to 'DDD' hasn't yielded the right results. The INDEX solution provided seems to solve the problem, but I'm still unsure about the reason why the WEEKDAY function isn't performing as expected. Do not change any formatting.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/55977/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-55977",
+    "split_group_id": "block-55977"
+  },
+  {
+    "id": "283-32",
+    "instruction": "I have four sheets in an Excel workbook. In Sheet1, I have a system snapshot, and in Sheet2, I have taken another snapshot one week later. I need a macro that can compare Sheet1 and Sheet2, and then output the differences onto Sheet3 and Sheet4. Specifically, Sheet3 should show what entries are no longer present in Sheet2 compared to Sheet1 (subtracts). Sheet4 should show what entries are present in Sheet2 that were not in Sheet1. When displayed in Sheet3 and 4, only internal data is displayed beginning on row 1, and no table headers are required. I've attached the file for reference. Make sure to exclude any duplicate entries in row two on Sheet3, there is only one row of information that should appear.",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/283-32/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-283-32",
+    "split_group_id": "block-283-32"
+  },
+  {
+    "id": "50768",
+    "instruction": "How can I automatically plot each risk ID from a Risk Assessment table, which includes an Impact and a Likelihood number for each risk, into a corresponding position on a matrix table based on these values? For instance, if a Risk ID has an Impact of 1 and a Likelihood of 1, it should be placed in the bottom left box of a 3x3 matrix. If multiple Risk IDs share the same Impact and Likelihood numbers, they need to be displayed in the same box, separated by commas. I need guidance on how to automate this process in Excel.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/50768/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-50768",
+    "split_group_id": "block-50768"
+  },
+  {
+    "id": "54144",
+    "instruction": "How can I create an Excel 365 formula to sum the quantities of trucks listed on the 'Data' Sheet when the truck names are concatenated on the 'Report' Sheet, but they are listed separately on the 'Data' Sheet?     Could you help me in my question ,please?\nI need a formula to sum trucks quantities from \"Data\"Sheet but the problem is that the Trucks here are concatenated and in Data\" Sheet Trucks are not concatenated\nPlease help me",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/54144/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-54144",
+    "split_group_id": "block-54144"
+  },
+  {
+    "id": "42198",
+    "instruction": "Apply formula for cells C2:C7 that evaluates each row cumulatively by looking at all the data from row 2 down to the current row, so that C2 only checks row 2, C3 checks rows 2 through 3, C4 checks rows 2 through 4, and so on. The formula should use COUNTIFS to check in this priority order: first, if there's any \"Potato\" in column A with a corresponding FALSE in column B within that expanding range, return \"Worst\"; otherwise if there's any \"Tomato\" with FALSE, return \"Ignore\"; otherwise if there's any \"Pickle\" with FALSE, return \"Bad\"; and if none of those conditions are met, return \"Good\". What would the appropriate Excel formula be to achieve this cumulative row-by-row evaluation?",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/42198/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-42198",
+    "split_group_id": "block-42198"
+  },
+  {
+    "id": "32023",
+    "instruction": "I need a formula to display the current department code for an employee based on the date in the file. Employees are assigned to departments annually, with dates for these assignments under the corresponding department code columns (starting with C74 through C78). The department codes start in column O on the spreadsheet. If an employee is due to change departments, the formula should reflect this change automatically when the specified date is reached. For example, using the formula, I expect that as of today John Smith 11 Dept. will be in C77, but this should change to C78 on 1/6/24; John Smith 14 Dept. should be in C76 today and switch to C77 on 5/24/24; and John Smith 16 Dept. should be in C76 today, changing to C77 on 9/16/24. Columns with department codes but no dates can be omitted if it simplifies the formula. The initial list of formulas would be placed starting in B2. I've attached my sample list for reference.If it's needed, the columns that have the department codes and no dates can probably be eliminated if it makes things easier.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/32023/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-32023",
+    "split_group_id": "block-32023"
+  },
+  {
+    "id": "49237",
+    "instruction": "How can I add a period to a cell in Excel if there is a middle initial present, and leave it blank if there is no middle initial? The middle initial is obtained from the full name in cell E19 with first name in E5 and last name in E7. The extraction formula I'm using for the middle name is `=TRIM(MID(E19,LEN(E5)+1,LEN(E19)-LEN(E5&E7)))`, which gives the middle name in E9. Then I'm converting it to proper case with `=PROPER(E9)` in F10, and I'm taking the initial from that result with `=LEFT(F10)` in F7. If F7 contains an initial, I want to add a period after it. Otherwise, F7 should remain blank. Every formula I've tried results in a `#VALUE` error. What formula should I use to achieve this?",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/49237/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-49237",
+    "split_group_id": "block-49237"
+  },
+  {
+    "id": "38823",
+    "instruction": "I need a formula to sum values in a range between two dates where a cell contains a specific search term. \n\nThe values to sum are based on whether the corresponding date falls within the given date range and if the associated cell includes the search term.\n An example of the expected output is provided in the attached file. Apply to all search terms in column H.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/38823/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-38823",
+    "split_group_id": "block-38823"
+  },
+  {
+    "id": "325-44",
+    "instruction": "I am working with data at a wtype_id, name, and status level, and I need to split the filter data from a column into specific columns of data. I've attached the input data tab and the output data tab for reference. Leave the cell which does not have any data defined blank and leading zeros can be omitted. Retain the 'Input' data tab and update the 'Output' data tab with the result.",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/325-44/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-325-44",
+    "split_group_id": "block-325-44"
+  },
+  {
+    "id": "58723",
+    "instruction": "Create a formula that examines a range in Excel to 1. Look for a particular Name in column C and Entry Time in column I, 2. Identify the latest Entry Time for that Name and label it as 'Latest', and 3. Mark any other Entry Times that are not the most recent for the same Name as 'Not Latest'. Note that I'm using Excel 2013 and I'm struggling to achieve the result I manually entered in the MAX column of my worksheet (colored green).",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/58723/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-58723",
+    "split_group_id": "block-58723"
+  },
+  {
+    "id": "54925",
+    "instruction": "I'm using an array formula to retrieve results in column B where H2:H40 matches the value in M3 and K2:K40 matches the value in N3. But now, I want to modify the formula to fetch results where K2:K40 matches either the value in N3 or the value in N4, essentially incorporating an OR condition. My attempts to adjust the formula have been unsuccessful due to incorrect placement of commas or brackets. Additionally, I want the formula to output the rows from column B that meet the condition where H equals 'E' (the value in M3) and K equals either 'TM' (value in N3) or 'HD' (value in N4) into Column Q, specifically in yellow for matches with 'TM' and green for 'HD'. I've also included an IFERROR for cleaner results to avoid NUM errors, but it's not returning the desired numbers. Can someone assist with the correct syntax for this modification?My current formula is:      IFERROR(INDEX($B$2:$B$40,SMALL(IF(0<($M$3=$H$2:$H$40)*(($N$3=$K$2:$K$40)+($N$4=$K$2:$K$40)),ROW($B$2:$B$40)-2,\"\"),ROW()-1)),\"\")",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/54925/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-54925",
+    "split_group_id": "block-54925"
+  },
+  {
+    "id": "9111",
+    "instruction": "I have two lists with names and corresponding IDs. How can I fill a table where I need to return specific IDs from these lists based on the following conditions? If both columns B and C are blank, then column D should also be blank. If the name in column B exists in list 1, then column D should show the corresponding ID from list 1 regardless of column C. If the name in column B does not exist in list 1 and the name in column C does not exist in list 2, then column D should be 2500. If the name in column B does not exist in list 1 but the name in column C exists in list 2, then column D should show the corresponding ID from list 2. Finally, if column B is blank but the name in column C exists in list 2, then column D should show the corresponding ID from list 2; if column C does not exist in list 2, then column D should be 2500. I've included a sample of the expected results and mentioned that I managed to create a solution using a formula with a length of 241 characters.\nlet say we have 2 lists\n\nlist1\nJack 1320\nRony 2563\nEVA 2314\nJane 98\nSuzi 25\nRose 1222\nSarah 2586\nDani 3950\nAnne 5314\nBob 6678\nCarla 8042\nDdiana 9406\n\nList2\naa 11\nbb 3628\ncc 8920\ndd 201\nff 3016\nWe need to fill the below table to get the ID's form the above lists in the following conditions:\n\nIf column B and column C are blank Dshoul be blank\nIf the name in column B is exisit in list 1; D column should be the ID for the existing name what ever column C is\nIf the name in column B is not exisit in list1; and column C not exist in list2 then D should be 2500\nIf the name in column B is not exisit in list1; and column C exist in list2 then D should be ids\nIf the cell in column B is blank; and cell in column C exist in list2 then D should be ids\nIf the cell in column B is blank; and cell in column C not exist in list2 then D should be 2500\n\nsample of results expected:\n\nJack ff 1320\nJohn bb 3628\nff 3016 \naab 2500\n\nRissa dd 201",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/9111/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-9111",
+    "split_group_id": "block-9111"
+  },
+  {
+    "id": "49801",
+    "instruction": "In Excel, combine the results of both the LEFT 2 characters of a cell and RIGHT 3 characters of another cell into a single cell. I have the value 'SL-BK56-OWWFST-0035' and I use '=LEFT(A1,2)'in Column B which returns 'SL', and I use '=RIGHT(A1,5)' which returns '-0035'. Please concatenate these two formulas into one to get the result 'SL-0035' in column C. Do not add any additional labels or examples.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/49801/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-49801",
+    "split_group_id": "block-49801"
+  },
+  {
+    "id": "47798",
+    "instruction": "How can I extract the collection name from cells where the 'Collection-' tag is placed at different positions within the text? Specifically, I am looking to capture the text immediately following 'Collection-' up to either the first comma or the end of the data in each cell, bearing in mind that the 'Collection-' tag appears only once in each cell.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/47798/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-47798",
+    "split_group_id": "block-47798"
+  },
+  {
+    "id": "183-8",
+    "instruction": "How can I calculate the weighted average for columns J, K, and L based on the data? I have provided a sample file for reference. Only write formulas in J3:L6.",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/183-8/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-183-8",
+    "split_group_id": "block-183-8"
+  },
+  {
+    "id": "57445",
+    "instruction": "How can I create a formula in Column E on my Pricing Worksheet that will reference manually inputted data in Columns C and D and return the corresponding Cost data from a different worksheet named 'Package & Weight Data'? The table and necessary data are in an attached Excel file named 'Cost-Calculator.xlsx'.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/57445/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-57445",
+    "split_group_id": "block-57445"
+  },
+  {
+    "id": "52305",
+    "instruction": "How can I create a table in Excel, similar to a heat map, that will count entries based on two criteria: account name, and a specified time range (ignoring the date). I am able to match the first three criteria (name, destination, and type) but I am having difficulty including the time criteria to only count entries within a certain time frame, such as between 21:30 and 22:00, regardless of the date.\n   The goal is to have the table take an accurate count if the the Name matches, and if it Equal to or between the specified times. Fill out J6:N24 based on these criteria.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/52305/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-52305",
+    "split_group_id": "block-52305"
+  },
+  {
+    "id": "56225",
+    "instruction": "How can I display information in an Excel spreadsheet that consists of the date, mechanic, and the total time per day? Find the sum of the values in column K where the name is M3 and the start date is N5. I've encountered problems using a SUMIF formula due to date issues and errors indicating insufficient arguments. I've considered using SUMPRODUCT and SUMIF with VLOOKUP, but I'm unsure how to make it work and keep getting errors. I'm also considering a pivot table. I need guidance on a method that will accurately calculate and display total time per day by the mechanic for a specific date on a different page. My data is in a spreadsheet with dates that Excel doesn't recognize and ranges in my SUMIF formula that may not be consistent.My current formula is:  SUMIF(N5,\"*\"&M3&\"*\",K2:K32). Output should go in O3 and you should not change any other cells or add any tabs. Round to 6 decimals.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/56225/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-56225",
+    "split_group_id": "block-56225"
+  },
+  {
+    "id": "50526",
+    "instruction": "I need a formula that I can place in cell B9 of my spreadsheet and then drag down to dynamically look up and display values corresponding to a lookup value specified in another cell (B6). For instance, when B6 contains 'A', the formula should list cells 'Black' and 'Red' from my spreadsheet, because their associated values in the same row as 'A' are above 0. If I change the lookup value in B6 to 'B', the formula should instead list 'Yellow' and 'Orange' from the specified range, as those are the values above 0 for 'B'. The spreadsheet has column headers in row 1 and potential lookup values down column 1. How can this be set up?",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/50526/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-50526",
+    "split_group_id": "block-50526"
+  },
+  {
+    "id": "32902",
+    "instruction": "I need assistance with calculating bonuses in a spreadsheet based on tiered income levels. Specifically, Tier 1 should add $0.15 to the bonus for every dollar earned over $60,000 and up to $90,000. Tier 2 should add $0.25 for every dollar earned over $90,000 and up to $120,000. Lastly, Tier 3 should add $0.35 for every dollar of income over $120,000. Could you provide insight into how to set this up?",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/32902/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-32902",
+    "split_group_id": "block-32902"
+  },
+  {
+    "id": "408-5",
+    "instruction": "How can I create a macro in Excel to calculate the sum of values in Column D for rows where Column E contains a zero, insert this result into Column D next to the row containing 'BR1 Sales' in Column C, and then delete all rows where Column E contains a zero except for the rows where the reference contains 'BR1 Sales'? Also delete blank lines. If Macro is not possible, just perform this task.",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/408-5/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-408-5",
+    "split_group_id": "block-408-5"
+  },
+  {
+    "id": "41-47",
+    "instruction": "On OUT CAS tab, I want to aggregate and summarize by account types. See the headers in the OUT CAS tables for the account types. Go through the 3 other sheets and aggregate each item in the appropriate bucket on OUT CAS. Order them by item number (i.e., 000011 should be before 000012). PUR Purchase should be pretty much correct if you want to use that as the example. Additionally, I want to be able to insert new sheets before the OUT CAS sheet when needed, and also have the ability to clear the existing data in the OUT CAS sheet before performing the split.",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/41-47/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-41-47",
+    "split_group_id": "block-41-47"
+  },
+  {
+    "id": "343-20",
+    "instruction": "I need a macro to select and copy only the duplicated items in column C from the 'Import Data' sheet to the 'Duplicates' sheet. It should copy the entire row where the duplicates are found in column C. I have provided an example on the 'Duplicates' sheet to demonstrate what I require. Attached is the 'Macro to Extract Duplicate Records on Separate Sheet.xlsx' file for reference. The duplicates should be sorted in Ascending order as per the Balance and Invoiced Date, and keep the alignment for Invoice Date same as in Imported Data.",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/343-20/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-343-20",
+    "split_group_id": "block-343-20"
+  },
+  {
+    "id": "42526",
+    "instruction": "How do I assign points to a range of data values where the points should vary proportionately between -5 and +5, such that the highest number receives 5 points, numbers decrease incrementally down to zero which receives zero points, and negative numbers receive negative points accordingly?      The bigest number is 41, so it should take the score of +5 The smallest number is -18, so it should take the score of -5 A value of 0 should get 0 points. How do other values get their points according to the ratio of 41 and -18 and finally be ranked. Change background Hex code #A6A6A6 for B2:B16, and apply zero decimal places for whole numbers, 1 decimal place for numbers where only 1 decimal place is needed, and 11 decimal places for all other numbers.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/42526/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-42526",
+    "split_group_id": "block-42526"
+  },
+  {
+    "id": "57590",
+    "instruction": "I need to calculate a sum in cell B26, where the sum is based on the values in Column I but only includes those values where the corresponding date in Column C matches the month in A26.\n\nMy current formula is: SUMIFS(K2:K3,C2:C3,\">=\"&A26,C2:C3,\"<=\"&EOMONTH(A26,0))",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/57590/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-57590",
+    "split_group_id": "block-57590"
+  },
+  {
+    "id": "36277",
+    "instruction": "How can I create a lookup formula that returns results based on header names, which works correctly when dragged down in Excel 2019?",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/36277/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-36277",
+    "split_group_id": "block-36277"
+  },
+  {
+    "id": "49667",
+    "instruction": "How can I write formulas in Excel to populate the start and finish times of meetings, which are represented in columns F through AT as blocks marked with 'm', into columns B through E? The requirement is to return the start and finish dates, as well as the times as numbers (not text), of up to two blocks of meetings. The length of the table can vary. An example workbook is attached for reference.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/49667/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-49667",
+    "split_group_id": "block-49667"
+  },
+  {
+    "id": "51-12",
+    "instruction": "How can I create a VBA code that will count the number of times a value in a range from A1 to M1 on an Excel sheet increases by at least 10% from a reference cell, beginning the count from A1 and restarting the counting process from the cell immediately right of each cell where a 10% increase is found, terminating the count before M1 if there is no further data, and display the count in cell B6? Additionally, I'm looking to include the ability to update the data range in the code, as the actual worksheet data range is L26 to SHA26.",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/51-12/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-51-12",
+    "split_group_id": "block-51-12"
+  },
+  {
+    "id": "57232",
+    "instruction": "How can I retrieve the corresponding volume from a workbook if the origin port, equipment size, and destination port match across two different sheets, where volumes are recorded in three separate columns associated with different ports? I have tried using Index & Match functions without success. Could someone also suggest how to achieve this using VBA?\nThe formula data output result may be \"#N/A\".",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/57232/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-57232",
+    "split_group_id": "block-57232"
+  },
+  {
+    "id": "531-18",
+    "instruction": "I need to transpose data from the 'Data' tab into the format shown on the 'Transpose' tab of my Excel file, specifically focusing on the ITEM, DATE, and QTY columns. Could you advise whether a macro or VBA is more appropriate for this task?",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/531-18/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-531-18",
+    "split_group_id": "block-531-18"
+  },
+  {
+    "id": "36097",
+    "instruction": "I need a formula to calculate tax recoupment and scrapping allowance in column H: if the asset sold at a loss, recoup ITV adjusted by the loss; if profit is less than original cost, recoup the full profit; otherwise recoup the cost basis reduced by ITV.  Preserve the formatting of the cells in column I.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/36097/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-36097",
+    "split_group_id": "block-36097"
+  },
+  {
+    "id": "534-26",
+    "instruction": "How can I write a macro that will delete the entire column in an Excel sheet if the Date value in the column is earlier than the current month and year?",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/534-26/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-534-26",
+    "split_group_id": "block-534-26"
+  },
+  {
+    "id": "45896",
+    "instruction": "In my Excel sheet, I'm struggling to display multiple dates in a single cell in Column I using a date format rather than numerical values. Specifically, for cells containing more than two dates, such as in row 2 with three dates, my attempt with the TEXT function has been unfruitful. How can I apply a formula directly in Column I that will allow me to join these various dates with a delimiter and still maintain the date formatting, without having to resort to using a helper column?  My current formula is : TEXTJOIN(\",\",TRUE,UNIQUE(IF(A2=ZORD!A:A,ZORD!C:C,\"\"))).\nDates should be in the format DD/MM/YYYY.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/45896/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-45896",
+    "split_group_id": "block-45896"
+  },
+  {
+    "id": "567-21",
+    "instruction": "I need assistance with creating a macro for a worksheet containing over 100,000 rows of data. The macro should compare account numbers in column A with an associated number in column B and a date formatted like '2020/10' in column E. Then, it should keep only the rows with the most recent date for each account number and associated number pair, deleting the others. However, it should not delete rows if multiple entries for an account number with the same second number in column B share the same most recent date. Can this macro be efficient to avoid using excessive computer resources?If based on the earlier request to locate the associations between column A, B & E and then save only the most recent date field (column E) for those associations, I need to save any/all associations that have the same most recent dates if they exist, etc.  Additionally, if there is no date in column E, then those rows can be deleted too. Perform this task.",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/567-21/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-567-21",
+    "split_group_id": "block-567-21"
+  },
+  {
+    "id": "35747",
+    "instruction": "How can I create a formula in cell M2 that counts the number of values within the range B2:J11 that are greater than 100, where the corresponding date in B1:J1 is greater than or equal to a start date in M1, less than an end date in N1, and where the Asset ID in column A2:A11 matches the Asset ID in L2? \nCount how many values in B2:J11 if:\nB2:J11 > 100\nB1:J1 >= M1",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/35747/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-35747",
+    "split_group_id": "block-35747"
+  },
+  {
+    "id": "53383",
+    "instruction": "How can I create a formula in Excel to compare names and corresponding statuses across two worksheets, indicating 'matched' if both the name and status are the same and 'not matched' if they differ? The formula should check for a name in column A and then verify if the status in column B for that name matches across both sheets, as shown in the provided example workbook.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/53383/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-53383",
+    "split_group_id": "block-53383"
+  },
+  {
+    "id": "18645",
+    "instruction": "How can I create a calculation in Excel for weighted revenue where the percentage used to multiply the revenue varies automatically based on a stage selected from a pick list?\nI would really appreciate some guidance here.\n\nI am trying to create a calculation for weighted revenue. The % by which the revenue should be multiplied by should vary automatically depending upon the stage selected from the pick list. What I would like is for the column G to show the est. revenue multiplied by the correct percentage for that pipeline stage (as defined on the Data tab). The output should go in Opportunities Sheet, column G.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/18645/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-18645",
+    "split_group_id": "block-18645"
+  },
+  {
+    "id": "267-21",
+    "instruction": "How can I create a comprehensive report in a single sheet ('sheet merging') in Excel that compiles data from multiple sheets, with each sheet representing monthly data that will be added every month, and ensure that the merged report sheet updates as new data is added in the subsequent monthly sheets?  Please output the answer in the corresponding positions of columns C and D in the table, and pay attention to the mapping between the answer and column name and row value. Basically, look up ID from Column B and place the corresponding QTY value from SH1 into Column C and from RP1 into Column D. If there's an error or blank, insert \"-\".",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/267-21/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-267-21",
+    "split_group_id": "block-267-21"
+  },
+  {
+    "id": "18935",
+    "instruction": "How can I perform a lookup in Excel to retrieve a value from a Data Table and place it into a report format, using the data and structure provided in the attached file?\nCurrently I need to lookup a value from a Data Table and return the value to the report format. Kindly refer to the attach file for reference. How can I lookup the Category Value based on the (1) Work Criteria, (2) Category Type and (3) Material from the Data Table above?  \nNote : The category value varies based on work type and material type.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/18935/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-18935",
+    "split_group_id": "block-18935"
+  },
+  {
+    "id": "50916",
+    "instruction": "How can I create an Excel school calendar where typing a cycle day number into a column automatically populates the classes for that day across each row? My children's school operates on a seven-day cycle, and there's a double period that could complicate matters. I want to avoid manual copy/paste because of irregular 'off days' that require adjusting the cycle day and associated classes. I managed a formula that works in one cell but am struggling to copy it across other cells as shown by the problems in cells C12, E12:H12, and D13:D14.   IF(A$12=A$2,C$2,IF(A$12=A$3,C$3,IF(A$12=A$4,C$4,IF(A$12=A$5,C$5,IF(A$12=A$6,C$6,IF(A$12=A$7,C$7,IF(A$12=A$8,C$8)))))))",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/50916/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-50916",
+    "split_group_id": "block-50916"
+  },
+  {
+    "id": "302-1",
+    "instruction": "How can I match and replace the values in Sheet1 and Sheet2 with those in the ITEMS sheet based on column B? Specifically, if the value in cell B2 of Sheet1 or Sheet2 does not match the value in cell B2 of the ITEMS sheet, then B2 in Sheet1 or Sheet2 should be replaced with the corresponding value from the ITEMS sheet. This comparison and replacement should be done for each cell in column B. After the replacement, column B in both Sheet1 and Sheet2 should match column B in the ITEMS sheet - the outcome I'm expecting are detailed in 'result sheet1' and 'result sheet2'. My actual dataset could be up to 500 rows.",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/302-1/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-302-1",
+    "split_group_id": "block-302-1"
+  },
+  {
+    "id": "41978",
+    "instruction": "How can I create a formula in Excel that counts the number of open cases for each year? Specifically, I need the formula to examine a range from G14 to G185 for the year and then count if the corresponding cells from J14 to J185 are marked as 'open'. If necessary for the formula to work, I am willing to alter or unmerge the cells that identify the 'alpha organization'. Apply it and retain all original formatting in column I.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/41978/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-41978",
+    "split_group_id": "block-41978"
+  },
+  {
+    "id": "48257",
+    "instruction": "How can I extract numerical values and determine the valid decimal sign from a text string containing various currency positions and formats in Excel?",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/48257/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-48257",
+    "split_group_id": "block-48257"
+  },
+  {
+    "id": "105-24",
+    "instruction": "In my Excel file, the 'Open' sheet contains IDs in Columns C and K. Find all these IDs and replace them with their respective Names. The corresponding Names for these IDs are located in Columns A and B of the 'Productivity' sheet. I require assistance with creating a macro or to automate this replacement process and also automatically consider any new additions to Columns A and B in the future for replacements. Do not create instructions, explanations, or a ID_Lookup_Helper tab. Do not create add data to any other columns other than C or K in the Open tab.  Do not hide any data.",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/105-24/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-105-24",
+    "split_group_id": "block-105-24"
+  },
+  {
+    "id": "47766",
+    "instruction": "I am attempting to calculate my agent's yearly production which includes yearly bonuses that reset annually. In the Excel spreadsheet I attached, I have used SUMIF formulas to calculate their total production based on certain criteria, such as including \"*PE*\" in my searches: =SUMIF($H$8:$H$37,\"*PE*\",$C$8:$C$37), =SUMIF($H$41:$H$58,\"*PE*\",$C$41:$C$58), =SUMIF($H$62:$H$74,\"*PE*\",$C$62:$C$74). However, I am having trouble adapting these formulas to work with a date range for the start and end of the year, using closing dates that are found in Column F. I would like to find out how to modify these formulas or use a different approach to consider the date range for accurately calculating annual production. Please change the values in table J39:O53 to reflect the correct yearly totals.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/47766/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-47766",
+    "split_group_id": "block-47766"
+  },
+  {
+    "id": "32093",
+    "instruction": "I have an Excel spreadsheet for employee details with column B containing the current employee's name. Columns C, D, and E may or may not contain the names of new employees poised to take over in the next year. I need to create a formula for a new column (column F) that pulls the name of a new employee from columns C, D, or E if any exist, but if no new employee names are present, it should default to using the current employee's name from column B. With two columns, this would be a simple IF statement, but I'm unsure how to approach it with three potential new employee columns. An example was provided with the original question. Column F is what I'm trying to generate with a formula.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/32093/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-32093",
+    "split_group_id": "block-32093"
+  },
+  {
+    "id": "41691",
+    "instruction": "Edit cell B:7 so that it is not #REF!.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/41691/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-41691",
+    "split_group_id": "block-41691"
+  },
+  {
+    "id": "32438",
+    "instruction": "How can I format the cells in column J to only display the standard time in 00:00:00 and AM/PM from I2, which contains both the date and the time in the format 'DD/MM/YYYY 00:00:00'? Using the =RIGHT(I2,8) function returns the time as a string of 8 numbers without the desired time formatting (e.g., 00:00:00), even after attempting to apply time formatting to the cell.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/32438/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-32438",
+    "split_group_id": "block-32438"
+  },
+  {
+    "id": "50796",
+    "instruction": "I am seeking a more efficient way to handle increasing preorder products in Excel as manual counting has become too time consuming. I need a formula that operates such that if cell B1 equals a specific value, for example 'ABC', then it should count the value in cell C1. In my current method, I use the formula '=COUNTIFS(B:B,\"TV\")' which counts the number of rows containing 'TV', but instead I need it to count the value in the cell to the immediate right of each 'TV' descriptor. Attached is a sample Excel file where A1:B5 shows the intended results for the data in A12:C22.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/50796/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-50796",
+    "split_group_id": "block-50796"
+  },
+  {
+    "id": "178-22",
+    "instruction": "Extract rows from Sheet1 where column B equals 'TELIVISION' OR column C equals 'CLASS III' OR column C equals 'CLASS IV'. Put the results in Sheet2 starting at A3 with headers in A2",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/178-22/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-178-22",
+    "split_group_id": "block-178-22"
+  },
+  {
+    "id": "57113",
+    "instruction": "I am working with Twitter data and attempting to create a new Excel column that extracts all hashtags from each tweet. While I can successfully use a formula to pull the first hashtag from a cell, I am struggling to modify it or use another method to extract multiple hashtags from cells that contain more than one. Additionally, I want to output these hashtags in adjacent cells starting from column B, without the # symbol and without any changes to the header row. An example file has been provided. Modify my current formula to achieve this.\n\nMy current formula is: TRIM(LEFT(SUBSTITUTE(MID(A2,FIND(\"#\",A2),LEN(A2)),\" \",REPT(\" \",100)),100))",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/57113/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-57113",
+    "split_group_id": "block-57113"
+  },
+  {
+    "id": "414-20",
+    "instruction": "Delete all rows above the first occurrence of the text “Invoice No.” in column A. The macro should search for the phrase (case-insensitive) and delete everything above it, leaving the “Invoice No.” row and all rows below untouched.",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/414-20/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-414-20",
+    "split_group_id": "block-414-20"
+  },
+  {
+    "id": "269-43",
+    "instruction": "How can I create a macro in Excel to delete a row if there's a value in column I but the corresponding cell in column H is blank? For example, if there's a value in cell I8 but cell H8 is empty, then the whole row should be deleted. I attempted writing a VBA code to perform this action, but it didn't work. Once you have a method of completing this task, please execute on it.",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/269-43/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-269-43",
+    "split_group_id": "block-269-43"
+  },
+  {
+    "id": "54717",
+    "instruction": "How do I use Excel to sum the values in a specific column based on particular start and end row numbers, where the column to search and the row numbers are determined by the values in predefined cells?\n   These numbers represent the amount owner contributes in the 1.9 thread\n   The border means this is the point when P1 and P2 auto prime",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/54717/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-54717",
+    "split_group_id": "block-54717"
+  },
+  {
+    "id": "54196",
+    "instruction": "I'm struggling with a VLOOKUP function that seems to be failing. I aim to use this function to retrieve the lead time for items based on supplier IDs and item numbers. Despite trying to normalize the numbers and using both the VLOOKUP and INDEX MATCH functions, as well as trying in a different file, I'm unable to get it to work. I'm not sure what's causing the problem and urgently need to understand why this issue persists. If I can't resolve this for my university project, I risk not passing, which could have severe consequences for my studies. Can someone help me to fix this error?\nI try VLOOKUP(G2,Suppliers2,2,FALSE).\n\nHelp me populate Column E in Sheet two by matching the value in column G with column B and returning the value in column C. Everything referenced is in Sheet two. Columns B:E are part of a table that's a different length from F:G. Fill Column E to be the same length as the last row of the table from B:E",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/54196/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-54196",
+    "split_group_id": "block-54196"
+  },
+  {
+    "id": "227-40",
+    "instruction": "How can I remove or replace text duplicates within the same row in Excel, as most of the available methods only apply to columns? I have provided the sheet showing the issue I am facing with duplicates in consecutive columns where the expected result is shown in 'The Result I'm after' section. Place the output in A14:E17.",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/227-40/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-227-40",
+    "split_group_id": "block-227-40"
+  },
+  {
+    "id": "37900",
+    "instruction": "I need help with a formula in Excel that can automatically return a value based on the current day's date. Also, I have attached a workbook named 'sample10.xlsx' for reference.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/37900/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-37900",
+    "split_group_id": "block-37900"
+  },
+  {
+    "id": "38985",
+    "instruction": "I'm dealing with two tables in Excel. In table 1, I have a column with duplicate names, and in table 2, I have those same names but each is associated with different values. I need to find a way to retrieve the corresponding data from table 2 and place it into table 1 in a transposed manner, i.e., going across the row instead of down a column. Is there a method to achieve this, especially given the challenge of handling duplicate lookup values?",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/38985/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-38985",
+    "split_group_id": "block-38985"
+  },
+  {
+    "id": "290-27",
+    "instruction": "I am looking for a macro that can be used in Excel 2016 to delete alphabetic characters from cell values in column B, without altering other data in the same column. The cell values to be altered are alphanumeric strings that typically start with a 2 or 3 letter code (always in uppercase) followed directly by a number, or a space before the number if the code is 2 letters long. For example, 'PID1' should be changed to '1', 'PID2' to '2', and 'GG 1' to '1'. The length of these strings is variable and the letter codes can include a variety of different letters. Also, there is a date value in the column which should not be changed by the macro. If you don't have a macro, just execute.",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/290-27/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-290-27",
+    "split_group_id": "block-290-27"
+  },
+  {
+    "id": "97-36",
+    "instruction": "How can I create a VBA code that deletes all rows in an Excel sheet above a specified substring, starting from the first row and first column, with the search string 'domestic'?",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/97-36/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-97-36",
+    "split_group_id": "block-97-36"
+  },
+  {
+    "id": "279-23",
+    "instruction": "Incorporate a formula that deletes everything outside of parentheses into a VBA macro or which iterates over all cells in column B without gaps. Display results in Column B. Leave blank cells blank, especially do not paste 0 into blank cells. If there are no parentheses, leave the cell as is.",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/279-23/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-279-23",
+    "split_group_id": "block-279-23"
+  },
+  {
+    "id": "45300",
+    "instruction": "How can I delete all text from a point where a specific word ('FT') appears within strings in an Excel column? Each row contains a string with the word 'FT' followed by different data, and I want to remove everything starting with 'FT' while keeping the preceding text intact. Please output the answer in Column B.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/45300/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-45300",
+    "split_group_id": "block-45300"
+  },
+  {
+    "id": "52216",
+    "instruction": "I'm having some trouble with getting my INDEX-MATCH formula to return values from subsequent rows beneath the first row (the first row returns the correct values, as desired).\nI'm not sure if a third MATCH argument is needed in the formula, but, if it is, I'm struggling with determining the correct lookup_value & lookup_array syntax.\nI've attached a workbook with some mock data on there to assist - on the 'INPUTS' tab, you'll see the dollar amounts in C15:G15 are displaying correctly which is being pulled from the 'Sheet2\" tab.\nHow can I adjust my INDEX-MATCH formula in the 'INPUTS' tab to retrieve values from rows below the first row, which currently returns the correct data, specifically for a dataset in which the output is contingent on a dropdown selection that alternates between 'Metro' and 'Regional' and affects the displayed dollar amounts?\nSo, I just need some help with getting this formula to display the correct amounts for the rest of the expenses underneath Advertising & Marketing (C15).\nI figure that if just the electricity line can be solved, then I can adopt it for the remainder (hence the lack of numbers for most of the other expenses).\nWrite a formula that will work when copied across columns C through G, and apply it to the first 5 years of Electricity expenses. No need to apply the new formula to the expense rows below Electricity.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/52216/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-52216",
+    "split_group_id": "block-52216"
+  },
+  {
+    "id": "486-17",
+    "instruction": "I have a list of numbers in cells that represent dates, formatted as '0yyyymmdd' without spaces (e.g., 020210305 for March 5, 2021). I need to use a macro to reformat these numbers to include spaces, resulting in the format 'yyyy mm dd'. How can I accomplish this with a macro? Start in B2, no header.",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/486-17/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-486-17",
+    "split_group_id": "block-486-17"
+  },
+  {
+    "id": "56915",
+    "instruction": "Populate cells in the range B18:E23 corresponding to the column header in Column A and row header in Row 13 on the COVER sheet with the correct data from the DATA sheet, where the entity is selected in cell B12 of the COVER sheet. The formulas I found only work for column B and don't seem to work for columns C, D, and E, which may be due to the presence of merged cells on the DATA sheet. All the data needs to be rounded off to two decimal places. Columns C and E to be updated in decimal format with negative numbers in parentheses even when they round off to zero.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/56915/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-56915",
+    "split_group_id": "block-56915"
+  },
+  {
+    "id": "440-24",
+    "instruction": "How can I automatically replace the data in the same cell with expanded values in Excel, so that the values in column B become the same as the corresponding values in column H, with the new expanded values overwriting the existing values in column B?",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/440-24/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-440-24",
+    "split_group_id": "block-440-24"
+  },
+  {
+    "id": "14240",
+    "instruction": "I'm having trouble with a SUMPRODUCT formula in Excel. I've noticed an error but can't seem to figure out what's wrong. The formula I am trying to correct is intended to pull data from a range where multiple criteria match - these criterias are specified in cells R4, S4, and T4 against ranges A4:A75, B4:B75, and C3:M3 respectively. The actual computation should happen over the range C4:M75. I shared my Excel file for reference. Could someone guide me on how to fix this or provide an alternative solution?\nMy wrong Formula: SUMPRODUCT((A4:A75=R4)*(B4:B75=S4)*C3:M3,C4:M75=T4)\nPlease fix my formula and update all values in Column U.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/14240/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-14240",
+    "split_group_id": "block-14240"
+  },
+  {
+    "id": "9391",
+    "instruction": "Create an Excel formula that takes a date from cell B1 on a 'Front' sheet, searches for that date in column A on a 'Data' sheet, and retrieves a corresponding value from column F on the 'Data' sheet associated with a specific letter. I'm familiar with using Index, Offset, and Match functions but am struggling to apply them successfully in this situation. Additionally, when data is added to the 'Data' sheet with new date ranges, the order of names might change or some may be absent. Is there a solution that can address this issue and ensure accurate data retrieval when the order of agents is not consistent?  Make sure that the formula, that for any dates that do not exist in the Data sheet, returns a blank rather than error or zero.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/9391/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-9391",
+    "split_group_id": "block-9391"
+  },
+  {
+    "id": "39903",
+    "instruction": "How can I count individual bin locations that do not start with 'X' or 'Z' in a single cell field, where each location is a unique string followed by a colon and the quantity, and exclude any pallet location (those that do start with 'X' or 'Z')? For example, A-01-A-02-C-04.D: 5 indicates one position, and Z-07-C-05-A-02:9 indicates the position to be excluded. Please include all borders for cells C:2-6, with Courier new font 9pt.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/39903/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-39903",
+    "split_group_id": "block-39903"
+  },
+  {
+    "id": "51680",
+    "instruction": "How can I identify which areas of business use an item that's in stock by analyzing a spreadsheet with columns (A to F) containing 'Y' or 'N' indications? The output should be in a single cell (G) corresponding to each row and should include the text from the headers where there is a 'Y', separated by commas without a trailing comma at the end, and should follow the order of header colors (A1:F1). Fill out the rest of the table and keep the formatting consistent.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/51680/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-51680",
+    "split_group_id": "block-51680"
+  },
+  {
+    "id": "524-31",
+    "instruction": "I have a list of transaction descriptions in a format referred to as 'bank speak', which includes transaction identifiers like 'AMAZON.COM*1T9SS2M AMZN.COM/BILLWA' where the initial part of the identifier (before the asterisk) is consistent across different transactions for the same vendor. I've distilled these into shortened versions, such as 'amazon.com' and 'AMZN MKTP'. What I need is a way to automatically assign categories to each transaction based on their shortened versions, but without using a large nested IF formula or functions like VLOOKUP or INDEX/MATCH that won't work due to the setup. I believe this could be accomplished with VBA, but I'm not well-versed in it, so I would need some guidance or examples to understand how to implement it.",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/524-31/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-524-31",
+    "split_group_id": "block-524-31"
+  },
+  {
+    "id": "48588",
+    "instruction": "In my Excel file, I have a list of different products in Column A with 15 unique records, but these records are not sorted and include repeated product numbers. How can I generate a unique number for each product, as I have manually done in Column B? Could you suggest a formula that can accomplish this?",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/48588/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-48588",
+    "split_group_id": "block-48588"
+  },
+  {
+    "id": "48924",
+    "instruction": "How can I list all the missing dates from a sequence in column A and place them into column C in Excel?",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/48924/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-48924",
+    "split_group_id": "block-48924"
+  },
+  {
+    "id": "142-19",
+    "instruction": "I have an Excel sheet titled 'sheet1' with 500 total rows, which include blank rows interspersed throughout. In this sheet, there are two columns: Column A contains numbers (e.g., 'D 14') and Column B contains names (e.g., 'John'). I need a VBA macro that can sort each non-blank range within these columns independently, sorting A to Z based on Column A while also keeping the associated name from Column B with the corresponding number. My attempt to record a macro resulted in having to manually select each range, which is not practical. Can someone help me with a VBA solution that would automatically identify and sort each range separated by blank rows?",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/142-19/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-142-19",
+    "split_group_id": "block-142-19"
+  },
+  {
+    "id": "40478",
+    "instruction": "How do I use a formula to extract text from column A in a spreadsheet, starting after the second space character to the right and ending before a dash character? An example of the manually extracted data is provided in column B for reference. When you have a formula created please use it.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/40478/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-40478",
+    "split_group_id": "block-40478"
+  },
+  {
+    "id": "56274",
+    "instruction": "I need an Excel formula that will automatically populate cells D9, D10, D11, and D12 with the Opening Balance, Debits, Credits, and Closing Balance respectively, based on the Fiscal Month in cell D7. The details and expected results are outlined in the attached excel sheet.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/56274/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-56274",
+    "split_group_id": "block-56274"
+  },
+  {
+    "id": "42181",
+    "instruction": "How can I modify my SUMIF function to sum values in column B only if the corresponding cells in the reference column I contain specific text, which is present in cell A13, but do not contain any numbers? I am already using an array formula to calculate the sum for numbers extracted from column I, however, I also need to sum up the numbers in column B if the corresponding cell in column I includes the text in A13 along with other text but excludes any numbers. Apply it.\nMy current formula is:  SUMIF($I$4:$I$10,\"*\"&A13&\"*\",$B$4:$B$10)",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/42181/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-42181",
+    "split_group_id": "block-42181"
+  },
+  {
+    "id": "7902",
+    "instruction": "I need assistance with constructing a formula in my worksheet. I want to compare two values in a row, and based on that comparison, the formula should either return the equivalent value from the same row if it is present or perform a regular VLOOKUP. The specific use case and data structure are outlined in the attached worksheet.\nVLOOKUP(C3,Grouping!$A$2:$I$7,3,FALSE)",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/7902/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-7902",
+    "split_group_id": "block-7902"
+  },
+  {
+    "id": "84-40",
+    "instruction": "I need to sum the amounts in the entire columns C and D for each sheet, excluding column B, in an Excel workbook. These sums should then be populated in a 'list' sheet, putting the names of the sheets into column B. For each sheet, column C in list tab should contain the total from the original sheet's column C, and column D in list tab should contain the total from the original sheet's column D. Additionally, column E in the 'list' sheet should show the result of subtracting the amount in column D from the amount in column C. I also want a total row at the end that sums the amounts from all these sheets. Whenever I add new sheets before the 'list' sheet, I need the existing data in the 'list' sheet to be cleared so that the list can be updated to reflect any changes in the other sheets. I've provided an attachment for reference.",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/84-40/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-84-40",
+    "split_group_id": "block-84-40"
+  },
+  {
+    "id": "51090",
+    "instruction": "How can I calculate the difference between the total cartons received as indicated in Column M and the errors present in Columns N to R, while filtering for a specific warehouse (e.g., warehouse 27), error codes (specifically for each of II, IR, IT, OV, PI with code II in column N), date, and users (e.g., CHROGIL1, CHDSPOLJ, CHSJEFFE, CHBTHOMA for each error code) across a data set? Additionally, for the IR error code listed in Column O, I only want to include positive numbers from the Errors Table. The goal is to simplify a formula that can achieve this, as my current one is too complex and not providing the correct value, such as the expected 699 for Q2.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/51090/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-51090",
+    "split_group_id": "block-51090"
+  },
+  {
+    "id": "30930",
+    "instruction": "On Sheet1, how can I calculate the number of values greater than zero in Column A between occurrences of the number 1 in Column B, and display the result in Column C on each row where Column B contains 1? Leave other rows in Column C blank.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/30930/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-30930",
+    "split_group_id": "block-30930"
+  },
+  {
+    "id": "50250",
+    "instruction": "Use the value in cell G2 ('sela') as a reference to sum the numbers of the values corresponding to G2 in columns A or B in C-E, and include them only if the cell's value is a number.  Place it in H2.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/50250/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-50250",
+    "split_group_id": "block-50250"
+  },
+  {
+    "id": "54474",
+    "instruction": "I am working with a file that contains a tab named WHP and another with WHP data. I need to collect specific information from the WHP data tab for different sites located in the WHP tab.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/54474/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-54474",
+    "split_group_id": "block-54474"
+  },
+  {
+    "id": "37462",
+    "instruction": "In my Excel file, I've inputted country names and revenues in local currency, which are then automatically converted into USD in the order they appear in the report. I'm attempting to list all the countries and use a formula to sum the products and search to return the corresponding number for a given country. However, while my formula works when I want it to return the local currency amount, it fails when I want it to return the USD amount, which is my actual goal. In the spreadsheet, I highlighted the failing formula in red. I'm unclear why the formula for the USD column isn't working as expected.  Apply a formula to all Revenue cells that will retrieve the correct USD values, rather than INR values; leave any zero or null values as 0.  After applying the formula, apply a cell infill color of #FFC7CE and text color of #9C0006 to all cells with the revised formula.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/37462/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-37462",
+    "split_group_id": "block-37462"
+  },
+  {
+    "id": "80-42",
+    "instruction": "How can I consolidate all rows of data from all other sheets in the workbook (currently, Jack, Henry, and Richard sheets) into the first available, blank rows of A:L in sheet Consolidated_ALL, and ensure that each row of consolidated data has an indication of the originating sheet name in Column L?  The columns to use from the other sheets are highlighted yellow.  Match the cell formatting and data layout of other rows in the sheet.  Do not include column headers or fill colors in this consolidation.  Additionally, how can I adapt the VBA code provided to either increase or decrease the number of columns it operates with based on my requirements?",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/80-42/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-80-42",
+    "split_group_id": "block-192-22"
+  },
+  {
+    "id": "192-22",
+    "instruction": "I need a VBA code on Sheet1 that scans every populated cell in column D and checks whether the text contains any of the following keywords (case-insensitive, partial match allowed): ‘Core Activation’, ‘Core Design’, ‘Mobile Terminology’, ‘Mobile Design’, ‘Mobile Integration’, ‘Testing Layer’, ‘Testing Offshore’, ‘Carrier’, and ‘Barrier’. If a match is found, output the text “Billing PO” in the corresponding row of column F; otherwise, leave column F blank. Entries in column D may include numeric or text prefixes/suffixes (for example “123-Core Design”), which must still count as valid matches. The process should handle all rows dynamically without a fixed range, preserve existing data and formatting in all other columns. If you have to, you can solve it without VBA.",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/192-22/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-192-22",
+    "split_group_id": "block-192-22"
+  },
+  {
+    "id": "57612",
+    "instruction": "In my Excel worksheet, I have a formula in cell D4 linked to cell C4 which needs to be modified. I want to display different results in D column based on the value in the C column. Specifically, if the value in C4 is between 5 to 6, then the result in D4 should be 5. If the value is between 3 to 4, the result should be 3.75, and if the value is between 1 to 2, the result should be 1. I have attached my file for reference. How can I correct my formula to achieve this? My current formula is: =IF(AND(C4>=5,C4<=6),5,0)",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/57612/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-57612",
+    "split_group_id": "block-57612"
+  },
+  {
+    "id": "57743",
+    "instruction": "In my Excel spreadsheet, I'm struggling to create a formula that will update a price book. I have model numbers listed in column A that I need to match with a list that includes these and additional model numbers in column C. Corresponding prices for the model numbers from column C are listed in column D. I want to use the model numbers in column A to search within column C and return the associated prices from column D. While I'm aware that the Index and Match functions can accomplish this, I've been unable to configure them correctly. Could someone guide me on how to set up this formula correctly?\n\nMy current formula is:  INDEX(D:D,MATCH(A2,C:C,0))\nIf the formula returns an error, leave the cell blank",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/57743/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-57743",
+    "split_group_id": "block-57743"
+  },
+  {
+    "id": "49333",
+    "instruction": "I'm encountering an issue where my VLOOKUP formula returns #N/A, even though I've attempted to troubleshoot common problems. The formula I'm using is '=VLOOKUP(F2,Sheet3!$A$2:$D$300,2,FALSE)'. I've already used the TRIM function to remove spaces before the names and have eliminated any apostrophes and periods from one of the lists to ensure that the names match correctly. I'm unsure where I'm going wrong with this. Can someone assist me with resolving this VLOOKUP error? Maybe the way to do it is Trim the lookup table range instead of the values, because I want to avoid trimming the cells in sheet3. Once the formula is fixed, change the formatting of cells G2:I7 to text, then left align.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/49333/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-49333",
+    "split_group_id": "block-49333"
+  },
+  {
+    "id": "236-22",
+    "instruction": "I've created a macro to remove blank rows in Column A, but I need to adjust it so that it also deletes the row directly above each blank row. It's crucial that rows with data in Column A right below headers, which contain the term 'Line No', remain untouched. In particular, rows 2 & 9 should not be deleted, as they have important data. I need this macro to function on multiple sheets, beginning with sheet 'BR1' onwards. Can someone help me modify my code to achieve this?\n\nIn other words, every time “Line No” appears in column A and the cell below that is blank, delete both the row containing “Line No” and the row below.\nThe data currently spans A1:E16",
+    "instruction_type": "Sheet-Level Manipulation",
+    "initial_local_path": "inputs/236-22/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-236-22",
+    "split_group_id": "block-236-22"
+  },
+  {
+    "id": "9569",
+    "instruction": "I need a formula to identify the earliest non-zero value entered for each row, specifically within column 'AO,' from a range of months (e.g., from Jan 2015 onward). The workbook I'm working on will be updated monthly with new data, and the values are percentages such as 17.07% for contract #10007 in Mar-2015. It is important that the formula avoids using array formulas to prevent the workbook from freezing due to a potentially long list of data.\nI am struggling to find a formula that I could use in order to find the EARLIEST value entered from several months. Attached is a workbook that will be populated each month and will potentially have values from Jan 2015 through whatever the latest month would be........for each row, I need to pick the earliest value entered on column \"AO\". As an example on 1st row, the earliest value for contract # 10007 is 17.07% entered in Mar-2015, contract 10008 would 18.20% entered in Jun 2015, etc..Since this list will be long, it would be preferable to have a formula that does not use array formulas as I find that this type of formula typically freezes the workbook. Need to enter a formula that captures the earliest value entered from any given time period without manually entering value in each row.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/9569/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-9569",
+    "split_group_id": "block-9569"
+  },
+  {
+    "id": "46897",
+    "instruction": "How can I create a formula in Excel that counts the instances of a specific text or number in a column that matches a specified header title?",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/46897/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-46897",
+    "split_group_id": "block-46897"
+  },
+  {
+    "id": "43436",
+    "instruction": "How can I calculate the number of records that are still open by the end of each month, given two dates for each record (date created and date closed)? I need a formula that can determine which records were open based on a specific month, considering that a record is open if it was not closed before the first day of the month and was not created after the last day of the month.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/43436/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-43436",
+    "split_group_id": "block-43436"
+  },
+  {
+    "id": "32562",
+    "instruction": "Automate the process of identifying each unique number in Column A and counting its order of occurrences without having to manually create an ascending list, such as from 1 to 10,000 and replacing it with the current data in column B.",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/32562/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-32562",
+    "split_group_id": "block-32562"
+  },
+  {
+    "id": "47827",
+    "instruction": "How to assemble three numbers into a three-digit number, with the numbers arranged in order from smallest to largest. Complete column G, bold and fill all boxed values with the color #EBF1DE",
+    "instruction_type": "Cell-Level Manipulation",
+    "initial_local_path": "inputs/47827/initial.xlsx",
+    "split": "dev",
+    "family_id": "observed-47827",
+    "split_group_id": "block-47827"
+  }
+]

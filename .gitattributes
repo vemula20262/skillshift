@@ -1,0 +1,4 @@
+# Preserve source text and CSV bytes, including recorded checksums.
+data/** -text -whitespace
+*.py text eol=lf
+*.md text eol=lf

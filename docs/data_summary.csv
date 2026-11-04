@@ -1,0 +1,20 @@
+metric,value,status
+Source tasks,400,structurally audited
+Source input workbooks,400,structurally audited
+Source reference workbooks,400,structurally audited
+Source cell-level tasks,275,metadata count
+Source sheet-level tasks,125,metadata count
+Structural audit rejections,0,does not validate answer correctness
+Eligible tasks not selected,280,not rejections
+Candidate selected tasks,120,provisional
+Candidate cell-level tasks,78,provisional
+Candidate sheet-level tasks,42,provisional
+Candidate development tasks,60,not frozen
+Candidate validation tasks,30,not frozen
+Candidate test tasks,30,not frozen
+Observed source families across source,400,hash-based and provenance unreviewed
+Observed multi-task families,0,changed-value variants may remain
+Original development attempts,120,planned not collected
+Additional dominant-task reruns,24,tracker plan not collected
+Final feedback pools,10,tracker target definitions unresolved
+Model executions completed,0,no experiment results

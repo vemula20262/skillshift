@@ -1,0 +1,14 @@
+id,reason
+11276,Related attendance labels and workbook purpose; template lineage unresolved.
+118-50,Large shared dictionary vocabulary; workbook lineage cannot be established.
+11842,Related attendance labels and workbook purpose; template lineage unresolved.
+141-20,Matching date/period reconciliation headers; source lineage unresolved.
+146-49,Small word-list content is contained in larger dictionary; possible derived example. | Shared unusual anagram strings; possible derived word-list source.
+147-48,Small word-list content is contained in larger dictionary; possible derived example.
+192-22,106 uncommon shared business descriptions; possible reused business source.
+23-24,Large shared dictionary vocabulary; workbook lineage cannot be established.
+290-1,Shared unusual anagram strings; possible derived word-list source.
+379-36,Related ledger headers and high layout overlap; changed-value variant cannot be excluded.
+388-47,Matching date/period reconciliation headers; source lineage unresolved.
+496-15,Related ledger headers and high layout overlap; changed-value variant cannot be excluded.
+80-42,106 uncommon shared business descriptions; possible reused business source.
