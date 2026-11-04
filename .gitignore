@@ -18,3 +18,7 @@ local_submission/
 data/full400_v1/inputs/
 data/full400_v1/evaluator_only/
 handoff/
+
+# Separate-version workbook materializations
+datasets/*/inputs/
+datasets/*/evaluator_only/

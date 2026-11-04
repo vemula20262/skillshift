@@ -1,36 +1,29 @@
-# SkillShift — source-balanced feedback for agent skill updates
+# SkillShift
 
-## Current dataset: all 400 tasks
+Two separate dataset options are prepared for review. Choose one with the team; do not mix their splits or treat the alternatives as independent replications.
 
-The completed source-task handoff is **data/full400_v1/**: 200 development, 100 validation, and 100 test tasks, with all 800 original input/reference workbooks. Start with [the handoff instructions](docs/HANDOFF_400.md).
+- **[120-task version](datasets/120/README.md):** 120 eligible tasks, split 60 development / 30 validation / 30 test. Excludes the two upstream-flagged tasks and unresolved-lineage candidates before sampling.
+- **[400-source-task version](datasets/400/README.md):** preserves all 400 original tasks, but only 398 are eligible for execution: 198 development / 100 validation / 100 test. Tasks 56225 and 56274 retain source records but are absent from runnable manifests. Potentially related tasks stay together in precautionary blocks.
 
-All tasks are retained. Seven uncertain relationships involving 13 tasks are kept within single splits using explicitly precautionary blocks. They are not claimed to be proven shared-source families. No model runs or real feedback pools have been produced.
+Each folder includes its task inventory, observed families, merge/precaution logs, exclusions, source and runnable manifests, runnable splits, executor manifests, pilot IDs, checksums, data summary, dataset-section draft, and unresolved pool configuration. Reference workbooks remain evaluator-only.
 
-The earlier 120-task datasets and drafts are historical, not the active study split. The full400_v1 protocol supersedes their task counts and exclusions. The expanded split has not been represented as team-approved.
-
-## Reproduce
-
-Python 3 standard libraries are sufficient for preparation:
+## Setup and verification
 
 ```sh
 python3 scripts/prepare_data.py
-python3 scripts/prepare_full_dataset.py
-python3 scripts/prepare_full_dataset.py --verify
+python3 scripts/prepare_variants.py --materialize
+python3 scripts/prepare_variants.py --verify
 python3 -m unittest discover -s tests -v
 ```
 
-The full builder refuses to overwrite an existing version. Downloaded and extracted workbooks are excluded from Git; use the scripts to retrieve the pinned archive and materialize them locally. Only inputs and executor manifests belong in the model workspace. Reference workbooks belong exclusively to the evaluator.
+Shared implementation is in `scripts/` and tests in `tests/`. Original workbook bytes are downloaded from the source and excluded from Git. To independently regenerate both sets of metadata, run `python3 scripts/prepare_variants.py --output-root /path/to/new/directory`.
 
-## Feedback preparation
+The older directories under `data/` are historical/source audit inputs, not active execution manifests. They contain superseded splits that did not enforce upstream exclusion notes. Use only `datasets/120/` or `datasets/400/` for new handoffs. The EDA under `analysis/` is local review material unless separately committed.
 
-The tested builder in `scripts/build_pools.py` supports exact-copy interventions and validates development membership against the full task manifest. See [the pool contract](docs/pool_contract.md). Real evaluator-labelled attempts, C1/C2/C3 definitions, and the fixed model/execution configuration are still needed.
+## Still pending
 
-The expanded plan has 200 development tasks, so two attempts each means 400 original attempts. Validation and test each contain 100 tasks. Recalculate experiment costs/runtime and agree on the changed study protocol before full runs on Sol.
+These are prepared protocol alternatives, not claims of team signoff. Reference-answer semantics and evaluator integration still require pilot validation. Real feedback pools require evaluator-labelled attempts and definitions of C1/C2/C3. The pool tool is implemented; no real pilot/final pools or results have been invented.
 
-## Collaboration
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the PR review rotation. Thanishka reviews Thushar's work.
 
-See [CONTRIBUTING.md](CONTRIBUTING.md). Work on a branch and obtain one teammate review before merging. Thanishka reviews Thushar's work. Commit and push authorization remain separate from local preparation.
-
-## Sources
-
-[SpreadsheetBench Verified](https://huggingface.co/datasets/KAKA22/SpreadsheetBench), [official benchmark repository](https://github.com/RUCKBReasoning/SpreadsheetBench), and [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Original workbooks remain unchanged; this project adds reproducible inventories, grouping precautions and splits.
+Source: [SpreadsheetBench Verified](https://huggingface.co/datasets/KAKA22/SpreadsheetBench), [official repository](https://github.com/RUCKBReasoning/SpreadsheetBench), [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Preserve attribution. Workbooks are not modified; task selection, audit metadata and split policies are project additions.

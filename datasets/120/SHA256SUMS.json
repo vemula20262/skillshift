@@ -1,0 +1,21 @@
+{
+  "README.md": "bc695bab84b64e90e3682d8e4f6091da3efe7ef3ab4c9f1144abcee1c195d46d",
+  "data_summary.csv": "85b5c7941c334a788c433512db4eb5f369444cf978651d99f9761ce78a4eb874",
+  "dataset_section.md": "59bc7c2f31013f1efc717fddc3a743813f2000bb9adda1db2eea32d25369dcfe",
+  "dev_executor.json": "dbf13cead6c2a04e6c10ee53498956928a11b7d54c47a0dce42724dc31b2dcfb",
+  "families.csv": "704b13b069290323afe173e47cde14cb7b1fb42b3e47f7595b9f877117e6ac73",
+  "merge_log.csv": "04db8e71d84b3b34d2cdfba37141bfc1499af4c0fec724adba61c9b3dbbc4df1",
+  "not_selected.csv": "0b67c9e758e3df74a8ab3d69d291747731f7877b200f093b797473307cea5a5a",
+  "pilot_10.json": "d1034711632a1b1fe1859c850027eca544e12abc016860590fe83afa1be02149",
+  "pools.unresolved.json": "982cc6f945bd2714b8412c2c5c0ee940ee316ebbb56a7d0b82eabb4fd64031ad",
+  "precautionary_group_log.csv": "04db8e71d84b3b34d2cdfba37141bfc1499af4c0fec724adba61c9b3dbbc4df1",
+  "protocol.json": "924f979cba3abd7643a19b9c5bdd90fbf49be62a331fbeea10d3390f286e5109",
+  "rejected_tasks.csv": "40ae2739d6573b504b4ad18f7754ff758b3a0c545b3aef0069f824bc1cf6df99",
+  "source_manifest.json": "f6d72cb7b1e2c08510af39342588d16981b62dbced5f13c268c16aaeef52e29f",
+  "source_splits.json": "9665e264567e9b64d8f1fb6109fea823f4c2c28d141ed5ac93aab8e68582bafc",
+  "splits.json": "cc990edc0663686b0bfdfe5c3868c8cfa0a3a6f1ed349401102b4590bec7d7fb",
+  "task_manifest.json": "f6d72cb7b1e2c08510af39342588d16981b62dbced5f13c268c16aaeef52e29f",
+  "tasks_120.csv": "9920c7b80543648aa321c83efa69df90f8d9299dddf9a4ba465d431b3ec12269",
+  "test_executor.json": "0b7aae89487977ac85b2c29144c22bc7d592d1d2fd7a423ec35b28dbbe36ec5d",
+  "val_executor.json": "c51dfb9cc70650283aaa759f1b3c5218016ae0bf5d05bb9d8e3f9d24505aad50"
+}

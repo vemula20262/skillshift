@@ -2,3 +2,4 @@
 data/** -text -whitespace
 *.py text eol=lf
 *.md text eol=lf
+datasets/** -text -whitespace

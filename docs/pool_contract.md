@@ -6,7 +6,7 @@ This builder implements only explicitly named **exact-copy** interventions. The 
 
 Provide original attempt records as JSONL. Each record needs nonempty string `record_id`, `task_id`, `source_family`, `split: "dev"`, and `outcome: "success"` or `"failure"`. Additional attempt fields are preserved exactly. One task must have one consistent source family across all its attempts. IDs must already be globally unique across the supplied original attempts. An input record is an original attempt, not necessarily a unique task. Never supply previously copied pool records.
 
-Provide the frozen task-level split (dev=200, val=100, test=100 for this project) through `split_tasks.dev`, `.val`, and `.test`, each a disjoint list of task IDs. The builder rejects every non-dev record, including records mislabeled dev whose task is not assigned to dev. Upstream acquisition and evaluator correctness remain separate responsibilities; this tool cannot verify whether outcome labels or provenance claims are true.
+Provide the frozen task-level split (60/30/30 for the 120 version; 198/100/100 eligible tasks for the 400-source version) through `split_tasks.dev`, `.val`, and `.test`, each a disjoint list of task IDs. The builder rejects every non-dev record, including records mislabeled dev whose task is not assigned to dev. Upstream acquisition and evaluator correctness remain separate responsibilities; this tool cannot verify whether outcome labels or provenance claims are true.
 
 The team must define pool names, specify the exact-copy mechanism, identify dominant task IDs from dev, and approve the design. Whether source-family concentration must meet a threshold, how dominant tasks are chosen, and the meanings of C1/C2/C3 remain open design decisions. Statistics report concentration without claiming an unspecified threshold has been satisfied.
 
@@ -38,10 +38,10 @@ The manifest reports total records, unique original attempts, copies, exact repe
 From the `skillshift` directory:
 
 ```sh
-python3 scripts/build_pools.py --input path/to/dev_attempts.jsonl --config path/to/approved_pools.json --task-manifest data/full400_v1/task_manifest.json --output-dir path/to/new_pool_directory
+python3 scripts/build_pools.py --input path/to/dev_attempts.jsonl --config path/to/approved_pools.json --task-manifest datasets/400/task_manifest.json --output-dir path/to/new_pool_directory
 python3 -m unittest discover -s tests -p 'test_pools.py' -v
 ```
 
 All pools are validated and constructed in memory before any output is created. The output directory must be new, preventing accidental replacement of previous pools. It contains one JSONL file per named pool, `pool_stats.csv`, and a manifest recording the effective configuration, statistics, and SHA-256 provenance of the input attempts, configuration file, and supplied task manifest. Approval status is a deliberate configuration gate, not an authentication or review system.
 
-The `--task-manifest` adapter accepts the data preparation output: an array with `id`, `split` (dev/val/test), and `family_id`. It derives split membership and expected source families, rejects inconsistent explicit configuration, and checks each attempt against those assignments. With this adapter, omit `split_tasks` and `task_families` from the configuration or provide exactly matching maps. `train` split labels are rejected to avoid confusing a validation set with the development set. The current full400_v1 manifest is fixed locally; loading it does not imply team signoff. Without the adapter, explicit split configuration remains supported for isolated fixtures; production use should bind the manifest.
+The `--task-manifest` adapter accepts the data preparation output: an array with `id`, `split` (dev/val/test), and `family_id`. It derives split membership and expected source families, rejects inconsistent explicit configuration, and checks each attempt against those assignments. With this adapter, omit `split_tasks` and `task_families` from the configuration or provide exactly matching maps. `train` split labels are rejected to avoid confusing a validation set with the development set. The current separate-version manifest is fixed locally; loading it does not imply team signoff. Without the adapter, explicit split configuration remains supported for isolated fixtures; production use should bind the manifest.

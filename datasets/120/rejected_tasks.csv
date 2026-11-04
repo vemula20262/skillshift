@@ -1,0 +1,16 @@
+id,reason,basis
+23-24,Unresolved source lineage; conservative subset exclusion,project precaution
+290-1,Unresolved source lineage; conservative subset exclusion,project precaution
+80-42,Unresolved source lineage; conservative subset exclusion,project precaution
+118-50,Unresolved source lineage; conservative subset exclusion,project precaution
+146-49,Unresolved source lineage; conservative subset exclusion,project precaution
+147-48,Unresolved source lineage; conservative subset exclusion,project precaution
+141-20,Unresolved source lineage; conservative subset exclusion,project precaution
+192-22,Unresolved source lineage; conservative subset exclusion,project precaution
+379-36,Unresolved source lineage; conservative subset exclusion,project precaution
+388-47,Unresolved source lineage; conservative subset exclusion,project precaution
+496-15,Unresolved source lineage; conservative subset exclusion,project precaution
+11276,Unresolved source lineage; conservative subset exclusion,project precaution
+11842,Unresolved source lineage; conservative subset exclusion,project precaution
+56225,"ignore, initial file already passes verification",upstream exclude note
+56274,golden has data validation dropdown set to a completely different value,upstream exclude note
