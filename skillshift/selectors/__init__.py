@@ -1,0 +1,1 @@
+"""Shared feedback selector interfaces."""
