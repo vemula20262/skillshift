@@ -1,7 +1,7 @@
 import sys,unittest,json
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts'))
-from prepare_full_dataset import allocate,UNCERTAIN
+from source_families import allocate,UNCERTAIN
 class FullDatasetTests(unittest.TestCase):
     def test_full_allocation_is_complete_deterministic_and_group_safe(self):
         ids=sorted({x for pair in UNCERTAIN for x in pair})

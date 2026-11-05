@@ -6,7 +6,7 @@ from prepare_variants import select,validate
 from build_pools import apply_task_manifest,build_pools,PoolError
 class VariantTests(unittest.TestCase):
     @classmethod
-    def setUpClass(cls):cls.audit=json.loads((ROOT/'data/prepared/audit.json').read_text())
+    def setUpClass(cls):cls.audit=json.loads((ROOT/'datasets/400/source_manifest.json').read_text())
     def test_counts_flags_and_order_independence(self):
         for variant,n in [('120',120),('400',398)]:
             source,active=select(copy.deepcopy(self.audit),variant)

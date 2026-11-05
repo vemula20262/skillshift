@@ -1,8 +1,0 @@
-task_a,task_b,reason
-23-24,118-50,Large shared dictionary vocabulary; workbook lineage cannot be established.
-80-42,192-22,106 uncommon shared business descriptions; possible reused business source.
-146-49,147-48,Small word-list content is contained in larger dictionary; possible derived example.
-290-1,146-49,Shared unusual anagram strings; possible derived word-list source.
-379-36,496-15,Related ledger headers and high layout overlap; changed-value variant cannot be excluded.
-141-20,388-47,Matching date/period reconciliation headers; source lineage unresolved.
-11276,11842,Related attendance labels and workbook purpose; template lineage unresolved.

@@ -17,7 +17,3 @@ GitHub usernames and collaborator access must be supplied before assigning revie
 Run `python3 -m unittest discover -s tests -v`. For data changes, also run `python3 scripts/prepare_variants.py --verify`. Explain any changes to selected tasks, source families, or experiment settings. Do not use test results to tune the methods.
 
 Keep secrets, downloaded workbooks, and private attempt records out of commits. Preserve dataset attribution and record source checksums. Distinguish actual experiment results from synthetic test fixtures.
-
-## Local commit workflow
-
-For Thushar's changes, prepare the proposed file list and commit message for review and obtain Thushar's explicit confirmation before any commit. Do not commit, push, or merge on Thushar's behalf without the applicable authorization.

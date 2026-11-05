@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Screen input workbooks for possible variants; never auto-merge on similarity."""
 import collections, csv, io, json, tarfile, zipfile
+from prepare_data import audit_archive
 from pathlib import Path
 import xml.etree.ElementTree as ET
 ROOT=Path(__file__).resolve().parents[1]
@@ -24,7 +25,7 @@ def features(data):
         return texts,cells,layout
 
 def main():
-    tasks=json.loads((ROOT/'data/prepared/audit.json').read_text()); fs={}
+    tasks=audit_archive(ROOT/'data/raw/spreadsheetbench_verified_400.tar.gz'); fs={}
     with tarfile.open(ROOT/'data/raw/spreadsheetbench_verified_400.tar.gz') as tar:
         for t in tasks: fs[t['id']]=features(tar.extractfile(t['initial_archive_path']).read())
     freq=collections.Counter(x for f in fs.values() for x in f[0]); pairs=[]

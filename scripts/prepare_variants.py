@@ -2,9 +2,8 @@
 """Build separate reviewed dataset packages; source warnings never enter runnable sets."""
 import argparse,collections,csv,hashlib,json,tarfile
 from pathlib import Path
-from prepare_data import choose_groups
-from finalize_dataset import UNCERTAIN
-from prepare_full_dataset import allocate,EXPECTED
+from prepare_data import choose_groups, audit_archive, EXPECTED
+from source_families import UNCERTAIN, allocate
 ROOT=Path(__file__).resolve().parents[1]
 def digest(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def select(audit,variant):
@@ -38,7 +37,7 @@ def validate(source,active,variant):
 def build(variant,base):
     out=base/variant
     if out.exists():raise ValueError('Output already exists; choose a fresh --output-root')
-    audit=json.loads((ROOT/'data/prepared/audit.json').read_text())
+    audit=audit_archive(ROOT/'data/raw/spreadsheetbench_verified_400.tar.gz')
     source,active=select(audit,variant);counts=validate(source,active,variant)
     archive=ROOT/'data/raw/spreadsheetbench_verified_400.tar.gz'
     if digest(archive)!=EXPECTED:raise ValueError('Wrong archive checksum')

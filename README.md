@@ -16,14 +16,14 @@ python3 scripts/prepare_variants.py --verify
 python3 -m unittest discover -s tests -v
 ```
 
-Shared implementation is in `scripts/` and tests in `tests/`. Original workbook bytes are downloaded from the source and excluded from Git. To independently regenerate both sets of metadata, run `python3 scripts/prepare_variants.py --output-root /path/to/new/directory`.
+The source command downloads and audits the pinned archive without creating intermediate dataset versions.
 
-The older directories under `data/` are historical/source audit inputs, not active execution manifests. They contain superseded splits that did not enforce upstream exclusion notes. Use only `datasets/120/` or `datasets/400/` for new handoffs. The EDA under `analysis/` is local review material unless separately committed.
+Shared implementation is in `scripts/` and tests in `tests/`. Original workbook bytes are downloaded from the source and excluded from Git. To independently regenerate both sets of metadata, run `python3 scripts/prepare_variants.py --output-root /path/to/new/directory`.
 
 ## Still pending
 
 These are prepared protocol alternatives, not claims of team signoff. Reference-answer semantics and evaluator integration still require pilot validation. Real feedback pools require evaluator-labelled attempts and definitions of C1/C2/C3. The pool tool is implemented; no real pilot/final pools or results have been invented.
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for the PR review rotation. Thanishka reviews Thushar's work.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for development checks and the review process.
 
 Source: [SpreadsheetBench Verified](https://huggingface.co/datasets/KAKA22/SpreadsheetBench), [official repository](https://github.com/RUCKBReasoning/SpreadsheetBench), [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Preserve attribution. Workbooks are not modified; task selection, audit metadata and split policies are project additions.

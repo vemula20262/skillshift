@@ -3,22 +3,19 @@ __pycache__/
 .venv/
 .env
 data/raw/
-data/prepared/inputs/
-data/prepared/evaluator_only/
 attempts/
 results/
 pools/
-data/final_v1/inputs/
-data/final_v1/evaluator_only/
 
 # Personal submission materials
 local_submission/
 
 # Full study workbook materializations and handoff bundles
-data/full400_v1/inputs/
-data/full400_v1/evaluator_only/
 handoff/
 
 # Separate-version workbook materializations
 datasets/*/inputs/
 datasets/*/evaluator_only/
+
+# Local exploratory reports
+analysis/

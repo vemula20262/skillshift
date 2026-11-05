@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Rebuild an explicitly provisional 120-task manifest from verified SpreadsheetBench.
+"""Download and audit the pinned SpreadsheetBench source archive.
 No model calls. Gold workbooks are audited, never used for family/selection features.
 """
-import argparse, csv, collections, hashlib, io, json, tarfile, urllib.request, zipfile
+import argparse, collections, hashlib, io, json, tarfile, urllib.request, zipfile
 from pathlib import Path
 import xml.etree.ElementTree as ET
 
@@ -83,7 +83,11 @@ def choose_groups(groups, target, salt):
             return reachable[target]
     raise ValueError(f'Cannot fill {target} tasks without breaking families')
 
-def prepare(archive, output):
+EXPECTED = '10ef893dd29cb13ab97143ea787e68cdc9574a13873ab9a54e50b31dc03fc949'
+
+def audit_archive(archive):
+    if digest(archive.read_bytes()) != EXPECTED:
+        raise ValueError("Source archive checksum mismatch")
     tasks, rejected = [], []
     with tarfile.open(archive) as tar:
         members = {m.name:m for m in tar.getmembers() if m.isfile()}
@@ -109,54 +113,19 @@ def prepare(archive, output):
                 except Exception as e: reasons.append('workbook parse error: '+str(e))
             if reasons: rejected.append({'id':t['id'],'reasons':reasons})
             else: tasks.append(t)
-    groups = make_groups(tasks)
-    remaining = dict(groups); selected = []
-    for split, count in [('dev',60),('val',30),('test',30)]:
-        for gid in choose_groups(remaining,count,split):
-            for task in remaining.pop(gid):
-                selected.append(dict(task, split=split, status='candidate_pending_team_approval'))
-    output.mkdir(parents=True,exist_ok=True)
-    import shutil
-    for directory in ('inputs', 'evaluator_only'):
-        if (output / directory).exists(): shutil.rmtree(output / directory)
-    with tarfile.open(archive) as tar:
-        for task in selected:
-            for role in ('initial', 'golden'):
-                destination = output / ('inputs' if role == 'initial' else 'evaluator_only') / task['id'] / (role+'.xlsx')
-                destination.parent.mkdir(parents=True, exist_ok=True)
-                destination.write_bytes(tar.extractfile(task[role+'_archive_path']).read())
-                task[role+'_local_path'] = str(destination.relative_to(output))
-    def save(name,data): (output/name).write_text(json.dumps(data,indent=2,ensure_ascii=False)+'\n')
-    save('audit.json', tasks); save('candidate_manifest.json', selected); save('rejected.json',rejected)
-    save('splits.json', {'status':'candidate_pending_team_approval', 'splits':{name:[t['id'] for t in selected if t['split']==name] for name in ('dev','val','test')}})
-    def csv_save(name, fields, rows):
-        with (output/name).open('w', newline='') as stream:
-            writer=csv.DictWriter(stream,fieldnames=fields,extrasaction='ignore');writer.writeheader();writer.writerows(rows)
-    csv_save('tasks_120.csv', ['id','split','family_id','instruction_type','instruction','answer_position','initial_local_path','golden_local_path','status'], selected)
-    csv_save('families.csv', ['id','family_id','family_evidence','variant_review_status'], [dict(t,variant_review_status='pending_manual_provenance_review') for t in tasks])
-    csv_save('merge_log.csv', ['family_id','member_ids','evidence'], [{'family_id':g[0]['family_id'],'member_ids':'|'.join(t['id'] for t in g),'evidence':'shared raw or normalized initial workbook hash'} for g in groups.values() if len(g)>1])
-    csv_save('rejected_tasks.csv', ['id','reasons'], [{'id':t['id'],'reasons':'; '.join(t['reasons'])} for t in rejected])
-
-    save('not_selected.json',[{'id':t['id'],'reason':'eligible, not selected by deterministic family-preserving candidate sampling'} for group in remaining.values() for t in group])
-    summary = {'status':'PROVISIONAL; not a team-approved frozen split', 'source_url':URL,'archive_sha256':digest(archive.read_bytes()),
-               'seed':SEED,'total_metadata_tasks':len(metadata),'eligible_tasks':len(tasks),'rejected_tasks':len(rejected),
-               'observed_families':len(groups),'multi_task_observed_families':sum(len(g)>1 for g in groups.values()),
-               'candidate_split_counts':dict(collections.Counter(t['split'] for t in selected)),
-               'candidate_type_counts':dict(collections.Counter(t['instruction_type'] for t in selected)),
-               'all_type_counts':dict(collections.Counter(t['instruction_type'] for t in tasks)),
-               'limitations':['Content hashes identify exact/shared cell-content workbooks only; changed-value variants and common source provenance may remain undetected.',
-                 'Style-only differences are conservatively grouped; cell hash ignores formatting and sheet names.',
-                 'Candidate sampling is deterministic, not stratified by difficulty, feasibility, or task type.',
-                 'Audit verifies XLSX readability and metadata presence, not answer correctness or executable feasibility.',
-                 'Answer ranges require parser normalization/manual review before scoring; raw metadata is preserved.',
-                 'Golden files must remain evaluator-only; training/retrieval and agent prompts must use initial workbooks only.',
-                 'No human family review or team split approval has occurred.']}
-    save('provenance.json',summary)
-    print(json.dumps(summary,indent=2))
+    if rejected:
+        raise ValueError(f"Source validation failed: {rejected}")
+    if len(tasks) != 400:
+        raise ValueError("Expected 400 source tasks")
+    make_groups(tasks)
+    return tasks
 
 if __name__ == '__main__':
-    parser=argparse.ArgumentParser(); parser.add_argument('--archive',type=Path,default=ROOT/'data/raw/spreadsheetbench_verified_400.tar.gz');parser.add_argument('--output',type=Path,default=ROOT/'data/prepared');args=parser.parse_args()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--archive', type=Path, default=ROOT/'data/raw/spreadsheetbench_verified_400.tar.gz')
+    args = parser.parse_args()
     if not args.archive.exists():
-        args.archive.parent.mkdir(parents=True,exist_ok=True)
-        urllib.request.urlretrieve(URL,args.archive)
-    prepare(args.archive,args.output)
+        args.archive.parent.mkdir(parents=True, exist_ok=True)
+        urllib.request.urlretrieve(URL, args.archive)
+    tasks = audit_archive(args.archive)
+    print(json.dumps({'source_tasks': len(tasks), 'archive_sha256': digest(args.archive.read_bytes())}))
