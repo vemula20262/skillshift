@@ -9,3 +9,15 @@ Original record_id identifies an attempt; copied pool records require pool_recor
 The selector contract is independent of dataset size. Before selecting experiment feedback, call `validate_dev(records, manifest)` from skillshift.io. Full runnable manifests check development membership, family identity, nonempty dev/val/test partitions and family/block isolation. Explicit split dictionaries support dev/val/test or validation as an alias, but cannot prove family/block isolation alone. The direct selector API does not choose or filter splits.
 
 Run checks with `python3 -m unittest discover -s tests -v`.
+
+## Baselines
+
+- Unfiltered keeps every occurrence with weight 1.
+- Exact dedup hashes literal summary, outcome/category/source/environment and tool events; keeps one representative, preferring originals, and records all contributing families and occurrence IDs.
+- Semantic dedup uses cosine similarity and deterministic greedy complete-link grouping within outcome/category/source/environment partitions. Every pair must meet the threshold. The medoid maximizes total within-group similarity; ties prefer originals, then occurrence ID. Identical vectors have cosine 1, including at threshold 1.
+
+Use `get_selector(method, threshold)` from skillshift.selectors. Semantic methods require an explicit finite threshold in [-1, 1], finite nonzero equal-dimensional embeddings and consistent model metadata when provided. No experimental threshold has been calibrated.
+
+Clustering sorts by partition, summary and occurrence ID, joining the first compatible group. Changing wording can change grouping; this is not an exact reproduction of SemDeDup. Pairwise comparisons suit small pools; larger workloads require performance assessment. Exact-hash fields must match the actual reflection payload.
+
+`skillshift.embeddings.encode(records, model_name, revision, cache_folder)` optionally loads Sentence Transformers with trust_remote_code=False and embeds summaries. Pin the model revision and package version before a real run. Embed originals before pooling; pooled rows are rejected. Core tests use handcrafted vectors/fake encoders and require no extra dependencies. Real model inference remains unverified.
