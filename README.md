@@ -27,3 +27,7 @@ These are prepared protocol alternatives, not claims of team signoff. Reference-
 See [CONTRIBUTING.md](CONTRIBUTING.md) for development checks and the review process.
 
 Source: [SpreadsheetBench Verified](https://huggingface.co/datasets/KAKA22/SpreadsheetBench), [official repository](https://github.com/RUCKBReasoning/SpreadsheetBench), [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Preserve attribution. Workbooks are not modified; task selection, audit metadata and split policies are project additions.
+
+## Feedback selectors
+
+The shared interface and five selector methods are documented in [selector methods](docs/SELECTOR_METHODS.md). Their tests cover synthetic feedback and both runnable dataset variants. Real model inference, development calibration and reflection-stage integration remain pending.
