@@ -23,7 +23,7 @@ def prepare(records: list[Record], embeddings: bool = False) -> list[Record]:
     pool_record_id identifies copied pool occurrences; record_id identifies the
     original attempt and is preserved. occurrence_id is the selector identity.
     If neither is supplied, a content hash plus occurrence index is assigned.
-    This does not replace Charith's full attempt-schema validator.
+    Full attempt-schema validation is handled separately.
     """
     result, seen, counts, dimensions, families, originals = [], set(), {}, set(), {}, {}
     pool_modes = set()
