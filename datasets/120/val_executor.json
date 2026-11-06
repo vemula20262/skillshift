@@ -9,15 +9,6 @@
     "initial_local_path": "inputs/269-44/initial.xlsx"
   },
   {
-    "id": "49237",
-    "instruction": "How can I add a period to a cell in Excel if there is a middle initial present, and leave it blank if there is no middle initial? The middle initial is obtained from the full name in cell E19 with first name in E5 and last name in E7. The extraction formula I'm using for the middle name is `=TRIM(MID(E19,LEN(E5)+1,LEN(E19)-LEN(E5&E7)))`, which gives the middle name in E9. Then I'm converting it to proper case with `=PROPER(E9)` in F10, and I'm taking the initial from that result with `=LEFT(F10)` in F7. If F7 contains an initial, I want to add a period after it. Otherwise, F7 should remain blank. Every formula I've tried results in a `#VALUE` error. What formula should I use to achieve this?",
-    "instruction_type": "Cell-Level Manipulation",
-    "split": "val",
-    "family_id": "observed-49237",
-    "split_group_id": "block-49237",
-    "initial_local_path": "inputs/49237/initial.xlsx"
-  },
-  {
     "id": "46240",
     "instruction": "How can I create a formula in Excel where cell J displays 'Yes' if cell H either contains a date or the word 'Yes', displays 'N/A' if cell H contains 'N/A', and displays 'No' if cell H is blank?  My current formula is : IF(H2>1/1/1,\"Yes\",\"No\")",
     "instruction_type": "Cell-Level Manipulation",
@@ -115,15 +106,6 @@
     "family_id": "observed-157-4",
     "split_group_id": "block-157-4",
     "initial_local_path": "inputs/157-4/initial.xlsx"
-  },
-  {
-    "id": "36191",
-    "instruction": "I am working with data in Column B and I've used the formula =LEFT(B2,FIND(\" \",B2)-1) to extract the first name from a string containing the first name, surname, and email address. However, the formula is only extracting the first name, not the surname. I need an amended version of my formula that will correctly extract both the first name and the surname, omitting the email address from the extracted result. Put this in the Result should be column.",
-    "instruction_type": "Cell-Level Manipulation",
-    "split": "val",
-    "family_id": "observed-36191",
-    "split_group_id": "block-36191",
-    "initial_local_path": "inputs/36191/initial.xlsx"
   },
   {
     "id": "42526",
@@ -268,5 +250,23 @@
     "family_id": "observed-55979",
     "split_group_id": "block-55979",
     "initial_local_path": "inputs/55979/initial.xlsx"
+  },
+  {
+    "id": "45937",
+    "instruction": "How can I create a formula in Excel that automatically calculates the percentage category based on a range of values in another cell? The user has a legend with categories and corresponding percentages in rows H17 to N22, and wants to determine the category for a value in cell E7, based on the value in D7 which is already using a formula related to the category legend in H6 to I11. Note that the kms ranges are specified in cells H20:I22. Finish the table by completing column E.",
+    "instruction_type": "Cell-Level Manipulation",
+    "split": "val",
+    "family_id": "observed-45937",
+    "split_group_id": "block-45937",
+    "initial_local_path": "inputs/45937/initial.xlsx"
+  },
+  {
+    "id": "448-11",
+    "instruction": "I found a code in this forum that highlights and deletes duplicate rows within the current region in Excel, using the entire row content for comparison. The existing code successfully identifies and highlights entire rows that are duplicates and then deletes them. However, I need to modify the code so that it deletes duplicate rows based only on the data in Column A, ignoring whether the other columns from B to the last column match or not. How can this be achieved?",
+    "instruction_type": "Sheet-Level Manipulation",
+    "split": "val",
+    "family_id": "observed-448-11",
+    "split_group_id": "block-448-11",
+    "initial_local_path": "inputs/448-11/initial.xlsx"
   }
 ]

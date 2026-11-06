@@ -1,0 +1,67 @@
+# SkillShift experiment configuration.
+# Every method uses these exact settings. Lock this file after the pilot;
+# change it only with team agreement and record the change in the PR.
+
+dataset:
+  version: "120-v2"
+  task_manifest: datasets/120/task_manifest.json
+  # Extracted spreadsheetbench_verified_400 archive (gitignored). Each task lives in
+  # <data_root>/spreadsheet/<task_id>/ with its *_init.xlsx and *_golden.xlsx files.
+  data_root: data/raw/spreadsheetbench_verified_400
+
+model:
+  # Gemini through its OpenAI-compatible endpoint (free tier, about 10 requests per
+  # minute). The API key is read from the environment variable named below and is
+  # never written to this file or to run logs. Optimizer and target use the same model.
+  base_url: https://generativelanguage.googleapis.com/v1beta/openai/
+  api_key_env: GEMINI_API_KEY
+  optimizer_model: gemini-2.5-flash
+  target_model: gemini-2.5-flash
+  # Keeps thinking short so code answers are not cut off by the output limit.
+  reasoning_effort: low
+
+executor:
+  # single: one code generation per task. multi: retries with execution feedback
+  # (up to max_turns), which costs more calls per task.
+  mode: single
+  max_turns: 1
+  max_completion_tokens: 8192
+  exec_timeout: 120
+  # Low parallelism to stay under the free-tier request rate.
+  workers: 2
+
+skill:
+  # null uses SkillOpt's SpreadsheetBench starting skill shipped with the pinned
+  # skillopt version; its sha256 is recorded in every run log.
+  starting_skill: null
+
+feedback:
+  # Feedback given to the optimizer per update, in record token_count units.
+  # Set from pilot trajectory sizes before the full grid.
+  token_budget: 24000
+  failure_only: false
+  minibatch_size: 8
+  # Maximum edits applied in the single update (SkillOpt's learning rate L).
+  edit_budget: 4
+
+gate:
+  # Accept the child only if it solves at least this many more validation tasks
+  # than the parent. 1 = strict improvement.
+  margin_tasks: 1
+
+evaluation:
+  # Which child skills get a test evaluation: accepted, all, or none.
+  # Test scores go to results/sealed/ and are not read until the full grid is done.
+  test_policy: accepted
+
+seed: 0
+
+# name -> "module:attribute" or {spec, kwargs}. Semantic thresholds are tuned on
+# development data only; they stay null (and those methods refuse to run) until then.
+selectors:
+  passthrough: skillshift.selection:passthrough
+  unfiltered: {spec: "skillshift.selectors:get_selector", kwargs: {method: unfiltered}}
+  exact_dedup: {spec: "skillshift.selectors:get_selector", kwargs: {method: exact_dedup}}
+  semantic_dedup: {spec: "skillshift.selectors:get_selector", kwargs: {method: semantic_dedup, threshold: null}}
+  source_balanced: {spec: "skillshift.selectors:get_selector", kwargs: {method: source_balanced}}
+  source_behavior: {spec: "skillshift.selectors:get_selector", kwargs: {method: source_behavior, threshold: null}}

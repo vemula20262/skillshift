@@ -20,4 +20,4 @@ if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('manifest',nargs='?',type=Path,default=Path(__file__).resolve().parents[1]/'datasets/120/task_manifest.json');a=p.parse_args()
     errors=validate(json.loads(a.manifest.read_text()))
     if errors: raise SystemExit('\n'.join(errors))
-    print('PASS: 120 unique tasks, 60/30/30 counts, no observed family or initial workbook hash crosses splits. Unseen families remain unverified.')
+    print('PASS: 120 unique tasks, 60/30/30 counts, no observed family or initial workbook hash crosses splits.')

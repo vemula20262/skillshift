@@ -1,4 +1,4 @@
 split,source_tasks,eligible_tasks,cell_level,sheet_level
-dev,60,60,39,21
-val,30,30,20,10
+dev,60,60,41,19
+val,30,30,19,11
 test,30,30,22,8

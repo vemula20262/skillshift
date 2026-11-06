@@ -45,24 +45,6 @@
     "initial_local_path": "inputs/38074/initial.xlsx"
   },
   {
-    "id": "130-9",
-    "instruction": "How can I edit and correct my Excel VBA code to combine data from the source sheet cdnr into the destination sheet b2b, sez, de, aligning columns by identical header text (not by column position), and appending the new rows below the existing data without overwriting any existing rows (i.e., start at the first empty row, which is row 7 in the provided file)? Amounts copied from the source must be written as negative values in the destination’s **columns L and M, while preserving the destination’s number formats. For each inserted row, set column H to blank and column I to \"Credit Note\". The macro must not clear or erase any existing data on b2b, sez, de.",
-    "instruction_type": "Sheet-Level Manipulation",
-    "split": "dev",
-    "family_id": "observed-130-9",
-    "split_group_id": "block-130-9",
-    "initial_local_path": "inputs/130-9/initial.xlsx"
-  },
-  {
-    "id": "283-32",
-    "instruction": "I have four sheets in an Excel workbook. In Sheet1, I have a system snapshot, and in Sheet2, I have taken another snapshot one week later. I need a macro that can compare Sheet1 and Sheet2, and then output the differences onto Sheet3 and Sheet4. Specifically, Sheet3 should show what entries are no longer present in Sheet2 compared to Sheet1 (subtracts). Sheet4 should show what entries are present in Sheet2 that were not in Sheet1. When displayed in Sheet3 and 4, only internal data is displayed beginning on row 1, and no table headers are required. I've attached the file for reference. Make sure to exclude any duplicate entries in row two on Sheet3, there is only one row of information that should appear.",
-    "instruction_type": "Sheet-Level Manipulation",
-    "split": "dev",
-    "family_id": "observed-283-32",
-    "split_group_id": "block-283-32",
-    "initial_local_path": "inputs/283-32/initial.xlsx"
-  },
-  {
     "id": "54144",
     "instruction": "How can I create an Excel 365 formula to sum the quantities of trucks listed on the 'Data' Sheet when the truck names are concatenated on the 'Report' Sheet, but they are listed separately on the 'Data' Sheet?     Could you help me in my question ,please?\nI need a formula to sum trucks quantities from \"Data\"Sheet but the problem is that the Trucks here are concatenated and in Data\" Sheet Trucks are not concatenated\nPlease help me",
     "instruction_type": "Cell-Level Manipulation",
@@ -187,15 +169,6 @@
     "family_id": "observed-433-47",
     "split_group_id": "block-433-47",
     "initial_local_path": "inputs/433-47/initial.xlsx"
-  },
-  {
-    "id": "73-45",
-    "instruction": "I am looking for a macro that can identify and highlight specific text, numbers, or parts of text and numbers in column BD of my Excel sheet. I want to create a large, editable list of these text and number patterns, which the macro should use to search the cells in column BD. In each cell, the text or number to be found could be placed anywhere, might be separated by spaces, and multiple patterns may need to be found within a single cell. Empty cells should be ignored. Currently, I have a sample sheet with 32 rows where I manually highlighted the desired patterns in bold red. Additionally, I need the ability to search for whole words only, such as 'too' without it being part of another word like 'took'. How could the macro be adjusted to accommodate this requirement?",
-    "instruction_type": "Sheet-Level Manipulation",
-    "split": "dev",
-    "family_id": "observed-73-45",
-    "split_group_id": "block-73-45",
-    "initial_local_path": "inputs/73-45/initial.xlsx"
   },
   {
     "id": "49300",
@@ -538,5 +511,32 @@
     "family_id": "observed-58701",
     "split_group_id": "block-58701",
     "initial_local_path": "inputs/58701/initial.xlsx"
+  },
+  {
+    "id": "49237",
+    "instruction": "How can I add a period to a cell in Excel if there is a middle initial present, and leave it blank if there is no middle initial? The middle initial is obtained from the full name in cell E19 with first name in E5 and last name in E7. The extraction formula I'm using for the middle name is `=TRIM(MID(E19,LEN(E5)+1,LEN(E19)-LEN(E5&E7)))`, which gives the middle name in E9. Then I'm converting it to proper case with `=PROPER(E9)` in F10, and I'm taking the initial from that result with `=LEFT(F10)` in F7. If F7 contains an initial, I want to add a period after it. Otherwise, F7 should remain blank. Every formula I've tried results in a `#VALUE` error. What formula should I use to achieve this?",
+    "instruction_type": "Cell-Level Manipulation",
+    "split": "dev",
+    "family_id": "observed-49237",
+    "split_group_id": "block-49237",
+    "initial_local_path": "inputs/49237/initial.xlsx"
+  },
+  {
+    "id": "36191",
+    "instruction": "I am working with data in Column B and I've used the formula =LEFT(B2,FIND(\" \",B2)-1) to extract the first name from a string containing the first name, surname, and email address. However, the formula is only extracting the first name, not the surname. I need an amended version of my formula that will correctly extract both the first name and the surname, omitting the email address from the extracted result. Put this in the Result should be column.",
+    "instruction_type": "Cell-Level Manipulation",
+    "split": "dev",
+    "family_id": "observed-36191",
+    "split_group_id": "block-36191",
+    "initial_local_path": "inputs/36191/initial.xlsx"
+  },
+  {
+    "id": "531-18",
+    "instruction": "I need to transpose data from the 'Data' tab into the format shown on the 'Transpose' tab of my Excel file, specifically focusing on the ITEM, DATE, and QTY columns. Could you advise whether a macro or VBA is more appropriate for this task?",
+    "instruction_type": "Sheet-Level Manipulation",
+    "split": "dev",
+    "family_id": "observed-531-18",
+    "split_group_id": "block-531-18",
+    "initial_local_path": "inputs/531-18/initial.xlsx"
   }
 ]
