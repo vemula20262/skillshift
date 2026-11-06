@@ -1,0 +1,4 @@
+# SkillOpt pinned to the commit the update pipeline was tested against.
+skillopt @ git+https://github.com/microsoft/SkillOpt.git@eb959c3ba3f0b6bcfa23e485ee223e019eded3a3
+pyyaml>=6.0
+openpyxl>=3.1

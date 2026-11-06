@@ -20,6 +20,22 @@ The source command downloads and audits the pinned archive without creating inte
 
 Shared implementation is in `scripts/` and tests in `tests/`. Original workbook bytes are downloaded from the source and excluded from Git. To independently regenerate both sets of metadata, run `python3 scripts/prepare_variants.py --output-root /path/to/new/directory`.
 
+## Single-update pipeline
+
+`scripts/run_update.py` runs one update for a (feedback pool, selector) pair: the selector's weighted output is sampled into the fixed feedback token budget, SkillOpt's reflect, merge and select stages propose edits to the starting skill, and the child is kept only if it solves at least `gate.margin_tasks` more validation tasks than the parent. All shared settings live in `config/config.yaml`.
+
+```sh
+pip install -r requirements.txt
+# extract spreadsheetbench_verified_400.tar.gz to data/raw/, fill in the model section of
+# config/config.yaml, and export the API key under the name given in model.api_key_env
+python3 scripts/validate_attempts.py pools/<pool>.jsonl
+python3 scripts/run_update.py --pool pools/<pool>.jsonl --selector <name>
+```
+
+Attempt and pool records follow `skillshift/schema.py`; `trajectory_path` is relative to `attempts/` and points at a SkillOpt task folder containing `conversation.json`. Each run writes `results/runs/<pool>__<selector>__seed<n>/` with the selection, patch, child skill and `run.json`. Test-split scores go only to `results/sealed/`. Validation and test scores are cached per skill, so the parent is evaluated once.
+
+The offline test `tests/test_update_pipeline.py` runs the whole path on real workbooks with a scripted fake model; it is skipped unless SkillOpt is installed and the workbooks are extracted (or `SKILLSHIFT_DATA_ROOT` points at them).
+
 ## Still pending
 
 These are prepared protocol alternatives, not claims of team signoff. Reference-answer semantics and evaluator integration still require pilot validation. Real feedback pools require evaluator-labelled attempts; the proposal defines C0 (no repeats), C1 (exact copies from a few tasks), C2 (real reruns of a few tasks) and C3 (one failure type across different tasks), and the pool tool currently builds exact-copy pools only. The pool tool is implemented; no real pilot/final pools or results have been invented.
