@@ -1,49 +1,9 @@
-# SkillShift
+# SkillShift: Source Balanced Feedback for Reliable Agent Skill Evolution
 
-Two separate dataset options are prepared. Experiments use the 120-task version; do not mix their splits or treat the alternatives as independent replications.
+CSE 572: Data Mining (Fall 2026), Group 5.
 
-- **[120-task version](datasets/120/README.md):** 120 eligible tasks, split 60 development / 30 validation / 30 test. Excludes the two upstream-flagged tasks and unresolved-lineage candidates before sampling.
-- **[400-source-task version](datasets/400/README.md):** preserves all 400 original tasks, but only 398 are eligible for execution: 198 development / 100 validation / 100 test. Tasks 56225 and 56274 retain source records but are absent from runnable manifests. Potentially related tasks stay together in precautionary blocks.
+An agent that updates its skill from past attempts can treat repeated failures as stronger evidence than they really are. If twenty failed attempts all come from one broken workbook, the optimizer reads that as twenty reasons to change the skill, and the new rule can then hurt many other tasks. We check whether feedback selection should look at where each attempt came from, not only how similar it is to other attempts: repeated failures from one source count once, while the same failure across different tasks still counts as strong evidence.
 
-Each folder includes its task inventory, observed families, merge/precaution logs, exclusions, source and runnable manifests, runnable splits, executor manifests, pilot IDs, checksums, data summary, dataset-section draft, and unresolved pool configuration. Reference workbooks remain evaluator-only.
+We add feedback selection before SkillOpt's reflection step and compare five methods on 120 SpreadsheetBench Verified tasks: unfiltered feedback, exact deduplication, semantic deduplication, source balancing alone, and our method, which groups records by source family and failure behavior. Everything else (executor, optimizer, starting skill, prompt and token budget) stays the same across methods.
 
-## Setup and verification
-
-```sh
-python3 scripts/prepare_data.py
-python3 scripts/prepare_variants.py --materialize
-python3 scripts/prepare_variants.py --verify
-python3 -m unittest discover -s tests -v
-```
-
-The source command downloads and audits the pinned archive without creating intermediate dataset versions.
-
-Shared implementation is in `scripts/` and tests in `tests/`. Original workbook bytes are downloaded from the source and excluded from Git. To independently regenerate both sets of metadata, run `python3 scripts/prepare_variants.py --output-root /path/to/new/directory`.
-
-## Single-update pipeline
-
-`scripts/run_update.py` runs one update for a (feedback pool, selector) pair: the selector's weighted output is sampled into the fixed feedback token budget, SkillOpt's reflect, merge and select stages propose edits to the starting skill, and the child is kept only if it solves at least `gate.margin_tasks` more validation tasks than the parent. All shared settings live in `config/config.yaml`.
-
-```sh
-pip install -r requirements.txt
-# extract spreadsheetbench_verified_400.tar.gz to data/raw/, fill in the model section of
-# config/config.yaml, and export the API key under the name given in model.api_key_env
-python3 scripts/validate_attempts.py pools/<pool>.jsonl
-python3 scripts/run_update.py --pool pools/<pool>.jsonl --selector <name>
-```
-
-Attempt and pool records follow `skillshift/schema.py`; `trajectory_path` is relative to `attempts/` and points at a SkillOpt task folder containing `conversation.json`. Each run writes `results/runs/<pool>__<selector>__seed<n>/` with the selection, patch, child skill and `run.json`. Test-split scores go only to `results/sealed/`. Validation and test scores are cached per skill, so the parent is evaluated once.
-
-The offline test `tests/test_update_pipeline.py` runs the whole path on real workbooks with a scripted fake model; it is skipped unless SkillOpt is installed and the workbooks are extracted (or `SKILLSHIFT_DATA_ROOT` points at them).
-
-## Still pending
-
-These are prepared protocol alternatives, not claims of team signoff. Reference-answer semantics and evaluator integration still require pilot validation. Real feedback pools require evaluator-labelled attempts; the proposal defines C0 (no repeats), C1 (exact copies from a few tasks), C2 (real reruns of a few tasks) and C3 (one failure type across different tasks), and the pool tool currently builds exact-copy pools only. The pool tool is implemented; no real pilot/final pools or results have been invented.
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for development checks and the review process.
-
-Source: [SpreadsheetBench Verified](https://huggingface.co/datasets/KAKA22/SpreadsheetBench), [official repository](https://github.com/RUCKBReasoning/SpreadsheetBench), [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Preserve attribution. Workbooks are not modified; task selection, audit metadata and split policies are project additions.
-
-## Feedback selectors
-
-The shared interface and five selector methods are documented in [selector methods](docs/SELECTOR_METHODS.md). Their tests cover synthetic feedback and both runnable dataset variants. Real model inference, development calibration and reflection-stage integration remain pending.
+Team: Vemula Thushar Reddy, Charith Kutikuppala, Venkata Pradeep Reddy Venuthurla, Varshini Akula, Thanishka Bolisetty.
