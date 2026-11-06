@@ -1,1 +1,1 @@
-"""SkillShift feedback selection implementation for team integration."""
+"""SkillShift experiment code: attempt records, feedback selectors and the single-update pipeline."""
