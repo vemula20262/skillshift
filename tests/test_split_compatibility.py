@@ -6,7 +6,9 @@ import unittest
 
 from skillshift.io import validate_dev
 from skillshift.selectors import METHODS, get_selector
-from scripts.build_pools import apply_task_manifest, build_pools
+from selector_helpers import build_pools_module
+apply_task_manifest = build_pools_module.apply_task_manifest
+build_pools = build_pools_module.build_pools
 
 ROOT = Path(__file__).resolve().parents[1]
 
