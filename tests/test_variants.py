@@ -13,6 +13,7 @@ class VariantTests(unittest.TestCase):
             validate(source,active,variant)
             self.assertEqual(len(active),n)
             self.assertFalse({'56225','56274'} & {t['id'] for t in active})
+            if variant=='120':self.assertFalse({'130-9','283-32','73-45'} & {t['id'] for t in active})
             other,otheractive=select(copy.deepcopy(list(reversed(self.audit))),variant)
             self.assertEqual({t['id']:t['split'] for t in active},{t['id']:t['split'] for t in otheractive})
     def test_flagged_task_cannot_be_reintroduced(self):

@@ -1,6 +1,6 @@
 # SkillShift
 
-Two separate dataset options are prepared for review. Choose one with the team; do not mix their splits or treat the alternatives as independent replications.
+Two separate dataset options are prepared. Experiments use the 120-task version; do not mix their splits or treat the alternatives as independent replications.
 
 - **[120-task version](datasets/120/README.md):** 120 eligible tasks, split 60 development / 30 validation / 30 test. Excludes the two upstream-flagged tasks and unresolved-lineage candidates before sampling.
 - **[400-source-task version](datasets/400/README.md):** preserves all 400 original tasks, but only 398 are eligible for execution: 198 development / 100 validation / 100 test. Tasks 56225 and 56274 retain source records but are absent from runnable manifests. Potentially related tasks stay together in precautionary blocks.
@@ -22,7 +22,7 @@ Shared implementation is in `scripts/` and tests in `tests/`. Original workbook 
 
 ## Still pending
 
-These are prepared protocol alternatives, not claims of team signoff. Reference-answer semantics and evaluator integration still require pilot validation. Real feedback pools require evaluator-labelled attempts and definitions of C1/C2/C3. The pool tool is implemented; no real pilot/final pools or results have been invented.
+These are prepared protocol alternatives, not claims of team signoff. Reference-answer semantics and evaluator integration still require pilot validation. Real feedback pools require evaluator-labelled attempts; the proposal defines C0 (no repeats), C1 (exact copies from a few tasks), C2 (real reruns of a few tasks) and C3 (one failure type across different tasks), and the pool tool currently builds exact-copy pools only. The pool tool is implemented; no real pilot/final pools or results have been invented.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for development checks and the review process.
 

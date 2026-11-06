@@ -197,98 +197,6 @@
     "golden_local_path": "evaluator_only/38074/golden.xlsx"
   },
   {
-    "id": "130-9",
-    "instruction": "How can I edit and correct my Excel VBA code to combine data from the source sheet cdnr into the destination sheet b2b, sez, de, aligning columns by identical header text (not by column position), and appending the new rows below the existing data without overwriting any existing rows (i.e., start at the first empty row, which is row 7 in the provided file)? Amounts copied from the source must be written as negative values in the destination’s **columns L and M, while preserving the destination’s number formats. For each inserted row, set column H to blank and column I to \"Credit Note\". The macro must not clear or erase any existing data on b2b, sez, de.",
-    "spreadsheet_path": "spreadsheet/130-9",
-    "instruction_type": "Sheet-Level Manipulation",
-    "answer_position": "'b2b, sez, de'!A5:V10",
-    "answer_sheet": "b2b, sez, de",
-    "data_position": "A1:V7",
-    "initial_audit": {
-      "sha256": "afa64dc8190bb23c1e596077b1c526c86a456be8417d576afaf3358e573be950",
-      "cell_content_sha256": "f41e3922e47bf95f1b4ae452efacd8ab5fb52b3a477667036e0e10e0284f65f3",
-      "sheet_names": [
-        "b2b, sez, de",
-        "cdnr",
-        "Expected"
-      ],
-      "nonempty_cells": 267,
-      "formula_cells": 0,
-      "formula_cells_without_cached_value": 0
-    },
-    "golden_audit": {
-      "sha256": "cc8df69f62f5f2deb16d8f6a6e11e34d8035a036fce33e8d33d2a46b5023a9e0",
-      "cell_content_sha256": "3d44c0de1bf45db3df0b25e07817dc93558cfffd16d13f1f9e2b85af08497029",
-      "sheet_names": [
-        "b2b, sez, de",
-        "cdnr",
-        "Expected"
-      ],
-      "nonempty_cells": 324,
-      "formula_cells": 0,
-      "formula_cells_without_cached_value": 0
-    },
-    "initial_archive_path": "spreadsheetbench_verified_400/spreadsheet/130-9/1_130-9_init.xlsx",
-    "golden_archive_path": "spreadsheetbench_verified_400/spreadsheet/130-9/1_130-9_golden.xlsx",
-    "family_id": "observed-130-9",
-    "family_evidence": "singleton; unseen provenance/variants remain unverified",
-    "split": "dev",
-    "split_group_id": "block-130-9",
-    "split_group_basis": "singleton after conservative lineage exclusions",
-    "eligible_for_execution": true,
-    "exclusion_reason": "",
-    "status": "separate_versions_v2",
-    "initial_local_path": "inputs/130-9/initial.xlsx",
-    "golden_local_path": "evaluator_only/130-9/golden.xlsx"
-  },
-  {
-    "id": "283-32",
-    "instruction": "I have four sheets in an Excel workbook. In Sheet1, I have a system snapshot, and in Sheet2, I have taken another snapshot one week later. I need a macro that can compare Sheet1 and Sheet2, and then output the differences onto Sheet3 and Sheet4. Specifically, Sheet3 should show what entries are no longer present in Sheet2 compared to Sheet1 (subtracts). Sheet4 should show what entries are present in Sheet2 that were not in Sheet1. When displayed in Sheet3 and 4, only internal data is displayed beginning on row 1, and no table headers are required. I've attached the file for reference. Make sure to exclude any duplicate entries in row two on Sheet3, there is only one row of information that should appear.",
-    "spreadsheet_path": "spreadsheet/283-32",
-    "instruction_type": "Sheet-Level Manipulation",
-    "answer_position": "Sheet3'!A:G,'Sheet4'!A:G",
-    "answer_sheet": "'Sheet3','Sheet4'",
-    "data_position": "Sheet1!A1:G32','Sheet2!A1:G32','Sheet3!A1:G1','Sheet4!A1:G1'",
-    "initial_audit": {
-      "sha256": "37a403b7074630d98af2380ee50d08afca6bd5334a4d8bd6c4228c8c8efd282d",
-      "cell_content_sha256": "b15c6615d61c39151fa4c85bfa78fbb20ab4daf8421593d43326dd4c42e8edf8",
-      "sheet_names": [
-        "Sheet1",
-        "Sheet2",
-        "Sheet3",
-        "Sheet4"
-      ],
-      "nonempty_cells": 304,
-      "formula_cells": 0,
-      "formula_cells_without_cached_value": 0
-    },
-    "golden_audit": {
-      "sha256": "f31828386929c7185629154b928c918823bdc0f89b6a26ec9f002bcce771d362",
-      "cell_content_sha256": "37a3e7b3dbdc203e5cb133ee04b434ba40f956c765d507e1b0063d1342489f30",
-      "sheet_names": [
-        "Sheet1",
-        "Sheet2",
-        "Sheet3",
-        "Sheet4"
-      ],
-      "nonempty_cells": 316,
-      "formula_cells": 0,
-      "formula_cells_without_cached_value": 0
-    },
-    "initial_archive_path": "spreadsheetbench_verified_400/spreadsheet/283-32/1_283-32_init.xlsx",
-    "golden_archive_path": "spreadsheetbench_verified_400/spreadsheet/283-32/1_283-32_golden.xlsx",
-    "family_id": "observed-283-32",
-    "family_evidence": "singleton; unseen provenance/variants remain unverified",
-    "split": "dev",
-    "split_group_id": "block-283-32",
-    "split_group_basis": "singleton after conservative lineage exclusions",
-    "eligible_for_execution": true,
-    "exclusion_reason": "",
-    "status": "separate_versions_v2",
-    "initial_local_path": "inputs/283-32/initial.xlsx",
-    "golden_local_path": "evaluator_only/283-32/golden.xlsx"
-  },
-  {
     "id": "54144",
     "instruction": "How can I create an Excel 365 formula to sum the quantities of trucks listed on the 'Data' Sheet when the truck names are concatenated on the 'Report' Sheet, but they are listed separately on the 'Data' Sheet?     Could you help me in my question ,please?\nI need a formula to sum trucks quantities from \"Data\"Sheet but the problem is that the Trucks here are concatenated and in Data\" Sheet Trucks are not concatenated\nPlease help me",
     "spreadsheet_path": "spreadsheet/54144",
@@ -865,47 +773,6 @@
     "status": "separate_versions_v2",
     "initial_local_path": "inputs/433-47/initial.xlsx",
     "golden_local_path": "evaluator_only/433-47/golden.xlsx"
-  },
-  {
-    "id": "73-45",
-    "instruction": "I am looking for a macro that can identify and highlight specific text, numbers, or parts of text and numbers in column BD of my Excel sheet. I want to create a large, editable list of these text and number patterns, which the macro should use to search the cells in column BD. In each cell, the text or number to be found could be placed anywhere, might be separated by spaces, and multiple patterns may need to be found within a single cell. Empty cells should be ignored. Currently, I have a sample sheet with 32 rows where I manually highlighted the desired patterns in bold red. Additionally, I need the ability to search for whole words only, such as 'too' without it being part of another word like 'took'. How could the macro be adjusted to accommodate this requirement?",
-    "spreadsheet_path": "spreadsheet/73-45",
-    "instruction_type": "Sheet-Level Manipulation",
-    "answer_position": "'Sheet1'!BD2:308",
-    "answer_sheet": "Sheet1",
-    "data_position": "A1:BD308",
-    "initial_audit": {
-      "sha256": "900e3458e1986befbef74c0f2e0a0208cfca6f1a5542f6d0a2430080e328bbc2",
-      "cell_content_sha256": "b18624f5abf5874e4367a479bdbe63e5979188caae86115b8073086aa99a5091",
-      "sheet_names": [
-        "Sheet1"
-      ],
-      "nonempty_cells": 617,
-      "formula_cells": 0,
-      "formula_cells_without_cached_value": 0
-    },
-    "golden_audit": {
-      "sha256": "7b06b8e48d7bc7b8c7798701be2601218d92ef65508decee28cc189d7fea4890",
-      "cell_content_sha256": "b18624f5abf5874e4367a479bdbe63e5979188caae86115b8073086aa99a5091",
-      "sheet_names": [
-        "Sheet1"
-      ],
-      "nonempty_cells": 617,
-      "formula_cells": 0,
-      "formula_cells_without_cached_value": 0
-    },
-    "initial_archive_path": "spreadsheetbench_verified_400/spreadsheet/73-45/1_73-45_init.xlsx",
-    "golden_archive_path": "spreadsheetbench_verified_400/spreadsheet/73-45/1_73-45_golden.xlsx",
-    "family_id": "observed-73-45",
-    "family_evidence": "singleton; unseen provenance/variants remain unverified",
-    "split": "dev",
-    "split_group_id": "block-73-45",
-    "split_group_basis": "singleton after conservative lineage exclusions",
-    "eligible_for_execution": true,
-    "exclusion_reason": "",
-    "status": "separate_versions_v2",
-    "initial_local_path": "inputs/73-45/initial.xlsx",
-    "golden_local_path": "evaluator_only/73-45/golden.xlsx"
   },
   {
     "id": "49300",
@@ -2446,6 +2313,127 @@
     "golden_local_path": "evaluator_only/58701/golden.xlsx"
   },
   {
+    "id": "49237",
+    "instruction": "How can I add a period to a cell in Excel if there is a middle initial present, and leave it blank if there is no middle initial? The middle initial is obtained from the full name in cell E19 with first name in E5 and last name in E7. The extraction formula I'm using for the middle name is `=TRIM(MID(E19,LEN(E5)+1,LEN(E19)-LEN(E5&E7)))`, which gives the middle name in E9. Then I'm converting it to proper case with `=PROPER(E9)` in F10, and I'm taking the initial from that result with `=LEFT(F10)` in F7. If F7 contains an initial, I want to add a period after it. Otherwise, F7 should remain blank. Every formula I've tried results in a `#VALUE` error. What formula should I use to achieve this?",
+    "spreadsheet_path": "spreadsheet/49237",
+    "instruction_type": "Cell-Level Manipulation",
+    "answer_position": "F7",
+    "initial_audit": {
+      "sha256": "d41f7f0145787c57b22a9a5f4696eabe18cf935f005b8c8dc476fa6f572cb41a",
+      "cell_content_sha256": "b962891a0106172adf21c801e6b2bb71d72c653ffe8dca6f0459d88175207101",
+      "sheet_names": [
+        "Sheet1"
+      ],
+      "nonempty_cells": 54,
+      "formula_cells": 19,
+      "formula_cells_without_cached_value": 0
+    },
+    "golden_audit": {
+      "sha256": "bb29e6a4823bda94b1a9968ba6e6c93065d843a1c47cd92ef183546089765f28",
+      "cell_content_sha256": "5b42e3b5de88e0b7a45ed46ad935d6a5069cf9d8a4583a66f822e99c104bbcc8",
+      "sheet_names": [
+        "Sheet1"
+      ],
+      "nonempty_cells": 54,
+      "formula_cells": 19,
+      "formula_cells_without_cached_value": 0
+    },
+    "initial_archive_path": "spreadsheetbench_verified_400/spreadsheet/49237/1_49237_init.xlsx",
+    "golden_archive_path": "spreadsheetbench_verified_400/spreadsheet/49237/1_49237_golden.xlsx",
+    "family_id": "observed-49237",
+    "family_evidence": "singleton; unseen provenance/variants remain unverified",
+    "split": "dev",
+    "split_group_id": "block-49237",
+    "split_group_basis": "singleton after conservative lineage exclusions",
+    "eligible_for_execution": true,
+    "exclusion_reason": "",
+    "status": "separate_versions_v2",
+    "initial_local_path": "inputs/49237/initial.xlsx",
+    "golden_local_path": "evaluator_only/49237/golden.xlsx"
+  },
+  {
+    "id": "36191",
+    "instruction": "I am working with data in Column B and I've used the formula =LEFT(B2,FIND(\" \",B2)-1) to extract the first name from a string containing the first name, surname, and email address. However, the formula is only extracting the first name, not the surname. I need an amended version of my formula that will correctly extract both the first name and the surname, omitting the email address from the extracted result. Put this in the Result should be column.",
+    "spreadsheet_path": "spreadsheet/36191",
+    "instruction_type": "Cell-Level Manipulation",
+    "answer_position": "C2:C3",
+    "initial_audit": {
+      "sha256": "d31d2af763800f21dc6d657ed4aac3809f24799507f36155c15fbf6a4e467ebe",
+      "cell_content_sha256": "6b44df1713d94e0cf3ff30ebc4386b1c3a795d1b4347cb7cbaf9311b54d64eea",
+      "sheet_names": [
+        "Sheet1"
+      ],
+      "nonempty_cells": 8,
+      "formula_cells": 2,
+      "formula_cells_without_cached_value": 0
+    },
+    "golden_audit": {
+      "sha256": "3cedb0bd0942d61eea78d6d8a2014715c3617dd0d44c632ae6ee9d19c0a682db",
+      "cell_content_sha256": "0e78ab67e8124eaca950cc615ee17dfb9220642c511c72b923b7dedd34eb61b7",
+      "sheet_names": [
+        "Sheet1"
+      ],
+      "nonempty_cells": 9,
+      "formula_cells": 4,
+      "formula_cells_without_cached_value": 0
+    },
+    "initial_archive_path": "spreadsheetbench_verified_400/spreadsheet/36191/1_36191_init.xlsx",
+    "golden_archive_path": "spreadsheetbench_verified_400/spreadsheet/36191/1_36191_golden.xlsx",
+    "family_id": "observed-36191",
+    "family_evidence": "singleton; unseen provenance/variants remain unverified",
+    "split": "dev",
+    "split_group_id": "block-36191",
+    "split_group_basis": "singleton after conservative lineage exclusions",
+    "eligible_for_execution": true,
+    "exclusion_reason": "",
+    "status": "separate_versions_v2",
+    "initial_local_path": "inputs/36191/initial.xlsx",
+    "golden_local_path": "evaluator_only/36191/golden.xlsx"
+  },
+  {
+    "id": "531-18",
+    "instruction": "I need to transpose data from the 'Data' tab into the format shown on the 'Transpose' tab of my Excel file, specifically focusing on the ITEM, DATE, and QTY columns. Could you advise whether a macro or VBA is more appropriate for this task?",
+    "spreadsheet_path": "spreadsheet/531-18",
+    "instruction_type": "Sheet-Level Manipulation",
+    "answer_position": "'Transpose'!A3:C970",
+    "answer_sheet": "Transpose",
+    "data_position": "Data!'A6:AX28,'Transpose!'A2:C134'",
+    "initial_audit": {
+      "sha256": "361b5ec445db8c56b838eedc313ece9e72bf8412f81dc2a7b09a4387f147bdc2",
+      "cell_content_sha256": "14e6c5cb6e4090eccf37955ac1aa27672d9fdaacb58c75bc46a0c03d838c1b23",
+      "sheet_names": [
+        "Data",
+        "Transpose"
+      ],
+      "nonempty_cells": 1363,
+      "formula_cells": 0,
+      "formula_cells_without_cached_value": 0
+    },
+    "golden_audit": {
+      "sha256": "5a054fa2da4ef16e98d4fba7c10d14955b9f02f38912292c6aa0fcbafeb3e769",
+      "cell_content_sha256": "dd63fb73517f1ecdae4de5bb4a5f7629553877b29bb4cc2af587e65491a08ed0",
+      "sheet_names": [
+        "Data",
+        "Transpose"
+      ],
+      "nonempty_cells": 4057,
+      "formula_cells": 0,
+      "formula_cells_without_cached_value": 0
+    },
+    "initial_archive_path": "spreadsheetbench_verified_400/spreadsheet/531-18/1_531-18_init.xlsx",
+    "golden_archive_path": "spreadsheetbench_verified_400/spreadsheet/531-18/1_531-18_golden.xlsx",
+    "family_id": "observed-531-18",
+    "family_evidence": "singleton; unseen provenance/variants remain unverified",
+    "split": "dev",
+    "split_group_id": "block-531-18",
+    "split_group_basis": "singleton after conservative lineage exclusions",
+    "eligible_for_execution": true,
+    "exclusion_reason": "",
+    "status": "separate_versions_v2",
+    "initial_local_path": "inputs/531-18/initial.xlsx",
+    "golden_local_path": "evaluator_only/531-18/golden.xlsx"
+  },
+  {
     "id": "269-44",
     "instruction": "In my Excel sheet named 'Import Data,' I am trying to create a macro that will delete the four rows located immediately before each instance of the text 'Chassis' in column A. Make sure that the two \"Chassis\" texts are located in A2 & A3.  However, my current VBA code is not functioning properly. Can someone assist me in correcting this code so that it will carry out the task as intended?",
     "spreadsheet_path": "spreadsheet/269-44",
@@ -2485,45 +2473,6 @@
     "status": "separate_versions_v2",
     "initial_local_path": "inputs/269-44/initial.xlsx",
     "golden_local_path": "evaluator_only/269-44/golden.xlsx"
-  },
-  {
-    "id": "49237",
-    "instruction": "How can I add a period to a cell in Excel if there is a middle initial present, and leave it blank if there is no middle initial? The middle initial is obtained from the full name in cell E19 with first name in E5 and last name in E7. The extraction formula I'm using for the middle name is `=TRIM(MID(E19,LEN(E5)+1,LEN(E19)-LEN(E5&E7)))`, which gives the middle name in E9. Then I'm converting it to proper case with `=PROPER(E9)` in F10, and I'm taking the initial from that result with `=LEFT(F10)` in F7. If F7 contains an initial, I want to add a period after it. Otherwise, F7 should remain blank. Every formula I've tried results in a `#VALUE` error. What formula should I use to achieve this?",
-    "spreadsheet_path": "spreadsheet/49237",
-    "instruction_type": "Cell-Level Manipulation",
-    "answer_position": "F7",
-    "initial_audit": {
-      "sha256": "d41f7f0145787c57b22a9a5f4696eabe18cf935f005b8c8dc476fa6f572cb41a",
-      "cell_content_sha256": "b962891a0106172adf21c801e6b2bb71d72c653ffe8dca6f0459d88175207101",
-      "sheet_names": [
-        "Sheet1"
-      ],
-      "nonempty_cells": 54,
-      "formula_cells": 19,
-      "formula_cells_without_cached_value": 0
-    },
-    "golden_audit": {
-      "sha256": "bb29e6a4823bda94b1a9968ba6e6c93065d843a1c47cd92ef183546089765f28",
-      "cell_content_sha256": "5b42e3b5de88e0b7a45ed46ad935d6a5069cf9d8a4583a66f822e99c104bbcc8",
-      "sheet_names": [
-        "Sheet1"
-      ],
-      "nonempty_cells": 54,
-      "formula_cells": 19,
-      "formula_cells_without_cached_value": 0
-    },
-    "initial_archive_path": "spreadsheetbench_verified_400/spreadsheet/49237/1_49237_init.xlsx",
-    "golden_archive_path": "spreadsheetbench_verified_400/spreadsheet/49237/1_49237_golden.xlsx",
-    "family_id": "observed-49237",
-    "family_evidence": "singleton; unseen provenance/variants remain unverified",
-    "split": "val",
-    "split_group_id": "block-49237",
-    "split_group_basis": "singleton after conservative lineage exclusions",
-    "eligible_for_execution": true,
-    "exclusion_reason": "",
-    "status": "separate_versions_v2",
-    "initial_local_path": "inputs/49237/initial.xlsx",
-    "golden_local_path": "evaluator_only/49237/golden.xlsx"
   },
   {
     "id": "46240",
@@ -2965,45 +2914,6 @@
     "status": "separate_versions_v2",
     "initial_local_path": "inputs/157-4/initial.xlsx",
     "golden_local_path": "evaluator_only/157-4/golden.xlsx"
-  },
-  {
-    "id": "36191",
-    "instruction": "I am working with data in Column B and I've used the formula =LEFT(B2,FIND(\" \",B2)-1) to extract the first name from a string containing the first name, surname, and email address. However, the formula is only extracting the first name, not the surname. I need an amended version of my formula that will correctly extract both the first name and the surname, omitting the email address from the extracted result. Put this in the Result should be column.",
-    "spreadsheet_path": "spreadsheet/36191",
-    "instruction_type": "Cell-Level Manipulation",
-    "answer_position": "C2:C3",
-    "initial_audit": {
-      "sha256": "d31d2af763800f21dc6d657ed4aac3809f24799507f36155c15fbf6a4e467ebe",
-      "cell_content_sha256": "6b44df1713d94e0cf3ff30ebc4386b1c3a795d1b4347cb7cbaf9311b54d64eea",
-      "sheet_names": [
-        "Sheet1"
-      ],
-      "nonempty_cells": 8,
-      "formula_cells": 2,
-      "formula_cells_without_cached_value": 0
-    },
-    "golden_audit": {
-      "sha256": "3cedb0bd0942d61eea78d6d8a2014715c3617dd0d44c632ae6ee9d19c0a682db",
-      "cell_content_sha256": "0e78ab67e8124eaca950cc615ee17dfb9220642c511c72b923b7dedd34eb61b7",
-      "sheet_names": [
-        "Sheet1"
-      ],
-      "nonempty_cells": 9,
-      "formula_cells": 4,
-      "formula_cells_without_cached_value": 0
-    },
-    "initial_archive_path": "spreadsheetbench_verified_400/spreadsheet/36191/1_36191_init.xlsx",
-    "golden_archive_path": "spreadsheetbench_verified_400/spreadsheet/36191/1_36191_golden.xlsx",
-    "family_id": "observed-36191",
-    "family_evidence": "singleton; unseen provenance/variants remain unverified",
-    "split": "val",
-    "split_group_id": "block-36191",
-    "split_group_basis": "singleton after conservative lineage exclusions",
-    "eligible_for_execution": true,
-    "exclusion_reason": "",
-    "status": "separate_versions_v2",
-    "initial_local_path": "inputs/36191/initial.xlsx",
-    "golden_local_path": "evaluator_only/36191/golden.xlsx"
   },
   {
     "id": "42526",
@@ -3660,6 +3570,86 @@
     "status": "separate_versions_v2",
     "initial_local_path": "inputs/55979/initial.xlsx",
     "golden_local_path": "evaluator_only/55979/golden.xlsx"
+  },
+  {
+    "id": "45937",
+    "instruction": "How can I create a formula in Excel that automatically calculates the percentage category based on a range of values in another cell? The user has a legend with categories and corresponding percentages in rows H17 to N22, and wants to determine the category for a value in cell E7, based on the value in D7 which is already using a formula related to the category legend in H6 to I11. Note that the kms ranges are specified in cells H20:I22. Finish the table by completing column E.",
+    "spreadsheet_path": "spreadsheet/45937",
+    "instruction_type": "Cell-Level Manipulation",
+    "answer_position": "E7:E9",
+    "initial_audit": {
+      "sha256": "ec5304138d832ec171f525e359729e73e80e6ddc2b95cce08f8703e7cce6f25b",
+      "cell_content_sha256": "c99a998190b56e92be348223b3168c3ae2f302212eaae5a53de3fefc33661a10",
+      "sheet_names": [
+        "Current"
+      ],
+      "nonempty_cells": 58,
+      "formula_cells": 3,
+      "formula_cells_without_cached_value": 0
+    },
+    "golden_audit": {
+      "sha256": "764f885fcfec70c3799d0f5039b6156321fd42524fb18638caa1d1568d924dc2",
+      "cell_content_sha256": "067ab867a8eaa9857cf9022d80bd75482a250b3e59170fbdc4ad4e7e2ebb811a",
+      "sheet_names": [
+        "Current"
+      ],
+      "nonempty_cells": 60,
+      "formula_cells": 6,
+      "formula_cells_without_cached_value": 0
+    },
+    "initial_archive_path": "spreadsheetbench_verified_400/spreadsheet/45937/1_45937_init.xlsx",
+    "golden_archive_path": "spreadsheetbench_verified_400/spreadsheet/45937/1_45937_golden.xlsx",
+    "family_id": "observed-45937",
+    "family_evidence": "singleton; unseen provenance/variants remain unverified",
+    "split": "val",
+    "split_group_id": "block-45937",
+    "split_group_basis": "singleton after conservative lineage exclusions",
+    "eligible_for_execution": true,
+    "exclusion_reason": "",
+    "status": "separate_versions_v2",
+    "initial_local_path": "inputs/45937/initial.xlsx",
+    "golden_local_path": "evaluator_only/45937/golden.xlsx"
+  },
+  {
+    "id": "448-11",
+    "instruction": "I found a code in this forum that highlights and deletes duplicate rows within the current region in Excel, using the entire row content for comparison. The existing code successfully identifies and highlights entire rows that are duplicates and then deletes them. However, I need to modify the code so that it deletes duplicate rows based only on the data in Column A, ignoring whether the other columns from B to the last column match or not. How can this be achieved?",
+    "spreadsheet_path": "spreadsheet/448-11",
+    "instruction_type": "Sheet-Level Manipulation",
+    "answer_position": "'Sheet1'!A2:J16",
+    "answer_sheet": "Sheet1",
+    "data_position": "A2:J30",
+    "initial_audit": {
+      "sha256": "e1b41da813858432308f8cb181891b95294f894e46ff144535ab8dfcf0b74c61",
+      "cell_content_sha256": "f04c8af1b2cec241ff3d8235c71f3d78a7dcd80f5e9bd5a76f2f5f0664faf593",
+      "sheet_names": [
+        "Sheet1"
+      ],
+      "nonempty_cells": 150,
+      "formula_cells": 0,
+      "formula_cells_without_cached_value": 0
+    },
+    "golden_audit": {
+      "sha256": "18951d5c4c87e266bd617a5da791581ec52e18158db723dff9c588fc68546da4",
+      "cell_content_sha256": "956508d8ad2f27e5fa4e57d0d1d9fba3677256649e925e0c3defa789ea0be0a8",
+      "sheet_names": [
+        "Sheet1"
+      ],
+      "nonempty_cells": 140,
+      "formula_cells": 0,
+      "formula_cells_without_cached_value": 0
+    },
+    "initial_archive_path": "spreadsheetbench_verified_400/spreadsheet/448-11/1_448-11_init.xlsx",
+    "golden_archive_path": "spreadsheetbench_verified_400/spreadsheet/448-11/1_448-11_golden.xlsx",
+    "family_id": "observed-448-11",
+    "family_evidence": "singleton; unseen provenance/variants remain unverified",
+    "split": "val",
+    "split_group_id": "block-448-11",
+    "split_group_basis": "singleton after conservative lineage exclusions",
+    "eligible_for_execution": true,
+    "exclusion_reason": "",
+    "status": "separate_versions_v2",
+    "initial_local_path": "inputs/448-11/initial.xlsx",
+    "golden_local_path": "evaluator_only/448-11/golden.xlsx"
   },
   {
     "id": "39046",
