@@ -2,7 +2,7 @@
 
 Runs the real SkillOpt rollout, reflection, patching and evaluation code on real
 SpreadsheetBench workbooks, with the model API replaced by a scripted fake. No
-network calls are made and no results here are experimental evidence.
+network calls are made.
 
 Skipped unless skillopt is importable and the extracted workbooks are present.
 Point SKILLSHIFT_DATA_ROOT at the extracted spreadsheetbench_verified_400 folder,

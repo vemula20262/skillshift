@@ -1,4 +1,4 @@
-"""Synthetic fixtures only; these are not experimental results."""
+"""Tests for sampling, the validation gate and the selector adapter."""
 import sys
 import unittest
 from pathlib import Path

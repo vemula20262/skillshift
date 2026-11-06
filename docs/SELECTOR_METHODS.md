@@ -2,7 +2,7 @@
 
 `Selector.select(records)` returns a `Selection` containing method, input_count, items and metadata. Each `Selected` item carries the record, weight, group ID, member occurrence IDs and source families. Callers receive copies; original inputs are preserved.
 
-Required fields are nonempty task_id, source_family, summary, feedback_source and env_version; outcome is success/failure, token_count is a nonnegative integer and failures require error_category. Additional schema fields are preserved. This is the selector-facing contract, not the full attempt schema.
+Required fields are nonempty task_id, source_family, summary, feedback_source and env_version; outcome is success/failure, token_count is a nonnegative integer and failures require error_category. Additional schema fields are preserved.
 
 Original record_id identifies an attempt; copied pool records require pool_record_id, matching original_record_id and boolean is_copy. occurrence_id identifies each pool occurrence. Mixed original/pooled batches and conflicting copies are rejected.
 
@@ -16,17 +16,17 @@ Run checks with `python3 -m unittest discover -s tests -v`.
 - Exact dedup hashes literal summary, outcome/category/source/environment and tool events; keeps one representative, preferring originals, and records all contributing families and occurrence IDs.
 - Semantic dedup uses cosine similarity and deterministic greedy complete-link grouping within outcome/category/source/environment partitions. Every pair must meet the threshold. The medoid maximizes total within-group similarity; ties prefer originals, then occurrence ID. Identical vectors have cosine 1, including at threshold 1.
 
-Use `get_selector(method, threshold)` from skillshift.selectors. Semantic methods require an explicit finite threshold in [-1, 1], finite nonzero equal-dimensional embeddings and consistent model metadata when provided. No experimental threshold has been calibrated.
+Use `get_selector(method, threshold)` from skillshift.selectors. Semantic methods require an explicit finite threshold in [-1, 1], finite nonzero equal-dimensional embeddings and consistent model metadata when provided.
 
-Clustering sorts by partition, summary and occurrence ID, joining the first compatible group. Changing wording can change grouping; this is not an exact reproduction of SemDeDup. Pairwise comparisons suit small pools; larger workloads require performance assessment. Exact-hash fields must match the actual reflection payload.
+Clustering sorts by partition, summary and occurrence ID, joining the first compatible group. Changing wording can change grouping; this is not an exact reproduction of SemDeDup.
 
-`skillshift.embeddings.encode(records, model_name, revision, cache_folder)` optionally loads Sentence Transformers with trust_remote_code=False and embeds summaries. Pin the model revision and package version before a real run. Embed originals before pooling; pooled rows are rejected. Core tests use handcrafted vectors/fake encoders and require no extra dependencies. Real model inference remains unverified.
+`skillshift.embeddings.encode(records, model_name, revision, cache_folder)` optionally loads Sentence Transformers with trust_remote_code=False and embeds summaries. Pin the model revision and package version before a real run. Embed originals before pooling; pooled rows are rejected.
 
 ## Weighted methods
 
 Source balancing retains all occurrences and assigns 1 / family count. Each family has total weight one, counting successes and failures together. Source-behavior weighting retains all occurrences and assigns 1 / count of that family within the semantic behavior group. Each family-behavior pair has total weight one; group provenance records all families sharing the behavior. Successful and failed outcomes stay in separate semantic partitions.
 
-Weights are outputs, not a guarantee that reflection consumes them. The pipeline must define the weighting policy and actual serialized token budget. These methods do not reduce retained record count. Integration and downstream benefit remain unverified.
+These methods keep every occurrence; the update pipeline samples records by weight into its fixed feedback token budget.
 
 ## Dataset compatibility
 

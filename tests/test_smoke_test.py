@@ -1,4 +1,4 @@
-"""Offline run of scripts/smoke_test.py with the scripted fake model. Not experimental data."""
+"""Offline run of scripts/smoke_test.py with a scripted model."""
 import importlib.util
 import json
 import os

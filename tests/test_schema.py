@@ -1,4 +1,4 @@
-"""Synthetic fixtures only; these records are not experimental data."""
+"""Tests for the attempt record schema."""
 import copy
 import importlib.util
 import json

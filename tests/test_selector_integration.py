@@ -1,4 +1,4 @@
-"""Synthetic fixtures only. Checks that the configured selectors plug into the pipeline."""
+"""Checks that the configured selectors plug into the pipeline."""
 import sys
 import unittest
 from pathlib import Path
