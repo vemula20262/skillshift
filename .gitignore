@@ -19,3 +19,5 @@ datasets/*/evaluator_only/
 
 # Local exploratory reports
 analysis/
+
+.model-cache/
