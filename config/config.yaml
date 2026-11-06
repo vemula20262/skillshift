@@ -10,22 +10,25 @@ dataset:
   data_root: data/raw/spreadsheetbench_verified_400
 
 model:
-  # Any OpenAI-compatible chat endpoint. The API key is read from the environment
-  # variable named below and is never written to this file or to run logs.
-  base_url: null
-  api_key_env: SKILLSHIFT_API_KEY
-  optimizer_model: null
-  target_model: null
-  reasoning_effort: null
+  # Gemini through its OpenAI-compatible endpoint (free tier, about 10 requests per
+  # minute). The API key is read from the environment variable named below and is
+  # never written to this file or to run logs. Optimizer and target use the same model.
+  base_url: https://generativelanguage.googleapis.com/v1beta/openai/
+  api_key_env: GEMINI_API_KEY
+  optimizer_model: gemini-2.5-flash
+  target_model: gemini-2.5-flash
+  # Keeps thinking short so code answers are not cut off by the output limit.
+  reasoning_effort: low
 
 executor:
   # single: one code generation per task. multi: retries with execution feedback
   # (up to max_turns), which costs more calls per task.
   mode: single
   max_turns: 1
-  max_completion_tokens: 4096
+  max_completion_tokens: 8192
   exec_timeout: 120
-  workers: 4
+  # Low parallelism to stay under the free-tier request rate.
+  workers: 2
 
 skill:
   # null uses SkillOpt's SpreadsheetBench starting skill shipped with the pinned

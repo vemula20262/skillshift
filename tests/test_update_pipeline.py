@@ -86,7 +86,8 @@ class UpdatePipelineTests(unittest.TestCase):
         cfg = copy.deepcopy(cfg)
         cfg["dataset"]["data_root"] = str(DATA_ROOT)
         cfg["model"].update(base_url="http://fake.invalid/v1", optimizer_model="fake-optimizer",
-                            target_model="fake-target")
+                            target_model="fake-target", api_key_env="SKILLSHIFT_TEST_KEY")
+        os.environ.setdefault("SKILLSHIFT_TEST_KEY", "offline-test")
         cfg["executor"]["workers"] = 2
         cfg["feedback"]["token_budget"] = 1_000_000
         self.cfg = cfg

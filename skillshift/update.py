@@ -48,11 +48,14 @@ def configure_models(cfg: dict) -> None:
     if missing:
         raise ValueError(f"model settings not filled in: {', '.join(missing)}")
 
+    api_key = os.environ.get(m["api_key_env"], "")
+    if not api_key:
+        raise ValueError(f"set the {m['api_key_env']} environment variable (any value works for a local server)")
+
     from skillopt import model as sk_model
 
-    api_key = os.environ.get(m["api_key_env"], "")
     sk_model.set_backend("openai_chat")
-    sk_model.configure_azure_openai(endpoint=m["base_url"], auth_mode="openai_compatible", api_key=api_key or None)
+    sk_model.configure_azure_openai(endpoint=m["base_url"], auth_mode="openai_compatible", api_key=api_key)
     sk_model.set_optimizer_deployment(m["optimizer_model"])
     sk_model.set_target_deployment(m["target_model"])
     sk_model.set_reasoning_effort(m.get("reasoning_effort"))
