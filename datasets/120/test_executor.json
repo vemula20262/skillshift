@@ -1,0 +1,272 @@
+[
+  {
+    "id": "39046",
+    "instruction": "How can I use a formula in Excel to check if a reference in column B is marked as 'CANCELLED' in another column, then count how many subreferences in column D contain a part of the parent reference from the entire column B, placing 'Yes' in column E if there is at least one match or 'No' otherwise, and finally count the number of 'Yes' entries to be displayed in column F?",
+    "instruction_type": "Cell-Level Manipulation",
+    "split": "test",
+    "family_id": "observed-39046",
+    "split_group_id": "block-39046",
+    "initial_local_path": "inputs/39046/initial.xlsx"
+  },
+  {
+    "id": "334-11",
+    "instruction": "Provide solution other than VBA or How can I modify my VBA code to delete both blank rows and rows with values between 1 and -1 (inclusive) in Column C of an 'Imported Data' sheet? My current code is not effectively removing the rows with values between 1 and -1 even though I have already highlighted them to be deleted.",
+    "instruction_type": "Sheet-Level Manipulation",
+    "split": "test",
+    "family_id": "observed-334-11",
+    "split_group_id": "block-334-11",
+    "initial_local_path": "inputs/334-11/initial.xlsx"
+  },
+  {
+    "id": "304-35",
+    "instruction": "How can I delete the values in column F where there are empty cells in column E, as highlighted by the yellow cells in the 'what i need sheet' of my provided Excel file? Additionally, how can I copy the values from column A down the same column, terminating the copy process when an empty cell is encountered in column F, ensuring that index cells (identical index rows like rows 2 and 29) are not copied in the process? For example, cell A29 should not be copied into A30, nor should cell A2 be copied into A3 if row 3 is empty.",
+    "instruction_type": "Sheet-Level Manipulation",
+    "split": "test",
+    "family_id": "observed-304-35",
+    "split_group_id": "block-304-35",
+    "initial_local_path": "inputs/304-35/initial.xlsx"
+  },
+  {
+    "id": "59129",
+    "instruction": "How can I adjust the SUMPRODUCT formula to calculate month over month headcount in Excel, so it does not continue to count employees who have been terminated?     My current formula is:                  SUMPRODUCT(--(MONTH(YEAR($A$2:$A$22)>=E1))*(--(MONTH(YEAR($B2:$B$22)>=E1))))",
+    "instruction_type": "Cell-Level Manipulation",
+    "split": "test",
+    "family_id": "observed-59129",
+    "split_group_id": "block-59129",
+    "initial_local_path": "inputs/59129/initial.xlsx"
+  },
+  {
+    "id": "477-45",
+    "instruction": "How can I create my Excel VBA code to efficiently merge and sum duplicate values by taking into consideration columns A, B, and C together, with the result starting from column G? My current code, which I found on the internet, runs slowly and only processes column A, so I would like to incorporate the use of a dictionary and an array to speed it up, as I work with data that is likely to increase in size. Please output the answer from cell G2, noting the correspondence with column names. If VBA is not available, use the tools you have. Do not add any additional number formatting.",
+    "instruction_type": "Sheet-Level Manipulation",
+    "split": "test",
+    "family_id": "observed-477-45",
+    "split_group_id": "block-477-45",
+    "initial_local_path": "inputs/477-45/initial.xlsx"
+  },
+  {
+    "id": "32562",
+    "instruction": "Automate the process of identifying each unique number in Column A and counting its order of occurrences without having to manually create an ascending list, such as from 1 to 10,000 and replacing it with the current data in column B.",
+    "instruction_type": "Cell-Level Manipulation",
+    "split": "test",
+    "family_id": "observed-32562",
+    "split_group_id": "block-32562",
+    "initial_local_path": "inputs/32562/initial.xlsx"
+  },
+  {
+    "id": "50250",
+    "instruction": "Use the value in cell G2 ('sela') as a reference to sum the numbers of the values corresponding to G2 in columns A or B in C-E, and include them only if the cell's value is a number.  Place it in H2.",
+    "instruction_type": "Cell-Level Manipulation",
+    "split": "test",
+    "family_id": "observed-50250",
+    "split_group_id": "block-50250",
+    "initial_local_path": "inputs/50250/initial.xlsx"
+  },
+  {
+    "id": "183-8",
+    "instruction": "How can I calculate the weighted average for columns J, K, and L based on the data? I have provided a sample file for reference. Only write formulas in J3:L6.",
+    "instruction_type": "Sheet-Level Manipulation",
+    "split": "test",
+    "family_id": "observed-183-8",
+    "split_group_id": "block-183-8",
+    "initial_local_path": "inputs/183-8/initial.xlsx"
+  },
+  {
+    "id": "35739",
+    "instruction": "How can I correct an error that occurs when calculating a 'Cut Off' time that should be half an hour before the 'STD' time, particularly when this calculation crosses over midnight? Additionally, how can I ensure that if there's no data present in columns A and B, then column C will display a blank cell instead of an error? Current formula is B2-TIME(0,30,0). Use the corrected formula in cell C2 of 'Sheet1' and apply it down the column to generate the final 'CUT OFF' times.",
+    "instruction_type": "Cell-Level Manipulation",
+    "split": "test",
+    "family_id": "observed-35739",
+    "split_group_id": "block-35739",
+    "initial_local_path": "inputs/35739/initial.xlsx"
+  },
+  {
+    "id": "44296",
+    "instruction": "How can I convert data from a range in Sheet 1 to column D in Sheet 2 by matching units with states using a formula? I need a step-by-step guide on how to achieve this since I'm unsure about the looping aspect.",
+    "instruction_type": "Cell-Level Manipulation",
+    "split": "test",
+    "family_id": "observed-44296",
+    "split_group_id": "block-44296",
+    "initial_local_path": "inputs/44296/initial.xlsx"
+  },
+  {
+    "id": "17111",
+    "instruction": "I need to sum the values in Excel based on the status. For example, for a person named 'Neha' and a type 'HD', I want to sum the amount if the status is 'completed', 'not completed', or both. However, if a different status is present, it should not be included in the sum. I have attempted to solve this using an IF condition but have not yet found the correct set of formulas to achieve the desired results.\nI want to sum the values on basis of the status.I know it would get solved through if condition but still didn't got the exact match of formulas to get the results. Please help me with the solution. PFA file for reference. HD & SD would be calculated from sheet 1 on basis of Status \"completed\" or \"not completed.\nSUMIFS(Sheet1!$D:$D,Sheet1!$B:$B,Summary!$A2,Sheet1!$C:$C,Summary!$B$1)",
+    "instruction_type": "Cell-Level Manipulation",
+    "split": "test",
+    "family_id": "observed-17111",
+    "split_group_id": "block-17111",
+    "initial_local_path": "inputs/17111/initial.xlsx"
+  },
+  {
+    "id": "395-36",
+    "instruction": "I have three sheets: 'Main unique ID' for manual input of IDs that may change, 'Result what I am getting', and 'Result what I am expecting.' How can I compare the 'Main unique ID' sheet with the 'Result what I am getting' sheet, and if there are any unique IDs missing in the comparison, how do I add those missing unique IDs from the 'Main unique ID' sheet into the 'Result what I am getting' sheet, along with an empty new row for each missing ID, as illustrated in the yellow-highlighted sections on the 'Result what I am expecting' sheet?",
+    "instruction_type": "Sheet-Level Manipulation",
+    "split": "test",
+    "family_id": "observed-395-36",
+    "split_group_id": "block-395-36",
+    "initial_local_path": "inputs/395-36/initial.xlsx"
+  },
+  {
+    "id": "50486",
+    "instruction": "Configure column A in Excel to display the text 'Chep' or 'Loscam' based on which of the two corresponding columns contains numeric values.",
+    "instruction_type": "Cell-Level Manipulation",
+    "split": "test",
+    "family_id": "observed-50486",
+    "split_group_id": "block-50486",
+    "initial_local_path": "inputs/50486/initial.xlsx"
+  },
+  {
+    "id": "38703",
+    "instruction": "First unmerge any merged cells. How can I count the number of unique Item Nos. that have been placed into a Bin and reset this count whenever the items are taken by another department, while also retaining both the initial count and any subsequent counts? The need is to track how many unique items are added to a Bin before it's passed on to the next department without losing the count of items from previous cycles.\nNeed to count the number of unique 'Item No's in E2:E10. Place output in H10.\nNeed to count the number of unique 'Item No's in E11:E20. Place output into H20.\nNeed to count the number of unique 'Item No's in E21:E24. Place the output into H24.",
+    "instruction_type": "Cell-Level Manipulation",
+    "split": "test",
+    "family_id": "observed-38703",
+    "split_group_id": "block-38703",
+    "initial_local_path": "inputs/38703/initial.xlsx"
+  },
+  {
+    "id": "56419",
+    "instruction": "How can I create a single formula in Excel in to pull a list of non-zero values from 'Quantity' and return the associated Type for each, without using multiple columns for step-by-step calculations as I've been doing? Specifically, I need to incorporate multiple steps, including the use of the MATCH function for which I am unable to specify an array within a combined formula.My current formula is: \n   INDIRECT(\"A\"&G2)\nalso include error handling and changing background color to #92D050. Every thing else should be kept as it is.",
+    "instruction_type": "Cell-Level Manipulation",
+    "split": "test",
+    "family_id": "observed-56419",
+    "split_group_id": "block-56419",
+    "initial_local_path": "inputs/56419/initial.xlsx"
+  },
+  {
+    "id": "47827",
+    "instruction": "How to assemble three numbers into a three-digit number, with the numbers arranged in order from smallest to largest. Complete column G, bold and fill all boxed values with the color #EBF1DE",
+    "instruction_type": "Cell-Level Manipulation",
+    "split": "test",
+    "family_id": "observed-47827",
+    "split_group_id": "block-47827",
+    "initial_local_path": "inputs/47827/initial.xlsx"
+  },
+  {
+    "id": "37378",
+    "instruction": "How can I create an Excel formula to place a number in column A, starting at cell A2, that increments by 1 each time a new entry is made in the corresponding cell of column B, starting at B2? For example, cell A2 should display '1' if B2 is not empty, and A3 should show '2' if B3 contains any text.",
+    "instruction_type": "Cell-Level Manipulation",
+    "split": "test",
+    "family_id": "observed-37378",
+    "split_group_id": "block-37378",
+    "initial_local_path": "inputs/37378/initial.xlsx"
+  },
+  {
+    "id": "510-3",
+    "instruction": "How can I calculate the total number of days from a date provided in column D of my 'Data' sheet, where the date is in year/month/day format? I attempted to split the data into columns E, F, and G, but it seems the split data is treated as text rather than numbers, which prevents calculation. Subsequent attempts, including using a VBA macro to perform the calculation, have resulted in '#VALUE!' errors.\n\nRecreate 'Data' sheet. Keep the exact same number formatting for columns D through G. Once finished, hardcode the Year value in column E multiplied by 365 plus the Month value in column F multiplied by 12 plus the Day value in column G into the column titled 'Sum'. Do not bold the titles.",
+    "instruction_type": "Sheet-Level Manipulation",
+    "split": "test",
+    "family_id": "observed-510-3",
+    "split_group_id": "block-510-3",
+    "initial_local_path": "inputs/510-3/initial.xlsx"
+  },
+  {
+    "id": "28-7",
+    "instruction": "How can I delete all rows in an Excel column that occur after and including a part number starting with '400-' followed by any characters and ending in '-A', up to but not including the next part number following the same initial '400-' pattern? Note that if the part number ending in '-A' does not exist, no rows should be deleted. There can be any number of blank cells between these part numbers, and the part number immediately following the one ending in '-A' might differ between cases.",
+    "instruction_type": "Sheet-Level Manipulation",
+    "split": "test",
+    "family_id": "observed-28-7",
+    "split_group_id": "block-28-7",
+    "initial_local_path": "inputs/28-7/initial.xlsx"
+  },
+  {
+    "id": "54085",
+    "instruction": "How can I create a formula in Excel that populates column C with all the items from column B, with the exception of excluding a specific item listed in column A? Answers should be in C2:C4 in the order they appear in column B.",
+    "instruction_type": "Cell-Level Manipulation",
+    "split": "test",
+    "family_id": "observed-54085",
+    "split_group_id": "block-54085",
+    "initial_local_path": "inputs/54085/initial.xlsx"
+  },
+  {
+    "id": "44389",
+    "instruction": "How can I create a formula in Excel that returns the column header of the smallest value greater than zero in each row. If there's more than one value that matches the lowest value above zero separate them by commas without spaces?",
+    "instruction_type": "Cell-Level Manipulation",
+    "split": "test",
+    "family_id": "observed-44389",
+    "split_group_id": "block-44389",
+    "initial_local_path": "inputs/44389/initial.xlsx"
+  },
+  {
+    "id": "41410",
+    "instruction": "I have a table in Excel with data across various arrays that includes information on heating, cooling, lighting, and other categories, located in the range B3:D22. I need to extract only the lighting data into a separate table that I have set up in the range F3:H6. How can I use Excel formulas to automate this process of extracting and populating the 'lighting' data into the new table?",
+    "instruction_type": "Cell-Level Manipulation",
+    "split": "test",
+    "family_id": "observed-41410",
+    "split_group_id": "block-41410",
+    "initial_local_path": "inputs/41410/initial.xlsx"
+  },
+  {
+    "id": "15387",
+    "instruction": "I am working on a model in Excel and need to find a formula that allows me to obtain a list of customer names that I have migrated based on a specific input. In my uploaded Excel file, I want to be able to input '0' in cells B1:F1 and have Excel display the corresponding list of customers I have migrated in cells A13 and A14. Choose and implement a formula to accomplish this.",
+    "instruction_type": "Cell-Level Manipulation",
+    "split": "test",
+    "family_id": "observed-15387",
+    "split_group_id": "block-15387",
+    "initial_local_path": "inputs/15387/initial.xlsx"
+  },
+  {
+    "id": "45738",
+    "instruction": "I need to automate cashflow generation for approximately 1,500 bonds where each bond has a principal amount in column A, interest in column B, payment frequency in column C (1 for annual, 2 for semi-annual, 4 for quarterly), and maturity date in column D, with date headers in row 4 from E4 to AB4. Create formulas in the range E6:AB25 that display \"-\" in row 5, and for rows 6-25 calculate cashflows showing interest payments at regular intervals based on the frequency working backwards from the maturity date, principal plus interest at the maturity date, and \"-\" for non-payment dates, then center align the entire E6:AB25 range while preserving existing number formatting.",
+    "instruction_type": "Cell-Level Manipulation",
+    "split": "test",
+    "family_id": "observed-45738",
+    "split_group_id": "block-45738",
+    "initial_local_path": "inputs/45738/initial.xlsx"
+  },
+  {
+    "id": "108-24",
+    "instruction": "How can I create a macro to extract rows from sheet 'BZTB', where descriptions in column B start with 'COS Pass，COS Comm，COS W/S' and include the word 'Used'?   The relevant data from columns A to D should be pasted into sheet 'Tema UV COS' in columns A to D, starting from row 1. Exclude '398726' from your results.",
+    "instruction_type": "Sheet-Level Manipulation",
+    "split": "test",
+    "family_id": "observed-108-24",
+    "split_group_id": "block-108-24",
+    "initial_local_path": "inputs/108-24/initial.xlsx"
+  },
+  {
+    "id": "4714",
+    "instruction": "I need help with calculating a moving average for each employee listed in column A of my spreadsheet, specifically on a 4-monthly basis. I also want to identify any instances where the 4-monthly average exceeds 48. The process should be demonstrated manually in the provided snippet to show the expected results. In column D, show whole numbers when the decimal is zero. So 50 instead of 50.0.\n\nCount months of data for the same employee (column A) within a 4-month window (current month in column C plus 3 months prior. Display \"n/a\" if fewer than 4 months exist\nOtherwise, average the Hours (column D) for that employee within the 4-month rolling window",
+    "instruction_type": "Cell-Level Manipulation",
+    "split": "test",
+    "family_id": "observed-4714",
+    "split_group_id": "block-4714",
+    "initial_local_path": "inputs/4714/initial.xlsx"
+  },
+  {
+    "id": "37086",
+    "instruction": "I need a formula for a column named 'Total' where, if a value in column1 is 'A', it should add 10, but if the value is 'B', it should subtract 10. I have included a file that may help illustrate this.",
+    "instruction_type": "Cell-Level Manipulation",
+    "split": "test",
+    "family_id": "observed-37086",
+    "split_group_id": "block-37086",
+    "initial_local_path": "inputs/37086/initial.xlsx"
+  },
+  {
+    "id": "30930",
+    "instruction": "On Sheet1, how can I calculate the number of values greater than zero in Column A between occurrences of the number 1 in Column B, and display the result in Column C on each row where Column B contains 1? Leave other rows in Column C blank.",
+    "instruction_type": "Cell-Level Manipulation",
+    "split": "test",
+    "family_id": "observed-30930",
+    "split_group_id": "block-30930",
+    "initial_local_path": "inputs/30930/initial.xlsx"
+  },
+  {
+    "id": "56378",
+    "instruction": "How can I create a formula in Excel that will copy products from a list in frame 1 into frame 2, but only include the products that have a non-empty 'QUANTITY UNITS' field? When complete, please implement the formula.  Once complete left align the Product names and right align the values in columns O:R that are output as a result of the implemented.",
+    "instruction_type": "Cell-Level Manipulation",
+    "split": "test",
+    "family_id": "observed-56378",
+    "split_group_id": "block-56378",
+    "initial_local_path": "inputs/56378/initial.xlsx"
+  },
+  {
+    "id": "39667",
+    "instruction": "How can I enter a 'description' in a table below a specific (black) row and automatically receive the corresponding 'Pay Item Number' and 'UOM' in the columns to the left of that 'description'? I want to be able to type in a description in the table below the black row and it spit out the corresponding 'Pay Item Number' and 'UOM' in the columns to the left of the 'description'. Outputs an empty string when search is empty. Also, please make rows 20-26, of columns A & B, color: #FFF2CC.",
+    "instruction_type": "Cell-Level Manipulation",
+    "split": "test",
+    "family_id": "observed-39667",
+    "split_group_id": "block-39667",
+    "initial_local_path": "inputs/39667/initial.xlsx"
+  }
+]

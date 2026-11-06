@@ -1,0 +1,3 @@
+id,reason,basis
+56225,"ignore, initial file already passes verification",upstream exclude note
+56274,golden has data validation dropdown set to a completely different value,upstream exclude note

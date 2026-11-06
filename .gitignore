@@ -1,0 +1,21 @@
+__pycache__/
+*.pyc
+.venv/
+.env
+data/raw/
+attempts/
+results/
+pools/
+
+# Personal submission materials
+local_submission/
+
+# Full study workbook materializations and handoff bundles
+handoff/
+
+# Separate-version workbook materializations
+datasets/*/inputs/
+datasets/*/evaluator_only/
+
+# Local exploratory reports
+analysis/

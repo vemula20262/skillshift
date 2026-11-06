@@ -1,0 +1,16 @@
+{
+  "version": "120-v2",
+  "source_tasks": 120,
+  "eligible_tasks": 120,
+  "eligible_split_counts": {
+    "dev": 60,
+    "val": 30,
+    "test": 30
+  },
+  "archive_sha256": "10ef893dd29cb13ab97143ea787e68cdc9574a13873ab9a54e50b31dc03fc949",
+  "family_policy": "Observed family_id is not confirmed provenance. split_group_id enforces precautionary isolation; use blocks for conservative resampling.",
+  "team_status": "Prepared for review, not claimed team-approved",
+  "model_runs": 0,
+  "pool_status": "Await real evaluated attempts and C1/C2/C3 definitions",
+  "sampling": "Deterministic hash ordering; 120 excludes source flags and unresolved lineage; 400 preserves historical full400_v1 allocation and omits flagged tasks only from execution."
+}
