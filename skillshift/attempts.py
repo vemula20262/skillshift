@@ -36,7 +36,6 @@ def collect_attempts(
     Trajectories are written under attempts_root/raw/<batch_name>/predictions/<task_id>/.
     """
     from skillopt.envs.spreadsheetbench.rollout import run_spreadsheet_batch_codegen
-    from skillopt.gradient.reflect import fmt_minibatch_trajectories
 
     from skillshift.update import task_items
 
@@ -56,7 +55,21 @@ def collect_attempts(
     with open(batch_dir / "results.jsonl", "w", encoding="utf-8") as f:
         for result in results:
             f.write(json.dumps(result, ensure_ascii=False) + "\n")
+    return records_from_results(cfg, tasks, results, attempts_root, batch_name, feedback_source)
 
+
+def records_from_results(
+    cfg: dict,
+    tasks: list[dict],
+    results: list[dict],
+    attempts_root: Path,
+    batch_name: str,
+    feedback_source: str = "original",
+) -> list[dict]:
+    """Turn rollout results stored under attempts_root/raw/<batch_name>/ into validated records."""
+    from skillopt.gradient.reflect import fmt_minibatch_trajectories
+
+    batch_dir = attempts_root / "raw" / batch_name
     by_id = {str(t["id"]): t for t in tasks}
     version = env_version(cfg)
     records = []
