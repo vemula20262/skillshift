@@ -54,12 +54,15 @@ class FakeClient:
     def __init__(self, target_model: str, optimizer_ok: bool = True):
         self.target_model = target_model
         self.optimizer_ok = optimizer_ok
+        self.target_down = False
         self.calls = {"target": 0, "optimizer": 0}
         self.chat = types.SimpleNamespace(completions=types.SimpleNamespace(create=self._create))
 
     def _create(self, *, model, messages, **_kwargs):
         system = messages[0]["content"] if messages else ""
         if model == self.target_model:
+            if self.target_down:
+                raise RuntimeError("Error code: 429")
             self.calls["target"] += 1
             source = "INPUT_PATH.replace('_init.xlsx', '_golden.xlsx')" if FIXTURE_RULE in system else "INPUT_PATH"
             text = f"```python\nimport shutil\nshutil.copyfile({source}, OUTPUT_PATH)\n```"
@@ -196,6 +199,27 @@ class UpdatePipelineTests(unittest.TestCase):
         calls_before = self.client.calls["target"]
         self._run(seed=1)
         self.assertEqual(self.client.calls["target"], calls_before)
+
+    def test_failed_model_calls_are_not_scored(self):
+        from unittest import mock
+
+        tasks = update.load_tasks(self.cfg)
+        items = update.task_items(tasks, "val", self.val_ids)
+        skill, _ = update.starting_skill(self.cfg)
+        cache = self.work / "cache"
+        self.client.target_down = True
+        with mock.patch("skillopt.model.azure_openai.time.sleep"):
+            with self.assertRaisesRegex(RuntimeError, "3 of 3 val tasks got no model response"):
+                update.evaluate_skill(self.cfg, skill, items, cache, "val")
+        results_files = list(cache.rglob("results.jsonl"))
+        self.assertEqual(len(results_files), 1)
+        self.assertEqual(results_files[0].read_text(), "")
+
+        # Once the API is back, the same call retries every task instead of reusing the failures.
+        self.client.target_down = False
+        results = update.evaluate_skill(self.cfg, skill, items, cache, "val")
+        self.assertEqual(len(results), 3)
+        self.assertEqual(schema.model_call_failures(results), [])
 
     def test_budget_limits_feedback(self):
         sizes = sorted(json.loads(line)["token_count"] for line in self.pool_path.read_text().splitlines())

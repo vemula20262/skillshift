@@ -10,13 +10,12 @@ dataset:
   data_root: data/raw/spreadsheetbench_verified_400
 
 model:
-  # Gemini through its OpenAI-compatible endpoint (free tier, about 10 requests per
-  # minute). The API key is read from the environment variable named below and is
+  # NVIDIA hosted endpoint (OpenAI-compatible, free developer credits). The API key is read from the environment variable named below and is
   # never written to this file or to run logs. Optimizer and target use the same model.
-  base_url: https://generativelanguage.googleapis.com/v1beta/openai/
-  api_key_env: GEMINI_API_KEY
-  optimizer_model: gemini-2.5-flash
-  target_model: gemini-2.5-flash
+  base_url: https://integrate.api.nvidia.com/v1
+  api_key_env: NVIDIA_API_KEY
+  optimizer_model: z-ai/glm-5.3-flash
+  target_model: z-ai/glm-5.3-flash
   # Keeps thinking short so code answers are not cut off by the output limit.
   reasoning_effort: low
 
