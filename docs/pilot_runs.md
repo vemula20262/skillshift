@@ -2,7 +2,7 @@
 
 This covers the progress-report pilot: one original attempt per development task, the selector-ready records, six validation-only updates and the cost ledger. The second development pass, the dominant-task reruns, C3, the semantic selectors and the full grid come later.
 
-All outputs are gitignored (`attempts/`, `results/`, `pools/`) and must be shared outside the repository.
+All outputs are gitignored (`attempts/`, `results/`, `pools/`) and must be shared outside the repository. The exceptions are the pilot report (`results/pilot/report/`) and the cost ledger (`results/cost.csv`), which are committed so the reported numbers stay with the code that produced them. Run folders, the evaluation cache and trajectories stay local.
 
 ## 1. Collect development attempts
 
