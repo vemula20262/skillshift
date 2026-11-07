@@ -6,7 +6,7 @@ Re-running continues where the last run stopped.
 
 Examples:
   python3 scripts/collect_dev_attempts.py --check
-  python3 scripts/collect_dev_attempts.py --call-limit 120
+  python3 scripts/collect_dev_attempts.py --call-limit 75
 """
 from __future__ import annotations
 
@@ -25,6 +25,10 @@ from skillshift.config import DEFAULT_CONFIG, load_config  # noqa: E402
 from skillshift.usage import Ledger  # noqa: E402
 
 BATCH = "dev_original"
+
+
+def collection_calls(ledger: Ledger) -> int:
+    return sum(int(r["api_calls"] or 0) for r in ledger.rows() if r["phase"] == "collection")
 
 
 def prerequisite_problems(cfg: dict) -> list[str]:
@@ -50,7 +54,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--max-chunks", type=int, default=None, help="stop after this many chunks")
     parser.add_argument("--max-infra-attempts", type=int, default=3)
     parser.add_argument("--call-limit", type=int, default=None,
-                        help="team-approved API call allowance; no chunk starts once cost.csv reaches it")
+                        help="team-approved API call allowance for collection, counted from collection rows in cost.csv")
     parser.add_argument("--check", action="store_true", help="report prerequisites and progress only; no model calls")
     args = parser.parse_args(argv)
 
@@ -72,7 +76,7 @@ def main(argv: list[str] | None = None) -> int:
             "infra_failures": status.get("infra_failures", 0),
             "infra_exhausted": status.get("infra_exhausted", []),
             "coverage_problems": coverage_problems(wanted, evaluated),
-            "api_calls_so_far": sum(int(r["api_calls"] or 0) for r in ledger.rows()),
+            "collection_api_calls_so_far": collection_calls(ledger),
             "prerequisite_problems": problems,
         }
 
@@ -93,15 +97,19 @@ def main(argv: list[str] | None = None) -> int:
 
     configure_models(cfg)
     chunk = args.chunk_size or cfg["executor"]["workers"]
+    # Each task makes at most max_turns successful target calls, so a chunk is sized
+    # to fit what is left of the allowance and successful calls never pass the limit.
+    per_task = max(int(cfg["executor"]["max_turns"]), 1)
     chunks = 0
     while args.max_chunks is None or chunks < args.max_chunks:
-        used = sum(int(r["api_calls"] or 0) for r in ledger.rows())
-        if used >= args.call_limit:
-            print(f"call limit reached ({used} >= {args.call_limit}); stopping")
+        used = collection_calls(ledger)
+        room = (args.call_limit - used) // per_task
+        if room <= 0:
+            print(f"collection call limit reached ({used} of {args.call_limit}); stopping")
             break
         if not collector.status(wanted)["pending"]:
             break
-        collector.run(wanted, chunk, max_chunks=1)
+        collector.run(wanted, min(chunk, room), max_chunks=1)
         chunks += 1
 
     final = report(collector)

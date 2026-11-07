@@ -6,7 +6,7 @@ evaluation turned off. Completed runs are skipped on restart.
 
 Examples:
   python3 scripts/run_pilot.py --pool-dir pools/pilot --check
-  python3 scripts/run_pilot.py --pool-dir pools/pilot --call-limit 400
+  python3 scripts/run_pilot.py --pool-dir pools/pilot --call-limit 350
 """
 from __future__ import annotations
 
@@ -21,6 +21,7 @@ sys.path.insert(0, str(ROOT))
 from skillshift import pilot  # noqa: E402
 from skillshift.config import DEFAULT_CONFIG, load_config  # noqa: E402
 from skillshift.update import load_tasks  # noqa: E402
+from skillshift.schema import load_jsonl  # noqa: E402
 from skillshift.usage import Ledger  # noqa: E402
 
 
@@ -35,7 +36,8 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--out", type=Path, default=ROOT / "results" / "pilot")
     parser.add_argument("--cost-csv", type=Path, default=ROOT / "results" / "cost.csv")
     parser.add_argument("--call-limit", type=int, default=None,
-                        help="team-approved API call allowance; no run starts once cost.csv reaches it")
+                        help="team-approved total API call allowance (collection and updates, from cost.csv); "
+                             "a run starts only if its estimated calls fit")
     parser.add_argument("--retry-partial", action="store_true", help="move partial runs aside and rerun them")
     parser.add_argument("--check", action="store_true", help="verify pools and report run states only; no model calls")
     args = parser.parse_args(argv)
@@ -73,10 +75,19 @@ def main(argv: list[str] | None = None) -> int:
 
     configure_models(cfg)
     val_ids = [str(t["id"]) for t in load_tasks(cfg) if t["split"] == "val" and t.get("eligible_for_execution") is not False]
+    from skillshift.update import starting_skill
+
+    parent, _ = starting_skill(cfg)
     for combo in pilot.GRID:
+        state, _ = pilot.run_state(args.out, pools[combo[0]], combo[1], seed)
+        if state == "completed":
+            continue
         used = sum(int(r["api_calls"] or 0) for r in ledger.rows())
-        if used >= args.call_limit:
-            print(f"call limit reached ({used} >= {args.call_limit}); stopping before {combo}")
+        uncached = len(val_ids) - pilot.cached_val_count(cfg, args.out, parent, val_ids)
+        n_feedback = pilot.max_feedback_records(load_jsonl(pools[combo[0]]), cfg["feedback"]["token_budget"])
+        estimate = pilot.estimate_run_calls(cfg, len(val_ids), n_feedback, uncached)
+        if used + estimate > args.call_limit:
+            print(f"call limit: {used} used + about {estimate} for {combo} would pass {args.call_limit}; stopping")
             break
         pilot.run_pilot(cfg, pools=pools, attempts_root=args.attempts_root, out_root=args.out, ledger=ledger,
                         val_ids=val_ids, retry_partial=args.retry_partial, only=[combo])

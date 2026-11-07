@@ -35,6 +35,44 @@ def pilot_config(cfg: dict) -> dict:
     return out
 
 
+def cached_val_count(cfg: dict, out_root: Path, skill: str, val_ids: list[str]) -> int:
+    """How many of val_ids already have a cached result for this skill (no model call needed)."""
+    from skillshift.update import _eval_settings_hash, sha256_text
+
+    path = Path(out_root) / "eval_cache" / _eval_settings_hash(cfg) / "val" / sha256_text(skill)[:16] / "results.jsonl"
+    if not path.is_file():
+        return 0
+    done = {str(r["id"]) for r in load_jsonl(path)}
+    return len(done & set(val_ids))
+
+
+def max_feedback_records(pool: list[dict], token_budget: int) -> int:
+    """Most records the sampler could fit in the budget (smallest first), an upper bound."""
+    used = count = 0
+    for size in sorted(int(r["token_count"]) for r in pool):
+        if used + size > token_budget:
+            break
+        used += size
+        count += 1
+    return count
+
+
+def estimate_run_calls(cfg: dict, n_val: int, n_feedback: int, parent_uncached: int) -> int:
+    """Upper estimate of successful calls for one update run, used to stay within the allowance.
+
+    Counts child validation (n_val tasks x max_turns) and any parent validation tasks
+    not yet cached. Optimizer calls follow SkillOpt's stages: reflect splits failures
+    and successes into minibatches (one call each, so at most one extra for the split),
+    each group's patches are merged eight at a time, then one final merge and one
+    rank-and-select call.
+    """
+    turns = max(int(cfg["executor"]["max_turns"]), 1)
+    size = max(int(cfg["feedback"]["minibatch_size"]), 1)
+    reflect = -(-n_feedback // size) + 1
+    merges = 2 * -(-reflect // 7)
+    return (n_val + parent_uncached) * turns + reflect + merges + 2
+
+
 def run_id_for(pool: str, selector: str, seed: int) -> str:
     """Matches the run ID skillshift.update.run_update derives from the pool file name."""
     return f"{pool}__{selector}__seed{seed}"

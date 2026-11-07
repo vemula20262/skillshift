@@ -208,6 +208,35 @@ class PilotTests(unittest.TestCase):
         self.assertEqual(by_selector["unfiltered"]["parent_val"], "10/30")
 
 
+class CallEstimateTests(unittest.TestCase):
+    def setUp(self):
+        self.cfg = load_config()
+
+    def test_feedback_bound_uses_smallest_records_that_fit(self):
+        pool = [{"token_count": n} for n in (500, 100, 300, 200)]
+        self.assertEqual(pilot.max_feedback_records(pool, 600), 3)  # 100 + 200 + 300
+        self.assertEqual(pilot.max_feedback_records(pool, 50), 0)
+
+    def test_estimate_counts_validation_and_optimizer_stages(self):
+        turns = self.cfg["executor"]["max_turns"]
+        cached = pilot.estimate_run_calls(self.cfg, 30, 16, 0)
+        uncached = pilot.estimate_run_calls(self.cfg, 30, 16, 30)
+        self.assertEqual(uncached - cached, 30 * turns)
+        self.assertGreaterEqual(cached, 30 * turns + 3 + 2 + 2)  # reflect, merges, final merge and rank
+        self.assertGreater(pilot.estimate_run_calls(self.cfg, 30, 60, 0), cached)
+
+    def test_cached_parent_validation_is_counted(self):
+        from skillshift.update import _eval_settings_hash, sha256_text
+
+        with tempfile.TemporaryDirectory() as tmp:
+            out = Path(tmp)
+            self.assertEqual(pilot.cached_val_count(self.cfg, out, "skill", ["a", "b"]), 0)
+            cache = out / "eval_cache" / _eval_settings_hash(self.cfg) / "val" / sha256_text("skill")[:16]
+            cache.mkdir(parents=True)
+            (cache / "results.jsonl").write_text(json.dumps({"id": "a"}) + "\n" + json.dumps({"id": "z"}) + "\n")
+            self.assertEqual(pilot.cached_val_count(self.cfg, out, "skill", ["a", "b"]), 1)
+
+
 class LedgerTests(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()

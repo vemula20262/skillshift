@@ -8,15 +8,16 @@ All outputs are gitignored (`attempts/`, `results/`, `pools/`) and must be share
 
 ```sh
 python3 scripts/collect_dev_attempts.py --check
-python3 scripts/collect_dev_attempts.py --call-limit <approved calls>
+python3 scripts/collect_dev_attempts.py --call-limit 75
 ```
 
-`--check` reports prerequisites (extracted workbooks, API key, skillopt) and progress without calling the model. A live run needs `--call-limit`, the team-approved allowance; no chunk starts once `results/cost.csv` reaches it.
+`--check` reports prerequisites (extracted workbooks, the API key named in `config/config.yaml`, skillopt) and progress without calling the model. A live run needs `--call-limit`. The team-approved allowance is 75 calls for this collection and 350 calls in total. The collection limit counts only collection rows in `results/cost.csv`, and each chunk is sized to the calls left, so successful calls never pass it.
 
 Task IDs come from `datasets/120/task_manifest.json`. The starting skill is the one in `config/config.yaml`. Tasks run in chunks of `executor.workers` through `skillshift.attempts.collect_attempts` into `attempts/raw/dev_original/`:
 
 - `results.jsonl` holds evaluated attempts only. Re-running skips them, so no completed model call is repeated.
-- Infrastructure failures (model call failed after retries, harness timeout or crash, setup error) go to `infra_failures.jsonl`, with trajectories under `infra/<task>/<n>/`. They are retried up to `--max-infra-attempts`.
+- If a model call fails after SkillOpt's retries (rate limit, overload), `collect_attempts` leaves that task out of `results.jsonl` and raises, so collection stops instead of recording a fake failure. The chunk is logged in `cost.csv` as `failed`; re-running retries the task.
+- Other infrastructure failures (harness timeout or crash, setup error) go to `infra_failures.jsonl`, with trajectories under `infra/<task>/<n>/`. They are retried up to `--max-infra-attempts`.
 - Trajectories left by an interrupted chunk are moved to `interrupted/<task>/<time>/` before the task is rerun.
 
 Collection is complete only when the evaluated task IDs equal the manifest's 60 development IDs, each once.
@@ -36,12 +37,14 @@ Pools are built from this exact file (see `docs/pool_contract.md`). The pool bui
 
 ```sh
 python3 scripts/run_pilot.py --pool-dir pools/pilot --check
-python3 scripts/run_pilot.py --pool-dir pools/pilot --call-limit <approved calls>
+python3 scripts/run_pilot.py --pool-dir pools/pilot --call-limit 350
 ```
 
 The pool directory needs `C0.jsonl` and `C1_50.jsonl`, plus `manifest.json` and `pool_stats.csv` when they exist. Before any model call, each pool is checked against `attempts/records.jsonl`: every occurrence must match its source record, every record must appear once as an original, the measured repeat fraction must be 0 for C0 and 1/2 for C1_50, and the manifest's attempts SHA-256 and the stats file must agree.
 
 Runs go through `skillshift.update.run_update` with `evaluation.test_policy` set to `none` in memory. Pool and selector are the only settings that change: config, seed, validation task IDs (the full validation split), models, starting skill, feedback budget and gate margin are the same in all six runs. Each run log must show `test_evaluated: false`.
+
+Here `--call-limit` is the total allowance and counts every row in `cost.csv`, including collection. A run starts only if the calls used so far plus its estimate fit. The estimate covers child validation, parent validation tasks not yet cached (the cache is shared across runs, so the parent is scored once), and SkillOpt's reflect, merge and rank calls for the most records the feedback budget can hold.
 
 Output goes to `results/pilot/runs/<pool>__<selector>__seed<seed>/`. On restart, completed runs are skipped. A run directory without `run.json` is reported as partial and left in place. `--retry-partial` moves it to `results/pilot/partial/` and reruns it.
 

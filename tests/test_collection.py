@@ -139,6 +139,28 @@ class CollectionTests(unittest.TestCase):
         self.assertTrue(coverage_problems(self.wanted, collector.evaluated_ids()))
         self.assertEqual(sum(int(r["infra_failures"]) for r in self.ledger.rows()), 3)
 
+    def test_failed_model_calls_stop_collection_and_are_retried(self):
+        """collect_attempts raises when a model call failed and leaves that task out of
+        results.jsonl; the chunk is logged as failed and the task runs again on restart."""
+        down = self.wanted[1]
+
+        def failing(cfg, tasks, task_ids, skill, attempts_root, batch_name):
+            ScriptedCollect()(cfg, tasks, [t for t in task_ids if t != down], skill, attempts_root, batch_name)
+            if down in task_ids:
+                raise RuntimeError("1 of 2 attempts got no model response (llm-call-failed: 429)")
+            return []
+
+        with self.assertRaises(RuntimeError):
+            self.collector(failing).run(self.wanted, chunk_size=2, log=QUIET)
+        rows = self.ledger.rows()
+        self.assertEqual([r["status"] for r in rows], ["failed"])
+        self.assertIn("no model response", rows[0]["note"])
+        retry = ScriptedCollect()
+        status = self.collector(retry).run(self.wanted, chunk_size=10, log=QUIET)
+        self.assertEqual(status["pending"], [])
+        self.assertIn(down, retry.model_calls)
+        self.assertNotIn(self.wanted[0], retry.model_calls)
+
     def test_infra_classification(self):
         self.assertTrue(is_infra_failure({"hard": 0, "fail_reason": "llm-call-failed: APIError"}))
         self.assertTrue(is_infra_failure({"hard": 0, "fail_reason": "task-timeout-120s"}))
