@@ -23,7 +23,7 @@ from pathlib import Path
 from skillshift import config as _config
 from skillshift.gate import decide, no_edit_decision, per_task_hard
 from skillshift.sampling import sample_to_budget
-from skillshift.schema import load_jsonl, validate_records
+from skillshift.schema import load_jsonl, model_call_failures, validate_records
 from skillshift.selection import load_selector, normalise_output
 
 TRAJECTORY_FILES = (
@@ -129,9 +129,17 @@ def evaluate_skill(cfg: dict, skill: str, items: list[dict], cache_root: Path, s
         task_timeout=ex["exec_timeout"],
     )
     # The batch runner resumes from results.jsonl but leaves writing it to the caller.
+    # Failed model calls are left out so a later run retries them instead of reusing them.
+    failed = model_call_failures(results)
     with open(out_dir / "results.jsonl", "w", encoding="utf-8") as f:
         for result in results:
-            f.write(json.dumps(result, ensure_ascii=False) + "\n")
+            if result not in failed:
+                f.write(json.dumps(result, ensure_ascii=False) + "\n")
+    if failed:
+        raise RuntimeError(
+            f"{len(failed)} of {len(results)} {split} tasks got no model response "
+            f"({failed[0]['fail_reason'][:200]}); stopping so the score is not counted"
+        )
     wanted = {i["id"] for i in items}
     return [r for r in results if str(r["id"]) in wanted]
 

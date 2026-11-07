@@ -5,7 +5,7 @@ pool with scripts/build_pools.py, and runs one update with the pass-through
 selector against the validation split. The test split is not evaluated.
 
 Example:
-  export GEMINI_API_KEY=...
+  export NVIDIA_API_KEY=...
   python3 scripts/smoke_test.py
 """
 from __future__ import annotations

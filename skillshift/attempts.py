@@ -10,7 +10,7 @@ from importlib import metadata
 from pathlib import Path
 
 from skillshift import config as _config
-from skillshift.schema import record_from_rollout, validate_records
+from skillshift.schema import model_call_failures, record_from_rollout, validate_records
 
 
 def env_version(cfg: dict) -> str:
@@ -52,9 +52,16 @@ def collect_attempts(
         max_api_workers=ex["workers"],
         task_timeout=ex["exec_timeout"],
     )
+    failed = model_call_failures(results)
     with open(batch_dir / "results.jsonl", "w", encoding="utf-8") as f:
         for result in results:
-            f.write(json.dumps(result, ensure_ascii=False) + "\n")
+            if result not in failed:
+                f.write(json.dumps(result, ensure_ascii=False) + "\n")
+    if failed:
+        raise RuntimeError(
+            f"{len(failed)} of {len(results)} attempts got no model response "
+            f"({failed[0]['fail_reason'][:200]}); these would enter the pool as fake failures"
+        )
     return records_from_results(cfg, tasks, results, attempts_root, batch_name, feedback_source)
 
 

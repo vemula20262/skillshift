@@ -62,6 +62,16 @@ class CategorizeTests(unittest.TestCase):
                 self.assertIn(expected[0], schema.ERROR_CATEGORIES)
 
 
+class ModelCallFailureTests(unittest.TestCase):
+    def test_only_llm_call_failures_are_picked(self):
+        results = [
+            {"id": "a", "fail_reason": "llm-call-failed: RuntimeError: Error code: 429"},
+            {"id": "b", "fail_reason": "eval-mismatch: values differ"},
+            {"id": "c", "fail_reason": ""},
+        ]
+        self.assertEqual([r["id"] for r in schema.model_call_failures(results)], ["a"])
+
+
 class ValidateTests(unittest.TestCase):
     def test_valid_record(self):
         self.assertEqual(schema.validate_record(make_record()), [])

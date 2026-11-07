@@ -100,6 +100,12 @@ def categorize_failure(fail_reason: str) -> tuple[str, str]:
     return "other", ""
 
 
+def model_call_failures(results: list[dict]) -> list[dict]:
+    """Rollouts where the model call itself failed (rate limit, overload), so the
+    task was never attempted. These must not be scored or used as feedback."""
+    return [r for r in results if categorize_failure(r.get("fail_reason", ""))[0] == "llm_call_failed"]
+
+
 def _exception_name(text: str) -> str:
     match = re.search(r"\b([A-Z][A-Za-z]*(?:Error|Exception|Exit|Interrupt))\b", text)
     return match.group(1) if match else ""
