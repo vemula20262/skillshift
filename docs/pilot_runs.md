@@ -46,6 +46,8 @@ Runs go through `skillshift.update.run_update` with `evaluation.test_policy` set
 
 Here `--call-limit` is the total allowance and counts every row in `cost.csv`, including collection. A run starts only if the calls used so far plus its estimate fit. The estimate covers child validation, parent validation tasks not yet cached (the cache is shared across runs, so the parent is scored once), and SkillOpt's reflect, merge and rank calls for the most records the feedback budget can hold.
 
+SkillOpt's reflect, merge and rank stages skip an optimizer call that fails after its retries. The update step counts those failures and fails the run instead, so no run completes on partial feedback. The script then stops: a failed run usually means the endpoint is down. Each model request times out after 180 seconds (`model.request_timeout_s` overrides it), so a stalled endpoint cannot hang a run.
+
 Output goes to `results/pilot/runs/<pool>__<selector>__seed<seed>/`. On restart, completed runs are skipped. A run directory without `run.json` is reported as partial and left in place. `--retry-partial` moves it to `results/pilot/partial/` and reruns it.
 
 ## 4. Results and cost

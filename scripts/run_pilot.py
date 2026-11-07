@@ -89,8 +89,13 @@ def main(argv: list[str] | None = None) -> int:
         if used + estimate > args.call_limit:
             print(f"call limit: {used} used + about {estimate} for {combo} would pass {args.call_limit}; stopping")
             break
-        pilot.run_pilot(cfg, pools=pools, attempts_root=args.attempts_root, out_root=args.out, ledger=ledger,
-                        val_ids=val_ids, retry_partial=args.retry_partial, only=[combo])
+        outcome = pilot.run_pilot(cfg, pools=pools, attempts_root=args.attempts_root, out_root=args.out,
+                                  ledger=ledger, val_ids=val_ids, retry_partial=args.retry_partial, only=[combo])
+        failed = {k: v for k, v in outcome.items() if v["state"] == "failed"}
+        if failed:
+            # A failed run usually means the endpoint is down; later runs would fail the same way.
+            print(f"stopping after failed run: {json.dumps(failed)}")
+            break
 
     rows, missing = pilot.results_table(args.out, seed)
     print(json.dumps({"completed": len(rows), "missing": missing,

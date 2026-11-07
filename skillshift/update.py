@@ -18,6 +18,7 @@ import hashlib
 import json
 import os
 import shutil
+from contextlib import contextmanager
 from pathlib import Path
 
 from skillshift import config as _config
@@ -59,6 +60,28 @@ def configure_models(cfg: dict) -> None:
     sk_model.set_optimizer_deployment(m["optimizer_model"])
     sk_model.set_target_deployment(m["target_model"])
     sk_model.set_reasoning_effort(m.get("reasoning_effort"))
+    _set_request_timeout(float(m.get("request_timeout_s", REQUEST_TIMEOUT_S)))
+
+
+# Seconds a single model request may take before it counts as failed. Without it the
+# OpenAI client waits up to ten minutes per attempt, so a stalled endpoint can hang a run
+# for an hour. Only the failure path changes; responses that arrive are used as before.
+REQUEST_TIMEOUT_S = 180.0
+
+
+def _set_request_timeout(seconds: float) -> None:
+    """Give SkillOpt's optimizer and target clients a request timeout and one client retry.
+
+    SkillOpt retries each call three more times itself, so the worst case per call is
+    bounded at about 3 x 2 x seconds. The clients are created here because SkillOpt
+    builds them lazily without a timeout and resets them whenever a deployment changes.
+    """
+    from skillopt.model import azure_openai as az
+
+    with az._optimizer_lock:
+        az._optimizer_client = az._make_client("optimizer").with_options(timeout=seconds, max_retries=1)
+    with az._target_lock:
+        az._target_client = az._make_client("target").with_options(timeout=seconds, max_retries=1)
 
 
 def starting_skill(cfg: dict) -> tuple[str, str]:
@@ -208,8 +231,51 @@ def _split_patches(raw_patches: list) -> tuple[list[dict], list[dict]]:
     return failure, success
 
 
+@contextmanager
+def _failed_model_calls():
+    """Collect model calls that fail after all of SkillOpt's retries.
+
+    SkillOpt's reflect, merge and rank stages catch a failed optimizer call, print the
+    traceback and continue without it, so an update would silently use less feedback
+    than the selector and sampler chose. Every one of those calls goes through
+    azure_openai._chat_impl, which raises once its retries are used up; counting those
+    raises shows whether anything was dropped.
+    """
+    from skillopt.model import azure_openai as az
+
+    failures: list[str] = []
+    original = az._chat_impl
+
+    def counted(*args, **kwargs):
+        try:
+            return original(*args, **kwargs)
+        except Exception as exc:
+            failures.append(f"{type(exc).__name__}: {exc}"[:200])
+            raise
+
+    az._chat_impl = counted
+    try:
+        yield failures
+    finally:
+        az._chat_impl = original
+
+
 def propose_edit(cfg: dict, skill: str, results: list[dict], prediction_dir: Path, work_dir: Path, seed: int) -> dict:
-    """Run SkillOpt's reflect, merge and select stages and apply the edits once."""
+    """Run SkillOpt's reflect, merge and select stages and apply the edits once.
+
+    Raises if any optimizer call failed, so a run never completes on partial feedback.
+    """
+    with _failed_model_calls() as failures:
+        proposal = _propose_edit(cfg, skill, results, prediction_dir, work_dir, seed)
+    if failures:
+        raise RuntimeError(
+            f"{len(failures)} optimizer calls got no response ({failures[0]}); "
+            "stopping so the edit is not built from partial feedback"
+        )
+    return proposal
+
+
+def _propose_edit(cfg: dict, skill: str, results: list[dict], prediction_dir: Path, work_dir: Path, seed: int) -> dict:
     from skillopt.gradient.aggregate import merge_patches
     from skillopt.gradient.reflect import run_minibatch_reflect
     from skillopt.optimizer.clip import rank_and_select
