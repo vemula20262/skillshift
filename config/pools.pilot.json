@@ -1,0 +1,27 @@
+{
+  "status": "approved",
+  "dominant_task_ids": [
+    "524-31",
+    "54274",
+    "49667",
+    "49945"
+  ],
+  "selection_policy": {
+    "seed": "skillshift-c1-pilot-v1",
+    "rule": "SHA-256(seed + colon + task_id) ascending within outcome; take one success and three failures",
+    "scope": "Pilot design choice; not a claim of team-wide agreement",
+    "copies_per_selected_task": 15
+  },
+  "pools": [
+    {
+      "name": "C0",
+      "mechanism": "exact_copy",
+      "repeat_fraction": 0
+    },
+    {
+      "name": "C1_50",
+      "mechanism": "exact_copy",
+      "repeat_fraction": 0.5
+    }
+  ]
+}
