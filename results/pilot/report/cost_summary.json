@@ -1,0 +1,42 @@
+{
+  "overall": {
+    "api_calls": 303,
+    "input_tokens": 673391,
+    "output_tokens": 157751,
+    "total_tokens": 831142,
+    "infra_failures": 3,
+    "events": 40,
+    "cost_usd": null
+  },
+  "by_phase": {
+    "collection": {
+      "api_calls": 63,
+      "input_tokens": 69161,
+      "output_tokens": 30806,
+      "total_tokens": 99967,
+      "infra_failures": 3,
+      "events": 32,
+      "cost_usd": null
+    },
+    "update": {
+      "api_calls": 240,
+      "input_tokens": 604230,
+      "output_tokens": 126945,
+      "total_tokens": 731175,
+      "infra_failures": 0,
+      "events": 8,
+      "cost_usd": null
+    }
+  },
+  "pricing": {
+    "input_per_mtok": null,
+    "output_per_mtok": null
+  },
+  "cap_usd": null,
+  "notes": [
+    "Provider usage counts only calls that returned a response; requests that failed after all retries are not reported by the tracker and appear as infra_failures on collection rows.",
+    "feedback_tokens_estimate is the pipeline's feedback size estimate, not provider usage.",
+    "Pricing not set: cost in USD is not reported.",
+    "Budget cap not set."
+  ]
+}

@@ -55,8 +55,13 @@ class FakeClient:
         self.target_model = target_model
         self.optimizer_ok = optimizer_ok
         self.target_down = False
+        self.optimizer_down = False
         self.calls = {"target": 0, "optimizer": 0}
         self.chat = types.SimpleNamespace(completions=types.SimpleNamespace(create=self._create))
+
+    def with_options(self, **_kwargs):
+        """Like the OpenAI client; the request timeout has no effect on the fake."""
+        return self
 
     def _create(self, *, model, messages, **_kwargs):
         system = messages[0]["content"] if messages else ""
@@ -67,6 +72,8 @@ class FakeClient:
             source = "INPUT_PATH.replace('_init.xlsx', '_golden.xlsx')" if FIXTURE_RULE in system else "INPUT_PATH"
             text = f"```python\nimport shutil\nshutil.copyfile({source}, OUTPUT_PATH)\n```"
         else:
+            if self.optimizer_down:
+                raise RuntimeError("Error code: 504")
             self.calls["optimizer"] += 1
             if self.optimizer_ok:
                 edits = [{"op": "append", "target": "", "content": f"## {FIXTURE_RULE}\nCheck the answer cells."}]
@@ -220,6 +227,21 @@ class UpdatePipelineTests(unittest.TestCase):
         results = update.evaluate_skill(self.cfg, skill, items, cache, "val")
         self.assertEqual(len(results), 3)
         self.assertEqual(schema.model_call_failures(results), [])
+
+    def test_failed_optimizer_calls_stop_the_run(self):
+        """SkillOpt's stages skip a failed optimizer call; the run must fail instead of
+        finishing on partial feedback, and leave no run.json behind."""
+        from unittest import mock
+
+        from skillopt.model import azure_openai
+
+        original = azure_openai._chat_impl
+        self.client.optimizer_down = True
+        with mock.patch("skillopt.model.azure_openai.time.sleep"):
+            with self.assertRaisesRegex(RuntimeError, "optimizer calls got no response"):
+                self._run()
+        self.assertIs(azure_openai._chat_impl, original)
+        self.assertEqual(list((self.work / "results").rglob("run.json")), [])
 
     def test_budget_limits_feedback(self):
         sizes = sorted(json.loads(line)["token_count"] for line in self.pool_path.read_text().splitlines())

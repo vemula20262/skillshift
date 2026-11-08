@@ -1,0 +1,7 @@
+run_id,pool,selector,edit_produced,parent_val,child_val,gate_decision,feedback_tokens,test_evaluated,api_calls,api_total_tokens
+C0__unfiltered__seed0,C0,unfiltered,yes,14/30,17/30,accepted,23830,false,64,156938
+C0__exact_dedup__seed0,C0,exact_dedup,yes,14/30,15/30,accepted,23390,false,35,117262
+C0__source_balanced__seed0,C0,source_balanced,yes,14/30,20/30,accepted,23830,false,36,114796
+C1_50__unfiltered__seed0,C1_50,unfiltered,yes,14/30,21/30,accepted,23370,false,35,105872
+C1_50__exact_dedup__seed0,C1_50,exact_dedup,yes,14/30,19/30,accepted,23390,false,35,123023
+C1_50__source_balanced__seed0,C1_50,source_balanced,yes,14/30,18/30,accepted,22938,false,35,113284
