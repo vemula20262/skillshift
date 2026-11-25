@@ -415,6 +415,8 @@ def run_update(
         "gate": decision.to_dict(),
         "test_evaluated": sealed is not None,
         "val_task_ids": sorted(parent_val),
+        # Per-task validation results (1 = solved), for paired comparisons across runs.
+        "val_per_task": {"parent": parent_val, "child": child_val if edited else parent_val},
         "api_usage": sk_model.get_token_summary(),
     }
     _write_json(run_dir / "run.json", log)
