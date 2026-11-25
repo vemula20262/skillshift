@@ -1,0 +1,5 @@
+{
+  "pools": {"C0": "0", "C1_50": "1/2", "C3": "1/2"},
+  "selectors": ["unfiltered", "exact_dedup", "semantic_dedup", "source_balanced", "source_behavior"],
+  "seeds": [0, 1, 2]
+}
