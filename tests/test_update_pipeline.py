@@ -176,6 +176,8 @@ class UpdatePipelineTests(unittest.TestCase):
         self.assertEqual(log["gate"]["n_tasks"], 3)
         self.assertGreater(log["gate"]["child_solved"], log["gate"]["parent_solved"])
         self.assertTrue(log["gate"]["accepted"])
+        self.assertEqual(sum(log["val_per_task"]["child"].values()), log["gate"]["child_solved"])
+        self.assertEqual(set(log["val_per_task"]["parent"]), set(self.val_ids))
 
         # Test scores are written only to the sealed folder, never to the run log.
         self.assertTrue(log["test_evaluated"])
@@ -195,6 +197,26 @@ class UpdatePipelineTests(unittest.TestCase):
         calls_before = self.client.calls["target"]
         self._run(seed=1)
         self.assertEqual(self.client.calls["target"], calls_before)
+
+    def test_grid_runner_drives_the_real_pipeline(self):
+        from skillshift import grid
+        from skillshift.usage import Ledger
+
+        out = self.work / "grid"
+        ledger = Ledger(self.work / "cost.csv")
+        outcome = grid.run_one(self.cfg, seed=0, pool=self.pool_path.stem, selector="passthrough",
+                               pool_path=self.pool_path, attempts_root=self.attempts_root, out_root=out,
+                               ledger=ledger, val_ids=self.val_ids, log=lambda *_: None)
+        self.assertEqual(outcome, {"state": "completed", "problems": []})
+        self.assertEqual(len(ledger.rows()), 1)
+        spec = {"pools": {self.pool_path.stem: None}, "selectors": ["passthrough"], "seeds": [0]}
+        rows, missing = grid.results(spec, {self.pool_path.stem: self.pool_path}, out)
+        self.assertEqual(missing, [])
+        tasks = update.load_tasks(self.cfg)
+        self.assertEqual(len(grid.per_task_rows(out, rows, tasks, "val")), len(self.val_ids))
+        # Accepted, so the sealed test scores exist for the export.
+        self.assertEqual(len(grid.per_task_rows(out, rows, tasks, "test")),
+                         len([t for t in tasks if t["split"] == "test"]))
 
     def test_failed_model_calls_are_not_scored(self):
         from unittest import mock
