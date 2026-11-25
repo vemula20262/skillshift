@@ -1,7 +1,7 @@
 """Full experiment grid: pools x selectors x seeds through the update pipeline.
 
 Runs go one seed at a time. Test evaluation follows the config's test_policy, and
-sealed test scores are exported only once every run has finished.
+sealed test scores are exported only once every run has finished and checks out.
 """
 from __future__ import annotations
 
@@ -12,6 +12,7 @@ import shutil
 from fractions import Fraction
 from pathlib import Path
 
+from skillshift import config as _config
 from skillshift import pilot
 from skillshift.schema import load_jsonl, validate_records
 from skillshift.usage import Ledger, reset_usage, usage_snapshot
@@ -92,8 +93,12 @@ def run_state(cfg: dict, out_root: Path, pool_path: Path, selector: str, seed: i
         problems.append(f"{run_dir.name}: selector {log.get('selector')} != {selector}")
     if log.get("seed") != seed:
         problems.append(f"{run_dir.name}: seed {log.get('seed')} != {seed}")
-    if Path(pool_path).is_file() and log.get("pool_sha256") != pilot.sha256_file(pool_path):
+    if not Path(pool_path).is_file():
+        problems.append(f"{run_dir.name}: pool file {pool_path} is missing, so the run cannot be checked")
+    elif log.get("pool_sha256") != pilot.sha256_file(pool_path):
         problems.append(f"{run_dir.name}: run used a different version of the pool file")
+    if log.get("config_hash") != _config.config_hash(cfg):
+        problems.append(f"{run_dir.name}: run used a different config")
     policy = cfg["evaluation"]["test_policy"]
     gate = log.get("gate", {})
     should_test = log.get("edited") and (policy == "all" or (policy == "accepted" and gate.get("accepted")))
@@ -202,6 +207,17 @@ def consistency_problems(rows: list[dict], out_root: Path) -> list[str]:
     if len({log["gate"]["margin_tasks"] for log in logs}) > 1:
         problems.append("gate margin differs across grid runs")
     return problems
+
+
+def validity_problems(cfg: dict, spec: dict, pools: dict[str, Path], out_root: Path) -> list[str]:
+    """Problems with completed runs and across them. Any problem blocks running and export."""
+    problems = []
+    for seed, pool, selector in combinations(spec):
+        state, run_problems = run_state(cfg, out_root, pools[pool], selector, seed)
+        if state == "completed":
+            problems += run_problems
+    rows, _ = results(spec, pools, out_root)
+    return problems + consistency_problems(rows, out_root)
 
 
 def write_csv(path: Path, rows: list[dict], columns) -> None:

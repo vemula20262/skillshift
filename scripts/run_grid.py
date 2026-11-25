@@ -39,7 +39,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--retry-partial", action="store_true", help="move partial runs aside and rerun them")
     parser.add_argument("--check", action="store_true", help="verify pools, selectors and run states only; no model calls")
     parser.add_argument("--export", action="store_true",
-                        help="write report tables; sealed test scores are included only when the grid is complete")
+                        help="write report tables; sealed test scores are included only when every run is complete and valid")
     args = parser.parse_args(argv)
 
     cfg = load_config(args.config)
@@ -58,16 +58,20 @@ def main(argv: list[str] | None = None) -> int:
     for seed, pool, selector in grid.combinations(spec):
         state, run_problems = grid.run_state(cfg, args.out, pools[pool], selector, seed)
         states[f"{pool}__{selector}__seed{seed}"] = {"state": state, "problems": run_problems}
+    run_problems = grid.validity_problems(cfg, spec, pools, args.out)
     ledger = Ledger(args.cost_csv)
     used = sum(int(r["api_calls"] or 0) for r in ledger.rows())
     done = sum(s["state"] == "completed" for s in states.values())
-    print(json.dumps({"problems": problems, "completed": done, "total": len(states),
-                      "api_calls_so_far": used, "runs": states}, indent=2))
+    print(json.dumps({"problems": problems, "run_problems": run_problems, "completed": done,
+                      "total": len(states), "api_calls_so_far": used, "runs": states}, indent=2))
 
     if args.export:
+        if run_problems:
+            print("completed runs are invalid or inconsistent; nothing exported")
+            return 1
         return export(spec, pools, args.out, load_tasks(cfg))
-    if args.check or problems:
-        return 0 if args.check and not problems else 1
+    if args.check or problems or run_problems:
+        return 0 if args.check and not problems and not run_problems else 1
     if args.call_limit is None:
         print("refusing to make model calls without --call-limit")
         return 1

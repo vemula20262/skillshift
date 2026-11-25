@@ -14,7 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from skillshift import grid  # noqa: E402
-from skillshift.config import load_config  # noqa: E402
+from skillshift.config import config_hash, load_config  # noqa: E402
 from skillshift.update import load_tasks  # noqa: E402
 from skillshift.usage import Ledger  # noqa: E402
 from test_pilot import synthetic_records  # noqa: E402
@@ -55,7 +55,7 @@ class FakeRunUpdate:
                 {"run_id": run_id, "parent": {"t1": 0, "t2": 1}, "child": {"t1": 1, "t2": 1}}))
         log = {
             "run_id": run_id, "pool_sha256": hashlib.sha256(pool_path.read_bytes()).hexdigest(),
-            "selector": selector_name, "seed": seed, "config_hash": "c", "models": {"target": "m"},
+            "selector": selector_name, "seed": seed, "config_hash": config_hash(cfg), "models": {"target": "m"},
             "parent_skill_sha256": "p", "token_budget": cfg["feedback"]["token_budget"], "feedback_tokens": 4000,
             "edited": True, "val_task_ids": sorted(val_ids), "val_per_task": {"parent": parent, "child": child},
             "gate": {"accepted": accepted, "margin_tasks": cfg["gate"]["margin_tasks"], "n_tasks": len(val_ids),
@@ -167,19 +167,58 @@ class GridTests(unittest.TestCase):
         without = grid.estimate_calls(none_cfg, self.pools["C0"], 30, 30, 0, 30)
         self.assertEqual(with_test - without, 60)
 
+    def cli(self, *flags):
+        argv = ["--pool-dir", str(self.pool_dir), "--spec", str(self.spec_path), "--records", str(self.records_path),
+                "--out", str(self.out), "--cost-csv", str(self.root / "cost.csv"), *flags]
+        return run_grid.main(argv)
+
+    def edit_run(self, run_id, **changes):
+        path = self.out / "runs" / run_id / "run.json"
+        log = json.loads(path.read_text())
+        log.update(changes)
+        path.write_text(json.dumps(log))
+
+    def test_mismatched_pool_hash_blocks_check_run_and_export(self):
+        self.run_all(FakeRunUpdate())
+        self.assertEqual(self.cli("--check"), 0)
+        self.edit_run("C0__unfiltered__seed0", pool_sha256="0" * 64)
+        self.assertEqual(self.cli("--check"), 1)
+        self.assertEqual(self.cli("--call-limit", "1000"), 1)
+        self.assertEqual(self.cli("--export"), 1)
+        self.assertFalse((self.out / "report").exists())
+
+    def test_inconsistent_settings_block_export(self):
+        self.run_all(FakeRunUpdate())
+        self.edit_run("C1_50__source_balanced__seed1", parent_skill_sha256="other")
+        problems = grid.validity_problems(self.cfg, SPEC, self.pools, self.out)
+        self.assertIn("parent_skill_sha256 differs across grid runs", problems)
+        self.assertEqual(self.cli("--export"), 1)
+        self.assertFalse((self.out / "report" / "test_per_task.csv").exists())
+
+    def test_runs_from_another_config_are_flagged(self):
+        self.run_all(FakeRunUpdate())
+        changed = copy.deepcopy(self.cfg)
+        changed["feedback"]["token_budget"] += 1
+        _, problems = grid.run_state(changed, self.out, self.pools["C0"], "unfiltered", 0)
+        self.assertIn("C0__unfiltered__seed0: run used a different config", problems)
+
+    def test_missing_pool_file_blocks_export(self):
+        self.run_all(FakeRunUpdate())
+        self.pools["C0"].unlink()
+        self.assertTrue(any("is missing" in p for p in grid.validity_problems(self.cfg, SPEC, self.pools, self.out)))
+        self.assertEqual(self.cli("--export"), 1)
+
     def test_export_keeps_test_sealed_until_complete(self):
         fake = FakeRunUpdate(fail_on={"C1_50__source_balanced__seed1"})
         self.run_all(fake)
-        argv = ["--pool-dir", str(self.pool_dir), "--spec", str(self.spec_path), "--records", str(self.records_path),
-                "--out", str(self.out), "--cost-csv", str(self.root / "cost.csv"), "--export"]
-        self.assertEqual(run_grid.main(argv), 2)
+        self.assertEqual(self.cli("--export"), 2)
         report = self.out / "report"
         self.assertTrue((report / "grid_runs.csv").is_file())
         self.assertFalse((report / "test_per_task.csv").exists())
 
         shutil.rmtree(self.out / "runs" / "C1_50__source_balanced__seed1")
         self.run_all(FakeRunUpdate())
-        self.assertEqual(run_grid.main(argv), 0)
+        self.assertEqual(self.cli("--export"), 0)
         with open(report / "val_per_task.csv", newline="") as f:
             val_rows = list(csv.DictReader(f))
         self.assertEqual(len(val_rows), 8 * len(self.val_ids))
