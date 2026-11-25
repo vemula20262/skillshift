@@ -18,13 +18,7 @@ def digest(value: Any) -> str:
 
 
 def prepare(records: list[Record], embeddings: bool = False) -> list[Record]:
-    """Validate the selector-facing contract; preserve extra upstream fields.
-
-    pool_record_id identifies copied pool occurrences; record_id identifies the
-    original attempt and is preserved. occurrence_id is the selector identity.
-    If neither is supplied, a content hash plus occurrence index is assigned.
-    Full attempt-schema validation is handled separately.
-    """
+    """Check the selector input contract and give every record an occurrence_id."""
     result, seen, counts, dimensions, families, originals = [], set(), {}, set(), {}, {}
     pool_modes = set()
     for raw in records:
@@ -111,11 +105,7 @@ def cosine(a: list[float], b: list[float]) -> float:
 
 
 def semantic_groups(records: list[Record], threshold: float) -> list[list[Record]]:
-    """Deterministic greedy complete-link clusters, suited to small feedback pools.
-
-    Every pair in a group must meet the threshold. This avoids chaining A~B~C
-    when A and C differ. It is an adaptation, not a reproduction of SemDeDup.
-    """
+    """Greedy complete-link groups where every pair meets the threshold (adapted from SemDeDup)."""
     if not math.isfinite(threshold) or not -1 <= threshold <= 1:
         raise ValueError("threshold must be finite and within [-1, 1]")
     groups: list[list[Record]] = []

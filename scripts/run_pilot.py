@@ -1,8 +1,4 @@
-"""Run the six validation-only pilot updates: C0 and C1_50 x unfiltered, exact_dedup, source_balanced.
-
-Checks both pool files against the handed-off records before any model call, then
-runs each pending combination through skillshift.update.run_update with test
-evaluation turned off. Completed runs are skipped on restart.
+"""Run the six validation-only pilot updates (C0 and C1_50 x three selectors).
 
 Examples:
   python3 scripts/run_pilot.py --pool-dir pools/pilot --check
@@ -36,7 +32,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--out", type=Path, default=ROOT / "results" / "pilot")
     parser.add_argument("--cost-csv", type=Path, default=ROOT / "results" / "cost.csv")
     parser.add_argument("--call-limit", type=int, default=None,
-                        help="team-approved total API call allowance (collection and updates, from cost.csv); "
+                        help="total API call allowance (collection and updates, from cost.csv); "
                              "a run starts only if its estimated calls fit")
     parser.add_argument("--retry-partial", action="store_true", help="move partial runs aside and rerun them")
     parser.add_argument("--check", action="store_true", help="verify pools and report run states only; no model calls")
@@ -68,7 +64,7 @@ def main(argv: list[str] | None = None) -> int:
     if args.check or problems:
         return 0 if args.check and not problems else 1
     if args.call_limit is None:
-        print("refusing to make model calls without --call-limit (the team-approved allowance)")
+        print("refusing to make model calls without --call-limit (the API call allowance)")
         return 1
 
     from skillshift.update import configure_models

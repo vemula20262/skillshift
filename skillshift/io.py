@@ -1,9 +1,5 @@
 def validate_dev(records, manifest):
-    """Accept repo task_manifest.json (preferred) or wrapped/raw task splits.
-
-    Full manifests also enforce family and precautionary block isolation.
-    Only metadata is used; no reference workbooks or test outcomes are read.
-    """
+    """Accept a task manifest or task splits. Full manifests also check family isolation."""
     expected_families = None
     if isinstance(manifest, list):
         expected_families, family_splits, block_splits = {}, {}, {}

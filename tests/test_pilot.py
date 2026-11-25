@@ -1,10 +1,4 @@
-"""Offline checks for the validation-only pilot runner, results table and cost ledger.
-
-Pools are built with the team's scripts/build_pools.py from synthetic records, and
-skillshift.update.run_update is replaced by a stand-in that writes a run log in the
-same format. No model, workbook or skillopt install is needed. These outputs live
-in temporary directories and never mix with real results.
-"""
+"""Offline checks for the pilot runner, results table and cost ledger, with a stand-in run_update."""
 import csv
 import hashlib
 import importlib.util

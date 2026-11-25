@@ -1,9 +1,5 @@
 """End-to-end smoke test on the 10 pilot tasks with the configured model.
 
-Checks the model endpoint, collects one attempt per pilot task, builds a no-repeat
-pool with scripts/build_pools.py, and runs one update with the pass-through
-selector against the validation split. The test split is not evaluated.
-
 Example:
   export NVIDIA_API_KEY=...
   python3 scripts/smoke_test.py

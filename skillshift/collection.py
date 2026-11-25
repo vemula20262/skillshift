@@ -1,15 +1,7 @@
 """Resumable collection of one original attempt per development task.
 
-Wraps skillshift.attempts.collect_attempts. Tasks run in small chunks into one batch
-directory, attempts/raw/<batch>/. SkillOpt's batch runner skips tasks already in
-results.jsonl, so a restart repeats no completed model call; an interruption loses
-at most the chunk in flight, whose partial trajectories are moved aside, not
-overwritten.
-
-Infrastructure failures (the model call failed after retries, the harness timed out
-or crashed, or the task could not be set up) are not evaluated attempts. They are
-moved out of results.jsonl into infra_failures.jsonl, with their trajectories under
-infra/<task_id>/<n>/, and the task is retried on the next chunk up to a limit.
+Infrastructure failures go to infra_failures.jsonl and are retried. They are never
+recorded as attempts.
 """
 from __future__ import annotations
 
@@ -75,7 +67,6 @@ class Collector:
             from skillshift.attempts import collect_attempts as collect
         self._collect = collect
 
-    # ── State on disk ────────────────────────────────────────────────────
 
     @property
     def results_path(self) -> Path:
@@ -108,7 +99,6 @@ class Collector:
         return {"wanted": len(wanted), "evaluated": len(done & set(wanted)), "pending": pending,
                 "infra_exhausted": exhausted, "infra_failures": sum(infra.values())}
 
-    # ── Running ──────────────────────────────────────────────────────────
 
     def run(self, wanted: list[str], chunk_size: int, max_chunks: int | None = None, log=print) -> dict:
         """Collect pending tasks chunk by chunk; returns the final status."""
@@ -178,9 +168,6 @@ class Collector:
                 dest = self.batch_dir / "interrupted" / task_id / _utc_stamp()
                 dest.parent.mkdir(parents=True, exist_ok=True)
                 shutil.move(str(src), str(dest))
-
-
-# ── Selector-ready records ───────────────────────────────────────────────────
 
 
 def build_records(cfg: dict, tasks: list[dict], attempts_root: Path, batch_name: str,

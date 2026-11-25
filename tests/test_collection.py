@@ -1,8 +1,4 @@
-"""Offline checks for resumable development-attempt collection and record preparation.
-
-A scripted stand-in replaces skillshift.attempts.collect_attempts, so no model or
-workbook is needed. Record preparation additionally needs skillopt installed.
-"""
+"""Offline checks for attempt collection and record preparation, with a scripted collector."""
 import importlib.util
 import json
 import sys
@@ -28,12 +24,7 @@ def QUIET(*_):
 
 
 class ScriptedCollect:
-    """Mimics collect_attempts: resumes from results.jsonl and writes trajectories.
-
-    outcomes maps task id -> list of results to return on successive attempts
-    ("pass", "fail", "infra"). interrupt_after stops the call with KeyboardInterrupt
-    after writing that many trajectories, before results.jsonl is updated.
-    """
+    """Stand-in for collect_attempts that resumes from results.jsonl and writes trajectories."""
 
     def __init__(self, outcomes=None, interrupt_after=None):
         self.outcomes = outcomes or {}

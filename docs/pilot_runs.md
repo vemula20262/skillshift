@@ -11,7 +11,7 @@ python3 scripts/collect_dev_attempts.py --check
 python3 scripts/collect_dev_attempts.py --call-limit 75
 ```
 
-`--check` reports prerequisites (extracted workbooks, the API key named in `config/config.yaml`, skillopt) and progress without calling the model. A live run needs `--call-limit`. The team-approved allowance is 75 calls for this collection and 350 calls in total. The collection limit counts only collection rows in `results/cost.csv`, and each chunk is sized to the calls left, so successful calls never pass it.
+`--check` reports prerequisites (extracted workbooks, the API key named in `config/config.yaml`, skillopt) and progress without calling the model. A live run needs `--call-limit`. The pilot used a limit of 75 calls for this collection and 350 calls in total. The collection limit counts only collection rows in `results/cost.csv`, and each chunk is sized to the calls left, so successful calls never pass it.
 
 Task IDs come from `datasets/120/task_manifest.json`. The starting skill is the one in `config/config.yaml`. Tasks run in chunks of `executor.workers` through `skillshift.attempts.collect_attempts` into `attempts/raw/dev_original/`:
 

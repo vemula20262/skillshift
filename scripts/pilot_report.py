@@ -1,8 +1,4 @@
-"""Write the pilot results table, cost summary and budget burn chart from measured data.
-
-The table is built only from completed run.json files; the cost figures come only
-from cost.csv. Dollar amounts appear only when pricing is passed in; otherwise the
-summary reports measured usage and marks the cost as not set.
+"""Write the pilot results table, cost summary and usage chart from measured data.
 
 Example:
   python3 scripts/pilot_report.py --price-input 0.30 --price-output 2.50 --cap-usd 50

@@ -1,18 +1,7 @@
-"""Loading feedback selectors from the config and normalising what they return.
+"""Load selectors from the config and turn their output into (records, weights).
 
-A config entry is either "module:attribute" or a mapping
-{spec: "module:attribute", kwargs: {...}}. The attribute may be a factory or class
-(called with kwargs), an object with a select() method, or a plain function. The
-selector is called as select(records) or select(records, budget), depending on what
-it accepts, and may return any of:
-
-  * a Selection-like object whose .items carry .record and .weight (skillshift.selectors)
-  * a list of (record, weight) pairs
-  * a (records, weights) tuple
-  * {"records": [...], "weights": [...]}
-  * a list of records, each carrying a numeric "weight" key
-
-The pipeline always receives (records, weights) with matching lengths.
+A selector may return a Selection object, (record, weight) pairs, a (records, weights)
+tuple, a {"records", "weights"} dict, or records that carry a "weight" key.
 """
 from __future__ import annotations
 

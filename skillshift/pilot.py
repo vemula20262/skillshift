@@ -1,13 +1,7 @@
-"""Validation-only pilot: two pools x three selectors through the shared update pipeline.
+"""Validation-only pilot: C0 and C1_50 x three selectors, with test evaluation off.
 
-Every run uses the same config, seed, validation task IDs, starting skill, feedback
-budget and gate margin; only the pool and selector change. Test evaluation is turned
-off in memory (evaluation.test_policy = "none") and every run log is checked for
-test_evaluated = false.
-
-Restart behavior: a combination whose run.json exists and verifies is skipped. A run
-directory without run.json is a partial run; it is reported and left in place unless
-retry_partial is set, in which case it is moved to <out>/partial/ before the rerun.
+Completed runs are skipped on restart. Partial runs are left in place unless
+retry_partial is set.
 """
 from __future__ import annotations
 
@@ -58,14 +52,7 @@ def max_feedback_records(pool: list[dict], token_budget: int) -> int:
 
 
 def estimate_run_calls(cfg: dict, n_val: int, n_feedback: int, parent_uncached: int) -> int:
-    """Upper estimate of successful calls for one update run, used to stay within the allowance.
-
-    Counts child validation (n_val tasks x max_turns) and any parent validation tasks
-    not yet cached. Optimizer calls follow SkillOpt's stages: reflect splits failures
-    and successes into minibatches (one call each, so at most one extra for the split),
-    each group's patches are merged eight at a time, then one final merge and one
-    rank-and-select call.
-    """
+    """Upper estimate of successful calls for one update run, used to stay within the allowance."""
     turns = max(int(cfg["executor"]["max_turns"]), 1)
     size = max(int(cfg["feedback"]["minibatch_size"]), 1)
     reflect = -(-n_feedback // size) + 1
@@ -80,9 +67,6 @@ def run_id_for(pool: str, selector: str, seed: int) -> str:
 
 def sha256_file(path: Path) -> str:
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
-
-
-# ── Pool provenance ──────────────────────────────────────────────────────────
 
 
 def pool_problems(pool_path: Path, records_path: Path, expected_fraction: Fraction,
@@ -137,9 +121,6 @@ def pool_problems(pool_path: Path, records_path: Path, expected_fraction: Fracti
         elif Fraction(row["repeat_fraction"]) != measured or int(row["total"]) != len(pool):
             problems.append(f"{name}: pool_stats.csv disagrees with the pool file")
     return problems
-
-
-# ── Runs ─────────────────────────────────────────────────────────────────────
 
 
 def run_state(out_root: Path, pool_path: Path, selector: str, seed: int) -> tuple[str, list[str]]:
@@ -215,8 +196,6 @@ def run_pilot(cfg: dict, *, pools: dict[str, Path], attempts_root: Path, out_roo
             log(f"[pilot] {run_id}: completed")
     return outcome
 
-
-# ── Results ──────────────────────────────────────────────────────────────────
 
 TABLE_COLUMNS = ("run_id", "pool", "selector", "edit_produced", "parent_val", "child_val",
                  "gate_decision", "feedback_tokens", "test_evaluated", "api_calls", "api_total_tokens")

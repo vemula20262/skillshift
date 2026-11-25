@@ -1,10 +1,7 @@
 """Fixed-template behavior summaries for attempt records.
 
-The summary describes what the agent did and how the evaluator judged it, using only
-fields already on the record plus the generated code. It is deterministic: the same
-record and code always give the same text. Identifiers (record, task, family, hashes,
-paths) stay in their structured fields and never appear in the summary, so two
-attempts that behaved the same way get the same summary even on different tasks.
+Identifiers stay out of the summary, so attempts that behaved the same way get the
+same text.
 """
 from __future__ import annotations
 

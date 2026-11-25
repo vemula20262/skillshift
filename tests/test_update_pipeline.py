@@ -1,12 +1,7 @@
-"""Offline end-to-end check of the single-update pipeline.
+"""Offline end-to-end check of the single-update pipeline with a scripted model.
 
-Runs the real SkillOpt rollout, reflection, patching and evaluation code on real
-SpreadsheetBench workbooks, with the model API replaced by a scripted fake. No
-network calls are made.
-
-Skipped unless skillopt is importable and the extracted workbooks are present.
-Point SKILLSHIFT_DATA_ROOT at the extracted spreadsheetbench_verified_400 folder,
-or extract it to data/raw/spreadsheetbench_verified_400.
+Skipped unless skillopt and the extracted workbooks are present. Set
+SKILLSHIFT_DATA_ROOT or extract to data/raw/spreadsheetbench_verified_400.
 """
 import copy
 import importlib.util
@@ -43,13 +38,7 @@ HAVE_DATA = (DATA_ROOT / "spreadsheet").is_dir()
 
 
 class FakeClient:
-    """Scripted stand-in for the OpenAI chat API.
-
-    Target: copies the input workbook (wrong answer) unless the skill contains the
-    fixture rule, in which case it copies the reference workbook to simulate a
-    correct solution. Optimizer: proposes appending the fixture rule, or returns
-    unusable text when optimizer_ok is False.
-    """
+    """Scripted chat API: the target solves a task only when the skill has the fixture rule."""
 
     def __init__(self, target_model: str, optimizer_ok: bool = True):
         self.target_model = target_model

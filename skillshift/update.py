@@ -1,16 +1,4 @@
-"""Single-update SkillOpt pipeline for one (feedback pool, selector) pair.
-
-Stages, in order:
-  1. load and validate the pool's attempt records
-  2. run the selector, then sample its weighted output into the fixed token budget
-  3. hand the sampled trajectories to SkillOpt's reflect -> merge -> select stages
-  4. apply the resulting edits to the parent skill
-  5. score parent and child on the validation split and apply the gate
-  6. score the test split per evaluation.test_policy, written to a sealed file
-
-The executor, optimizer, prompts, starting skill and budgets come from the config and
-are identical for every selector.
-"""
+"""Run one skill update for a feedback pool and selector, then apply the validation gate."""
 from __future__ import annotations
 
 import datetime as _dt
@@ -37,9 +25,6 @@ TRAJECTORY_FILES = (
 
 def sha256_text(text: str) -> str:
     return hashlib.sha256(text.encode("utf-8")).hexdigest()
-
-
-# ── Model and task setup ─────────────────────────────────────────────────────
 
 
 def configure_models(cfg: dict) -> None:
@@ -70,12 +55,7 @@ REQUEST_TIMEOUT_S = 180.0
 
 
 def _set_request_timeout(seconds: float) -> None:
-    """Give SkillOpt's optimizer and target clients a request timeout and one client retry.
-
-    SkillOpt retries each call three more times itself, so the worst case per call is
-    bounded at about 3 x 2 x seconds. The clients are created here because SkillOpt
-    builds them lazily without a timeout and resets them whenever a deployment changes.
-    """
+    """Give SkillOpt's clients a request timeout and one client retry (SkillOpt builds them without one)."""
     from skillopt.model import azure_openai as az
 
     with az._optimizer_lock:
@@ -167,15 +147,8 @@ def evaluate_skill(cfg: dict, skill: str, items: list[dict], cache_root: Path, s
     return [r for r in results if str(r["id"]) in wanted]
 
 
-# ── Feedback ─────────────────────────────────────────────────────────────────
-
-
 def materialize_feedback(sampled: list, attempts_root: Path, prediction_dir: Path) -> list[dict]:
-    """Lay out the sampled trajectories the way SkillOpt's reflect stage reads them.
-
-    Each pool occurrence gets its own directory, so a repeated record is shown to
-    the optimizer once per occurrence, exactly as the selector and sampler chose.
-    """
+    """Lay out sampled trajectories for SkillOpt's reflect stage, one folder per pool occurrence."""
     from skillopt.envs.task_output import task_output_segment
 
     prediction_dir.mkdir(parents=True, exist_ok=True)
@@ -233,14 +206,7 @@ def _split_patches(raw_patches: list) -> tuple[list[dict], list[dict]]:
 
 @contextmanager
 def _failed_model_calls():
-    """Collect model calls that fail after all of SkillOpt's retries.
-
-    SkillOpt's reflect, merge and rank stages catch a failed optimizer call, print the
-    traceback and continue without it, so an update would silently use less feedback
-    than the selector and sampler chose. Every one of those calls goes through
-    azure_openai._chat_impl, which raises once its retries are used up; counting those
-    raises shows whether anything was dropped.
-    """
+    """Count optimizer calls that fail after retries. SkillOpt's stages skip them without stopping."""
     from skillopt.model import azure_openai as az
 
     failures: list[str] = []
@@ -300,9 +266,6 @@ def _propose_edit(cfg: dict, skill: str, results: list[dict], prediction_dir: Pa
     selected = rank_and_select(skill, merged, max_edits=fb["edit_budget"])
     candidate, report = apply_patch_with_report(skill, selected)
     return {"candidate": candidate, "patch": selected, "apply_report": report, "n_raw_patches": len(raw)}
-
-
-# ── Orchestration ────────────────────────────────────────────────────────────
 
 
 def run_update(

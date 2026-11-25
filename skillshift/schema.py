@@ -1,10 +1,6 @@
-"""Attempt record schema shared by attempt collection, pool building, selectors and the update pipeline.
+"""Attempt record schema and validator, shared by collection, pools, selectors and the pipeline.
 
-One record describes one evaluated agent attempt on one development task. Pool files
-(see docs/pool_contract.md) may contain several occurrences of the same attempt; each
-occurrence keeps the original fields and adds pool_record_id, original_record_id and is_copy.
-
-Run `python3 scripts/validate_attempts.py attempts/records.jsonl` to check a file.
+Check a file with `python3 scripts/validate_attempts.py attempts/records.jsonl`.
 """
 from __future__ import annotations
 
@@ -68,11 +64,7 @@ _SHA256 = re.compile(r"^[0-9a-f]{64}$")
 
 
 def categorize_failure(fail_reason: str) -> tuple[str, str]:
-    """Map a SkillOpt SpreadsheetBench fail_reason to (error_category, error_detail).
-
-    The detail is a short stable token (e.g. an exception class) that finer
-    "failure behavior" grouping can use; it is empty when nothing reliable is available.
-    """
+    """Map a SkillOpt fail_reason to (error_category, error_detail)."""
     reason = (fail_reason or "").strip()
     if not reason:
         return "none", ""
@@ -117,11 +109,7 @@ def estimate_tokens(text: str) -> int:
 
 
 def validate_record(record: object, *, require_derived: bool = False) -> list[str]:
-    """Return a list of problems with one record; an empty list means it is valid.
-
-    require_derived=True also requires summary and embedding to be filled in,
-    which selectors that use semantic similarity need.
-    """
+    """Problems with one record (empty if valid). require_derived also checks summary and embedding."""
     if not isinstance(record, dict):
         return ["record is not a JSON object"]
     errors: list[str] = []
@@ -265,11 +253,7 @@ def record_from_rollout(
     conversation: list[dict],
     feedback_text: str,
 ) -> dict:
-    """Build the deterministic fields of a record from one SkillOpt rollout result.
-
-    feedback_text is the trajectory as the optimizer will read it; its size sets
-    token_count. summary and embedding are left null for the trajectory parser.
-    """
+    """Build the record fields that follow from one rollout. summary and embedding stay null."""
     category, detail = categorize_failure(result.get("fail_reason", ""))
     outcome = "success" if result.get("hard") else "failure"
     if outcome == "success":

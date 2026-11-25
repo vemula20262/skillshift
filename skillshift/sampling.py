@@ -1,10 +1,4 @@
-"""Weighted sampling of selected feedback records into a fixed token budget.
-
-Every selection method hands the optimizer the same amount of feedback, measured in
-record token_count. Selector weights decide which records fill that budget: records
-are put in a seeded weighted random order (Efraimidis-Spirakis keys, u ** (1 / w))
-and added in that order while they fit.
-"""
+"""Sample weighted records into a fixed token budget using Efraimidis-Spirakis keys."""
 from __future__ import annotations
 
 import random
@@ -24,12 +18,7 @@ def sample_to_budget(
     token_budget: int,
     seed: int,
 ) -> list[SampledRecord]:
-    """Return records chosen by weight until token_budget is filled.
-
-    Records with weight <= 0 are never chosen. A record larger than the remaining
-    budget is skipped and later, smaller records can still fill the gap. The same
-    inputs and seed always give the same result.
-    """
+    """Pick records in seeded weighted order until token_budget is full. Weight <= 0 is never picked."""
     if len(records) != len(weights):
         raise ValueError("records and weights must have the same length")
     if token_budget <= 0:

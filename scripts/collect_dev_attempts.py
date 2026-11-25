@@ -1,8 +1,4 @@
-"""Collect one evaluated original attempt per development task, resumably.
-
-Reads the development task IDs from the task manifest, runs the shared starting
-skill on each pending task in small chunks, and appends one cost.csv row per chunk.
-Re-running continues where the last run stopped.
+"""Collect one original attempt per development task. Re-running continues where it stopped.
 
 Examples:
   python3 scripts/collect_dev_attempts.py --check
@@ -54,7 +50,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--max-chunks", type=int, default=None, help="stop after this many chunks")
     parser.add_argument("--max-infra-attempts", type=int, default=3)
     parser.add_argument("--call-limit", type=int, default=None,
-                        help="team-approved API call allowance for collection, counted from collection rows in cost.csv")
+                        help="API call allowance for collection, counted from collection rows in cost.csv")
     parser.add_argument("--check", action="store_true", help="report prerequisites and progress only; no model calls")
     args = parser.parse_args(argv)
 
@@ -92,7 +88,7 @@ def main(argv: list[str] | None = None) -> int:
         print(json.dumps(report(collector), indent=2))
         return 0 if args.check else 1
     if args.call_limit is None:
-        print("refusing to make model calls without --call-limit (the team-approved allowance)")
+        print("refusing to make model calls without --call-limit (the API call allowance)")
         return 1
 
     configure_models(cfg)

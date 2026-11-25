@@ -1,9 +1,4 @@
-"""Build attempts/records.jsonl from the collected development attempts.
-
-Adds a fixed-template behavior summary to each record, then checks that the file is
-schema-valid, covers exactly the manifest's development tasks once each, has no
-empty summaries, and can be consumed by the pilot selectors. The file is written
-only if every check passes; the printed checksum identifies it for pool building.
+"""Build attempts/records.jsonl with behavior summaries, writing it only if every check passes.
 
 Example:
   python3 scripts/prepare_records.py

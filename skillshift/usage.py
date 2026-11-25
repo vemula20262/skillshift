@@ -1,14 +1,7 @@
-"""Provider usage ledger (cost.csv) shared by attempt collection and update runs.
+"""API usage ledger (cost.csv) for collection and update runs.
 
-Each row is one unit of work: a collection batch or one update run. Rows are
-append-only and keyed by event_id, so re-running a report or resuming a job never
-counts the same usage twice. Provider usage comes from SkillOpt's token tracker,
-which records only calls that returned a response; requests that fail after all
-retries are not observable there and are counted separately as infra failures.
-
-feedback_tokens_estimate is the pipeline's own estimate of the feedback shown to
-the optimizer (record token_count units). It is not provider usage and is never
-added to the token totals.
+Rows are keyed by event_id, so usage is never counted twice. Only calls that
+returned a response are counted.
 """
 from __future__ import annotations
 
@@ -163,11 +156,7 @@ def summarize(rows: list[dict], pricing: Pricing) -> dict:
 
 
 def burn_chart_svg(rows: list[dict], pricing: Pricing, title: str = "Budget burn") -> str:
-    """Cumulative measured usage per ledger event as a standalone SVG.
-
-    Plots cost in USD when pricing is known, otherwise total tokens, and draws the
-    cap line only when both pricing and a cap are set.
-    """
+    """Cumulative usage per ledger event as an SVG: cost if pricing is set, otherwise tokens."""
     width, height, left, right, top, bottom = 720, 360, 80, 24, 48, 56
     use_cost = pricing.known
     series, running = [], 0.0
