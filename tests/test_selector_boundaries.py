@@ -3,7 +3,8 @@ import unittest
 from skillshift.selectors import get_selector
 from skillshift.selectors.base import cosine, prepare
 from skillshift.embeddings import encode
-from scripts.build_pools import build_pools
+from selector_helpers import build_pools_module
+build_pools = build_pools_module.build_pools
 from selector_helpers import record
 
 

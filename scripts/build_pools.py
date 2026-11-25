@@ -159,7 +159,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--input', required=True, type=Path, help='Original attempt JSONL, dev only')
     parser.add_argument('--config', required=True, type=Path)
-    parser.add_argument('--task-manifest', type=Path, help='prepare_data candidate_manifest.json; validates task split and family assignments')
+    parser.add_argument('--task-manifest', type=Path, help='datasets/<version>/task_manifest.json; checks task splits and families')
     parser.add_argument('--output-dir', required=True, type=Path, help='New directory (must not already exist)')
     args = parser.parse_args()
     try:

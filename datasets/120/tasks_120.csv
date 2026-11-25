@@ -4,8 +4,6 @@ id,split,instruction_type,family_id,split_group_id,eligible_for_execution,exclus
 142-19,dev,Sheet-Level Manipulation,observed-142-19,block-142-19,True,,inputs/142-19/initial.xlsx,evaluator_only/142-19/golden.xlsx
 59358,dev,Cell-Level Manipulation,observed-59358,block-59358,True,,inputs/59358/initial.xlsx,evaluator_only/59358/golden.xlsx
 38074,dev,Cell-Level Manipulation,observed-38074,block-38074,True,,inputs/38074/initial.xlsx,evaluator_only/38074/golden.xlsx
-130-9,dev,Sheet-Level Manipulation,observed-130-9,block-130-9,True,,inputs/130-9/initial.xlsx,evaluator_only/130-9/golden.xlsx
-283-32,dev,Sheet-Level Manipulation,observed-283-32,block-283-32,True,,inputs/283-32/initial.xlsx,evaluator_only/283-32/golden.xlsx
 54144,dev,Cell-Level Manipulation,observed-54144,block-54144,True,,inputs/54144/initial.xlsx,evaluator_only/54144/golden.xlsx
 48257,dev,Cell-Level Manipulation,observed-48257,block-48257,True,,inputs/48257/initial.xlsx,evaluator_only/48257/golden.xlsx
 52917,dev,Cell-Level Manipulation,observed-52917,block-52917,True,,inputs/52917/initial.xlsx,evaluator_only/52917/golden.xlsx
@@ -20,7 +18,6 @@ id,split,instruction_type,family_id,split_group_id,eligible_for_execution,exclus
 57558,dev,Cell-Level Manipulation,observed-57558,block-57558,True,,inputs/57558/initial.xlsx,evaluator_only/57558/golden.xlsx
 52216,dev,Cell-Level Manipulation,observed-52216,block-52216,True,,inputs/52216/initial.xlsx,evaluator_only/52216/golden.xlsx
 433-47,dev,Sheet-Level Manipulation,observed-433-47,block-433-47,True,,inputs/433-47/initial.xlsx,evaluator_only/433-47/golden.xlsx
-73-45,dev,Sheet-Level Manipulation,observed-73-45,block-73-45,True,,inputs/73-45/initial.xlsx,evaluator_only/73-45/golden.xlsx
 49300,dev,Cell-Level Manipulation,observed-49300,block-49300,True,,inputs/49300/initial.xlsx,evaluator_only/49300/golden.xlsx
 48924,dev,Cell-Level Manipulation,observed-48924,block-48924,True,,inputs/48924/initial.xlsx,evaluator_only/48924/golden.xlsx
 47933,dev,Cell-Level Manipulation,observed-47933,block-47933,True,,inputs/47933/initial.xlsx,evaluator_only/47933/golden.xlsx
@@ -59,8 +56,10 @@ id,split,instruction_type,family_id,split_group_id,eligible_for_execution,exclus
 52233,dev,Cell-Level Manipulation,observed-52233,block-52233,True,,inputs/52233/initial.xlsx,evaluator_only/52233/golden.xlsx
 37229,dev,Cell-Level Manipulation,observed-37229,block-37229,True,,inputs/37229/initial.xlsx,evaluator_only/37229/golden.xlsx
 58701,dev,Cell-Level Manipulation,observed-58701,block-58701,True,,inputs/58701/initial.xlsx,evaluator_only/58701/golden.xlsx
+49237,dev,Cell-Level Manipulation,observed-49237,block-49237,True,,inputs/49237/initial.xlsx,evaluator_only/49237/golden.xlsx
+36191,dev,Cell-Level Manipulation,observed-36191,block-36191,True,,inputs/36191/initial.xlsx,evaluator_only/36191/golden.xlsx
+531-18,dev,Sheet-Level Manipulation,observed-531-18,block-531-18,True,,inputs/531-18/initial.xlsx,evaluator_only/531-18/golden.xlsx
 269-44,val,Sheet-Level Manipulation,observed-269-44,block-269-44,True,,inputs/269-44/initial.xlsx,evaluator_only/269-44/golden.xlsx
-49237,val,Cell-Level Manipulation,observed-49237,block-49237,True,,inputs/49237/initial.xlsx,evaluator_only/49237/golden.xlsx
 46240,val,Cell-Level Manipulation,observed-46240,block-46240,True,,inputs/46240/initial.xlsx,evaluator_only/46240/golden.xlsx
 41978,val,Cell-Level Manipulation,observed-41978,block-41978,True,,inputs/41978/initial.xlsx,evaluator_only/41978/golden.xlsx
 41265,val,Cell-Level Manipulation,observed-41265,block-41265,True,,inputs/41265/initial.xlsx,evaluator_only/41265/golden.xlsx
@@ -72,7 +71,6 @@ id,split,instruction_type,family_id,split_group_id,eligible_for_execution,exclus
 440-24,val,Sheet-Level Manipulation,observed-440-24,block-440-24,True,,inputs/440-24/initial.xlsx,evaluator_only/440-24/golden.xlsx
 57033,val,Cell-Level Manipulation,observed-57033,block-57033,True,,inputs/57033/initial.xlsx,evaluator_only/57033/golden.xlsx
 157-4,val,Sheet-Level Manipulation,observed-157-4,block-157-4,True,,inputs/157-4/initial.xlsx,evaluator_only/157-4/golden.xlsx
-36191,val,Cell-Level Manipulation,observed-36191,block-36191,True,,inputs/36191/initial.xlsx,evaluator_only/36191/golden.xlsx
 42526,val,Cell-Level Manipulation,observed-42526,block-42526,True,,inputs/42526/initial.xlsx,evaluator_only/42526/golden.xlsx
 269-43,val,Sheet-Level Manipulation,observed-269-43,block-269-43,True,,inputs/269-43/initial.xlsx,evaluator_only/269-43/golden.xlsx
 34210,val,Cell-Level Manipulation,observed-34210,block-34210,True,,inputs/34210/initial.xlsx,evaluator_only/34210/golden.xlsx
@@ -89,6 +87,8 @@ id,split,instruction_type,family_id,split_group_id,eligible_for_execution,exclus
 359-21,val,Sheet-Level Manipulation,observed-359-21,block-359-21,True,,inputs/359-21/initial.xlsx,evaluator_only/359-21/golden.xlsx
 488-14,val,Sheet-Level Manipulation,observed-488-14,block-488-14,True,,inputs/488-14/initial.xlsx,evaluator_only/488-14/golden.xlsx
 55979,val,Cell-Level Manipulation,observed-55979,block-55979,True,,inputs/55979/initial.xlsx,evaluator_only/55979/golden.xlsx
+45937,val,Cell-Level Manipulation,observed-45937,block-45937,True,,inputs/45937/initial.xlsx,evaluator_only/45937/golden.xlsx
+448-11,val,Sheet-Level Manipulation,observed-448-11,block-448-11,True,,inputs/448-11/initial.xlsx,evaluator_only/448-11/golden.xlsx
 39046,test,Cell-Level Manipulation,observed-39046,block-39046,True,,inputs/39046/initial.xlsx,evaluator_only/39046/golden.xlsx
 334-11,test,Sheet-Level Manipulation,observed-334-11,block-334-11,True,,inputs/334-11/initial.xlsx,evaluator_only/334-11/golden.xlsx
 304-35,test,Sheet-Level Manipulation,observed-304-35,block-304-35,True,,inputs/304-35/initial.xlsx,evaluator_only/304-35/golden.xlsx

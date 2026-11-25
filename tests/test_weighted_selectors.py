@@ -32,7 +32,8 @@ class WeightedTests(unittest.TestCase):
             self.assertEqual(selector.select(self.rows).to_dict(), selector.select(self.rows[::-1]).to_dict())
 
     def test_pool_builder_integration_keeps_every_copy(self):
-        from scripts.build_pools import build_pools
+        from selector_helpers import build_pools_module
+        build_pools = build_pools_module.build_pools
         originals = [record(i, outcome="success" if i < 3 else "failure") for i in range(6)]
         config = dict(status="approved", split_tasks={"dev": ["task-A"], "val": [], "test": []},
                       dominant_task_ids=["task-A"],

@@ -5,13 +5,18 @@ from pathlib import Path
 from prepare_data import choose_groups, audit_archive, EXPECTED
 from source_families import UNCERTAIN, allocate
 ROOT=Path(__file__).resolve().parents[1]
+# Tasks the benchmark evaluator cannot score meaningfully; excluded from the 120 version before sampling.
+EVALUATOR_UNUSABLE={
+ '130-9':'Answer position cannot be parsed by the evaluator (sheet name contains commas).',
+ '283-32':'Answer position cannot be parsed by the evaluator (unbalanced quote, whole-column ranges).',
+ '73-45':'Initial file already passes verification.'}
 def digest(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def select(audit,variant):
     flagged={r['id'] for r in audit if r.get('exclude')}
     if variant=='400': source=allocate(audit)
     else:
         uncertain={i for pair in UNCERTAIN for i in pair}
-        remaining={t['id']:[t] for t in audit if t['id'] not in flagged|uncertain};source=[]
+        remaining={t['id']:[t] for t in audit if t['id'] not in flagged|uncertain|set(EVALUATOR_UNUSABLE)};source=[]
         for split,n in [('dev',60),('val',30),('test',30)]:
             for gid in choose_groups(remaining,n,'separate120-v2-'+split):
                 for t in remaining.pop(gid):source.append(dict(t,split=split,split_group_id='block-'+t['id'],split_group_basis='singleton after conservative lineage exclusions'))
@@ -68,48 +73,24 @@ def build(variant,base):
     for t in audit:
         if t.get('exclude'):rejected.append(dict(id=t['id'],reason=t['exclude'],basis='upstream exclude note'))
         elif variant=='120' and t['id'] in uncertain:rejected.append(dict(id=t['id'],reason='Unresolved source lineage; conservative subset exclusion',basis='project precaution'))
+        elif variant=='120' and t['id'] in EVALUATOR_UNUSABLE:rejected.append(dict(id=t['id'],reason=EVALUATOR_UNUSABLE[t['id']],basis='evaluator check'))
     table('rejected_tasks.csv',['id','reason','basis'],rejected)
     selected={t['id'] for t in source};rejectids={t['id'] for t in rejected}
     table('not_selected.csv',['id','reason'],[dict(id=t['id'],reason='Eligible but not sampled') for t in audit if t['id'] not in selected|rejectids])
     stats=[dict(split=s,source_tasks=sum(t['split']==s for t in source),eligible_tasks=counts[s],cell_level=sum(t['split']==s and t['instruction_type']=='Cell-Level Manipulation' for t in active),sheet_level=sum(t['split']==s and t['instruction_type']=='Sheet-Level Manipulation' for t in active)) for s in counts]
     table('data_summary.csv',['split','source_tasks','eligible_tasks','cell_level','sheet_level'],stats)
-    save('protocol.json',{'version':variant+'-v2','source_tasks':len(source),'eligible_tasks':len(active),'eligible_split_counts':counts,'archive_sha256':EXPECTED,'family_policy':'Observed family_id is not confirmed provenance. split_group_id enforces precautionary isolation; use blocks for conservative resampling.','team_status':'Prepared for review, not claimed team-approved','model_runs':0,'pool_status':'Await real evaluated attempts and C1/C2/C3 definitions','sampling':'Deterministic hash ordering; 120 excludes source flags and unresolved lineage; 400 preserves historical full400_v1 allocation and omits flagged tasks only from execution.'})
-    save('pools.unresolved.json',{'status':'unresolved','dominant_task_ids':[],'pools':[]})
+    save('protocol.json',{'version':variant+'-v2','source_tasks':len(source),'eligible_tasks':len(active),'eligible_split_counts':counts,'archive_sha256':EXPECTED,'family_policy':'Observed family_id is not confirmed provenance. split_group_id enforces precautionary isolation; use blocks for conservative resampling.','sampling':'Deterministic hash ordering; 120 excludes source flags, unresolved lineage and evaluator-unusable tasks; 400 keeps the full allocation and omits flagged tasks only from execution.'})
     note=f'''# {variant}-task version
 
-This folder is self-contained dataset metadata for version {variant}-v2. It is an alternative to the other version, not another independent experiment to combine with it.
+{len(source)} source tasks, {len(active)} runnable: {counts['dev']} development / {counts['val']} validation / {counts['test']} test. Do not mix these splits with the other version.
 
-Source collection: **{len(source)} tasks**. Eligible for execution/scoring: **{len(active)} tasks**, with **{counts['dev']} development / {counts['val']} validation / {counts['test']} test**.
+Use `task_manifest.json`, `splits.json` and the `*_executor.json` files for runs. `source_manifest.json` and `source_splits.json` keep every source task, including excluded ones. `rejected_tasks.csv` lists exclusions with reasons and `not_selected.csv` the eligible tasks that were not sampled. `families.csv` records source families, and `precautionary_group_log.csv` lists possibly related tasks kept in the same split. `pilot_10.json` lists the development pilot tasks and `data_summary.csv` the split counts.
 
-Use `task_manifest.json`, `splits.json`, and the three executor manifests for runs. `source_manifest.json` and `source_splits.json` retain source accounting. The 400 version retains two upstream-flagged tasks in source records but excludes them from every runnable manifest. The 120 version selects replacements before splitting so its eligible counts remain exactly 60/30/30.
+To restore and check the workbooks, run `python3 scripts/prepare_data.py`, then `python3 scripts/prepare_variants.py --materialize` and `python3 scripts/prepare_variants.py --verify`. Input workbooks go to `inputs/` and reference workbooks to `evaluator_only/`; only inputs belong in the agent's workspace.
 
-`families.csv` records observed identities. No confirmed workbook merges were found, so `merge_log.csv` has headers only. Potential relationships, where retained, are explicitly precautionary blocks in `precautionary_group_log.csv`, not confirmed family merges. Heuristic review cannot prove independence.
-
-`rejected_tasks.csv` separates upstream warnings from project precautions; `not_selected.csv` accounts for eligible unsampled tasks. `data_summary.csv` provides report counts. `pilot_10.json` contains development-only IDs.
-
-## Reproduce and verify
-
-From the repository root, run `python3 scripts/prepare_data.py` if the source archive is absent, then `python3 scripts/prepare_variants.py --materialize` to restore workbook files for the published manifests. Run `python3 scripts/prepare_variants.py --verify`. To regenerate metadata separately use `--output-root` with a new directory.
-
-Input workbooks go in `inputs/`; references in `evaluator_only/`. Only inputs and executor manifests belong in the agent workspace. Do not expose reference answers to the agent. Raw workbook bytes are unchanged; checksums cover all files.
-
-For pool creation, pass `--task-manifest datasets/{variant}/task_manifest.json` to `scripts/build_pools.py`. Use `pools.unresolved.json` only after definitions are agreed; it intentionally cannot produce experimental pools yet. Two attempts per eligible development task means {counts['dev']*2} original attempts. Additional reruns are a separate decision.
-
-## Completion status
-
-Task selection, file checks, source-warning handling, split checks, pilot IDs, and a dataset-section draft are prepared. Semantic reference correctness and the evaluator integration still require validation. Real pilot/final pools and their statistics cannot be completed without actual attempts. No test results or team approval are claimed.
-
-Source: https://huggingface.co/datasets/KAKA22/SpreadsheetBench (CC BY-SA 4.0). Preserve source attribution. The older `data/` versions are historical and may include the source-flagged tasks in runnable lists; do not run them.
+Source: https://huggingface.co/datasets/KAKA22/SpreadsheetBench (CC BY-SA 4.0). Workbooks are not modified.
 '''
     (out/'README.md').write_text(note)
-    (out/'dataset_section.md').write_text(f'''# Dataset section draft — {variant}-task version
-
-We use SpreadsheetBench Verified, preserving its original instructions and input/reference workbook pairs. This version contains {len(source)} source tasks and {len(active)} eligible tasks allocated to development ({counts['dev']}), validation ({counts['val']}), and test ({counts['test']}). Source metadata warnings exclude tasks 56225 (initial file already passes verification) and 56274 (reference data-validation inconsistency) from execution. All raw source records remain available in the original archive.
-
-Selection and split assignment are deterministic and do not use model outcomes. Observed workbook identity and precautionary split blocks are distinguished. The smaller version excludes unresolved-lineage candidates before selecting 120 tasks; the larger version retains them in whole precautionary blocks. Neither procedure proves all task sources independent. File readability and hashes are checked, but reference semantics and evaluator behavior are not certified by these checks.
-
-The accompanying data_summary.csv supplies measured split/category counts. We plan two attempts per eligible development task ({counts['dev']*2} original attempts). No such attempts have been collected in this package; feedback pool definitions, success/failure ratios, and concentration statistics remain pending. This draft must be updated after actual collection.
-''')
     save('SHA256SUMS.json',{str(p.relative_to(out)):digest(p) for p in sorted(out.rglob('*')) if p.is_file() and p.suffix!='.xlsx'})
 
 def verify(base,materialize=False):

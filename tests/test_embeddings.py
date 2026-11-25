@@ -4,7 +4,8 @@ import unittest
 from unittest.mock import patch
 from skillshift.embeddings import encode
 from skillshift.selectors import METHODS, get_selector
-from scripts.build_pools import build_pools
+from selector_helpers import build_pools_module
+build_pools = build_pools_module.build_pools
 
 
 def attempt(i):

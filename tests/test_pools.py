@@ -1,4 +1,4 @@
-"""Synthetic unit fixtures only; these are not experimental evidence or real pools."""
+"""Tests for scripts/build_pools.py."""
 import copy
 import csv
 import hashlib

@@ -1,8 +1,11 @@
 id,reason,basis
 23-24,Unresolved source lineage; conservative subset exclusion,project precaution
+283-32,"Answer position cannot be parsed by the evaluator (unbalanced quote, whole-column ranges).",evaluator check
 290-1,Unresolved source lineage; conservative subset exclusion,project precaution
+73-45,Initial file already passes verification.,evaluator check
 80-42,Unresolved source lineage; conservative subset exclusion,project precaution
 118-50,Unresolved source lineage; conservative subset exclusion,project precaution
+130-9,Answer position cannot be parsed by the evaluator (sheet name contains commas).,evaluator check
 146-49,Unresolved source lineage; conservative subset exclusion,project precaution
 147-48,Unresolved source lineage; conservative subset exclusion,project precaution
 141-20,Unresolved source lineage; conservative subset exclusion,project precaution

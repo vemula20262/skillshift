@@ -1,0 +1,28 @@
+{
+  "run_id": "smoke_C0__passthrough__seed0",
+  "models": {
+    "optimizer": "z-ai/glm-5.3-flash",
+    "target": "z-ai/glm-5.3-flash"
+  },
+  "pilot_tasks": [
+    "49237",
+    "57989",
+    "156-14",
+    "516-46",
+    "52216",
+    "49333",
+    "59160",
+    "48982",
+    "531-18",
+    "59358"
+  ],
+  "attempts_solved": "3/10",
+  "feedback_tokens": 23528,
+  "edits_applied": 3,
+  "val_parent": "15/30",
+  "val_child": "16/30",
+  "accepted": true,
+  "api_calls": 63,
+  "api_tokens": 157881,
+  "minutes": 14.6
+}

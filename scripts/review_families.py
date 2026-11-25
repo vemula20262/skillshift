@@ -39,7 +39,7 @@ def main():
             if len(rare)>=3 or (len(ac&bc)>=15 and cell_overlap>=.7) or (len(shared)>=5 and text_overlap>=.75):
                 pairs.append({'a':a['id'],'b':b['id'],'shared_rare_texts':len(rare),'cell_overlap':round(cell_overlap,4),'layout_jaccard':round(layout_j,4),'text_overlap':round(text_overlap,4),'shared_examples':sorted(rare or shared)[:12],'instruction_a':a['instruction'],'instruction_b':b['instruction'],'decision':'needs_evidence_review'})
     pairs.sort(key=lambda p:(-p['shared_rare_texts'],-p['cell_overlap']))
-    dest=ROOT/'data/family_review';dest.mkdir(exist_ok=True)
+    dest=ROOT/'data';dest.mkdir(exist_ok=True)
     (dest/'candidates.json').write_text(json.dumps(pairs,indent=2,ensure_ascii=False)+'\n')
     (dest/'screening.json').write_text(json.dumps({'tasks':len(tasks),'pairs_screened':len(tasks)*(len(tasks)-1)//2,'flagged_pairs':len(pairs),'method':'Rare shared text OR high matching cell containment OR high text containment. Input workbooks only. Similarity is candidate evidence, not a merge rule.','limitations':'Heuristic screen may miss transformed variants. No upstream source lineage available in metadata.'},indent=2)+'\n')
     print(json.dumps({'pairs_screened':len(tasks)*(len(tasks)-1)//2,'flagged_pairs':len(pairs)}))
