@@ -1,9 +1,4 @@
-"""Offline checks for the full-grid runner.
-
-Pools are built with scripts/build_pools.py from synthetic records, and run_update is
-replaced by a stand-in that writes run.json and sealed test files in the same format.
-No model, workbook or skillopt install is needed.
-"""
+"""Offline checks for the grid runner, with a stand-in run_update."""
 import copy
 import csv
 import hashlib

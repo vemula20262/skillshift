@@ -1,12 +1,7 @@
-"""Run the full experiment grid: every pool x selector x seed in config/grid.json.
+"""Run every pool x selector x seed in config/grid.json.
 
-Checks pools and selectors before any model call, then runs each pending
-combination through skillshift.update.run_update with the test policy from the
-config. Completed runs are skipped on restart. Sealed test scores are exported
-only after every combination has finished.
-
-Pool repeat fractions in the spec ("0", "1/2") turn on the full provenance check
-for exact-copy pools; null only checks the schema (for C2 and C3).
+A repeat fraction in the spec ("0", "1/2") turns on the full pool check for exact-copy
+pools; null only checks the schema (for C2 and C3).
 
 Examples:
   python3 scripts/run_grid.py --pool-dir pools/final --check

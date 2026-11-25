@@ -1,13 +1,7 @@
-"""Full experiment grid: pools x selectors x seeds through the shared update pipeline.
+"""Full experiment grid: pools x selectors x seeds through the update pipeline.
 
-Builds on the pilot runner. Differences from the pilot: the grid comes from a spec
-file, several seeds run, and test evaluation follows evaluation.test_policy from the
-config, so accepted children are scored on the test split and written to
-<out>/sealed/. Sealed scores are only exported once every combination has finished.
-
-Runs go seed by seed, so a stopped grid still holds complete seeds. Restart rules
-match the pilot: completed runs are skipped, partial runs are left in place unless
-retry_partial is set.
+Runs go one seed at a time. Test evaluation follows the config's test_policy, and
+sealed test scores are exported only once every run has finished.
 """
 from __future__ import annotations
 
@@ -52,9 +46,6 @@ def combinations(spec: dict) -> list[tuple[int, str, str]]:
     return [(seed, pool, selector) for seed in spec["seeds"] for pool in spec["pools"] for selector in spec["selectors"]]
 
 
-# ── Checks before any model call ─────────────────────────────────────────────
-
-
 def pool_problems(name: str, pool_path: Path, records_path: Path, fraction, pool_dir: Path) -> list[str]:
     """Full provenance check for exact-copy pools; schema and pool fields for the rest."""
     if fraction is not None:
@@ -85,9 +76,6 @@ def selector_problems(cfg: dict, selectors: list[str]) -> list[str]:
         except Exception as exc:  # noqa: BLE001
             problems.append(f"selector {name!r} cannot run: {exc}")
     return problems
-
-
-# ── Runs ─────────────────────────────────────────────────────────────────────
 
 
 def run_state(cfg: dict, out_root: Path, pool_path: Path, selector: str, seed: int) -> tuple[str, list[str]]:
@@ -178,8 +166,6 @@ def run_one(cfg: dict, *, seed: int, pool: str, selector: str, pool_path: Path, 
     log(f"[grid] {run_id}: completed")
     return {"state": "completed", "problems": problems}
 
-
-# ── Results ──────────────────────────────────────────────────────────────────
 
 RUN_COLUMNS = ("run_id", "seed", "pool", "selector", "edited", "parent_val", "child_val", "accepted",
                "test_evaluated", "feedback_tokens", "api_calls")
