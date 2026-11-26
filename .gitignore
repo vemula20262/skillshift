@@ -3,9 +3,20 @@ __pycache__/
 .venv/
 .env
 data/raw/
-attempts/
+/attempts/*
+!/attempts/records.jsonl
+!/attempts/provenance.json
 results/
-pools/
+/pools/*
+!/pools/grid/
+/pools/grid/*
+!/pools/grid/C0.jsonl
+!/pools/grid/C1_50.jsonl
+!/pools/grid/C3.jsonl
+!/pools/grid/manifest.json
+!/pools/grid/pool_stats.csv
+!/pools/grid/validation.json
+!/pools/grid/SHA256SUMS.json
 
 # Personal submission materials
 local_submission/

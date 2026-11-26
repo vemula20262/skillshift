@@ -6,13 +6,19 @@ The category is selected from development records only: execution errors occur i
 
 ## Reproduce
 
-Use the exact input SHA-256 `d2de6a9e0241ba6b67935950d9cd15804413d4a729af11e51ea52e8e372bdf34`. Configuration `config/pools.grid.json` includes C0, C1_50 and C3. Per-pool dominant task IDs override the shared default. The optional failure_category guard requires matching failures from at least two distinct tasks.
+Use the public input SHA-256 `8e5ef6e4c0a6e6a303c867a2264f3f31ef70778b603c4c7fa7a2037e47e09f00`. The public copy removes one personal checkout path from task 57558's error message. `attempts/provenance.json` records the original and public hashes; all other input bytes are preserved. Do not mix manifests from the earlier private archive with these public files. Configuration `config/pools.grid.json` includes C0, C1_50 and C3. Per-pool dominant task IDs override the shared default. The optional failure_category guard requires matching failures from at least two distinct tasks.
 
 ```sh
-python3 scripts/build_pools.py --input attempts/records.jsonl --config config/pools.grid.json --task-manifest datasets/120/task_manifest.json --output-dir pools/grid
+python3 scripts/build_pools.py --input attempts/records.jsonl --config config/pools.grid.json --task-manifest datasets/120/task_manifest.json --output-dir pools/grid_rebuilt
 python3 scripts/validate_attempts.py attempts/records.jsonl pools/grid/C0.jsonl pools/grid/C1_50.jsonl pools/grid/C3.jsonl
 ```
 
-C0 and C1_50 retain their previous JSONL bytes. All three pools share one manifest and statistics file. Raw attempts, generated pools and the handoff archive remain outside Git. The handoff includes the exact input, task manifest, config, pool files, statistics, validation summary and file checksums. Raw trajectories are not included; retain the original collection for model execution.
+The repository includes `attempts/records.jsonl` and all three pools under `pools/grid/`, together with their manifest, statistics, validation summary and checksums. Rebuilt public pools differ from the earlier private handoff only in occurrences of the sanitized error message; counts and selection rules are unchanged. Other runtime attempts and outputs remain ignored.
+
+## Selector handoff
+
+Pull this PR branch to obtain all supplied selector inputs; no ZIP is required. The records contain nonempty summaries and trajectory hashes. All embeddings are null: semantic selection still requires embeddings and calibrated thresholds. Full raw trajectories are unavailable in this checkout and remain with the original collector; do not interpret trajectory hashes as the trajectory contents. Raw trajectories are needed by later update runs, but not to compare hashes for exact deduplication.
+
+Validate without model calls using the commands above. `pools/grid/SHA256SUMS.json` uses repository-relative paths. The regenerated output directory must be new. Public files contain existing attempt feedback and do not represent new model runs.
 
 For the grid-runner PR, set C3's repeat fraction to `"1/2"` rather than null so its full original-content and provenance checks run. The handoff includes `config/grid.c3.json` with that setting and the existing five selectors and three seeds. Semantic thresholds, the exact trajectory deduplication change and API credits remain execution dependencies. No model calls or full-grid results are produced by this handoff.

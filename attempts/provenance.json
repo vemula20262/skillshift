@@ -1,0 +1,12 @@
+{
+  "source_sha256": "d2de6a9e0241ba6b67935950d9cd15804413d4a729af11e51ea52e8e372bdf34",
+  "public_sha256": "8e5ef6e4c0a6e6a303c867a2264f3f31ef70778b603c4c7fa7a2037e47e09f00",
+  "changes": [
+    {
+      "task_id": "57558",
+      "field": "fail_reason",
+      "change": "Removed local checkout prefix from an openpyxl traceback path; remaining error text unchanged."
+    }
+  ],
+  "preserved": "All other input bytes, including trajectory_sha256, outcomes, summaries and task IDs."
+}
