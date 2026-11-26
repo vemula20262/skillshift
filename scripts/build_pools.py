@@ -64,6 +64,19 @@ def validate(records, config):
         if name in names:
             raise PoolError('Pool names must be unique.')
         names.add(name)
+        dominant = pool.get('dominant_task_ids', config['dominant_task_ids'])
+        if (not isinstance(dominant, list) or not dominant
+                or any(not isinstance(x, str) or not x for x in dominant)
+                or len(dominant) != len(set(dominant))
+                or not set(dominant) <= set(splits['dev'])):
+            raise PoolError('Pool dominant_task_ids must be unique development task IDs.')
+        category = pool.get('failure_category')
+        if category is not None:
+            failures = [r for r in records if r['task_id'] in dominant and r['outcome'] == 'failure']
+            if (not isinstance(category, str) or not category
+                    or len({r['task_id'] for r in failures}) < 2
+                    or any(r.get('error_category') != category for r in failures)):
+                raise PoolError('Failure-category pools require matching failures across at least two tasks.')
         if pool.get('mechanism') != 'exact_copy':
             raise PoolError('Only explicitly specified exact_copy mechanisms are supported.')
         try:
@@ -107,7 +120,7 @@ def build_pools(records, config):
         rows = [dict(r, original_record_id=r['record_id'], pool_record_id=f'{name}:original:{i}', is_copy=False)
                 for i, r in enumerate(originals)]
         for outcome, count in [('success', int(success_copies)), ('failure', int(copy_count-success_copies))]:
-            candidates = [r for r in originals if r['task_id'] in config['dominant_task_ids'] and r['outcome'] == outcome]
+            candidates = [r for r in originals if r['task_id'] in definition.get('dominant_task_ids', config['dominant_task_ids']) and r['outcome'] == outcome]
             if count and not candidates:
                 raise PoolError(f'{name}: dominant tasks lack {outcome} attempts needed to preserve outcome ratio.')
             for i in range(count):
