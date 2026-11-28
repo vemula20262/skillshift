@@ -1,3 +1,40 @@
+import json
+import os
+from pathlib import Path
+import tempfile
+
+
+def read_jsonl(path):
+    rows = []
+    for line_no, line in enumerate(Path(path).read_text().splitlines(), 1):
+        if line.strip():
+            try:
+                rows.append(json.loads(line))
+            except ValueError as exc:
+                raise ValueError(f"{path}:{line_no}: invalid JSON") from exc
+    return rows
+
+
+def write_text_new(path, text):
+    """Publish a complete UTF-8 artifact atomically, without replacing any file."""
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    fd, temporary = tempfile.mkstemp(prefix=f".{path.name}.", dir=path.parent)
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8", newline="") as stream:
+            stream.write(text)
+            stream.flush()
+            os.fsync(stream.fileno())
+        # Hard-link publication fails if a concurrent writer claimed the name.
+        os.link(temporary, path)
+    finally:
+        Path(temporary).unlink()
+
+
+def write_json(path, value):
+    write_text_new(path, json.dumps(value, indent=2, ensure_ascii=False, allow_nan=False) + "\n")
+
+
 def validate_dev(records, manifest):
     """Accept a task manifest or task splits. Full manifests also check family isolation."""
     expected_families = None
