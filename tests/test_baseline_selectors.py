@@ -25,9 +25,9 @@ class BaselineTests(unittest.TestCase):
         self.assertEqual(merged.families, ["A", "B"])
         self.assertEqual(merged.weight, 1)
 
-    def test_exact_keeps_tool_evidence_and_literal_text_differences(self):
+    def test_exact_keeps_distinct_trajectories_with_identical_summaries(self):
         rows = [record(1), record(2), record(3, summary="Wrong range ")]
-        rows[1]["tool_events"] = [{"error": "different"}]
+        rows[1]["trajectory_sha256"] = "a" * 64
         self.assertEqual(len(get_selector("exact_dedup").select(rows).items), 3)
 
     def test_semantic_merges_paraphrases(self):

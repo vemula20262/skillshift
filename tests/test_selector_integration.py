@@ -29,7 +29,7 @@ def pool_record(i, task, family, vec, copy=False):
         "tool_events": ["write_code", "check_fail"],
         "token_count": 50,
         "trajectory_path": f"raw/fixture/predictions/{task}",
-        "trajectory_sha256": "c" * 64,
+        "trajectory_sha256": ("c" if task == "T1" else "d") * 64,
         "summary": f"Wrote the wrong value for task {task}.",
         "embedding": vec,
     }

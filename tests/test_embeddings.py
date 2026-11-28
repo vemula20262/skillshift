@@ -9,7 +9,7 @@ build_pools = build_pools_module.build_pools
 
 
 def attempt(i):
-    return dict(record_id=str(i), task_id="dev-task", source_family="family-A",
+    return dict(trajectory_sha256="a" * 64, record_id=str(i), task_id="dev-task", source_family="family-A",
                 summary="Range endpoint is wrong", outcome="failure", error_category="range",
                 token_count=10, feedback_source="evaluator", env_version="synthetic-v1",
                 embedding=[1.0, 0.0], split="dev")
