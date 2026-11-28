@@ -1,5 +1,6 @@
 """Synthetic feedback fixtures for selector tests."""
 import importlib.util
+import hashlib
 from pathlib import Path
 
 # Load scripts/build_pools.py by path: an installed package named "scripts"
@@ -11,6 +12,7 @@ _spec.loader.exec_module(build_pools_module)
 
 def record(i, family="A", summary="Wrong range", vector=None, outcome="failure"):
     return dict(record_id=str(i), task_id=f"task-{family}", source_family=family,
+                trajectory_sha256=hashlib.sha256(summary.encode()).hexdigest(),
                 summary=summary, embedding=vector or [1.0, 0.0], outcome=outcome,
                 error_category="range" if outcome == "failure" else None,
                 token_count=10, feedback_source="evaluator", env_version="test-v1",

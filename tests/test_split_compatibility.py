@@ -14,7 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def attempts(manifest):
-    return [dict(record_id=f"attempt-{task['id']}", task_id=task['id'],
+    return [dict(trajectory_sha256="a" * 64, record_id=f"attempt-{task['id']}", task_id=task['id'],
                  source_family=task['family_id'], split='dev', summary='Wrong range',
                  outcome='failure', error_category='range', feedback_source='synthetic',
                  env_version='test-v1', token_count=4, embedding=[1.0, 0.0],
